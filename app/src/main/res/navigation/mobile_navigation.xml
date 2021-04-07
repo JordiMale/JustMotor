@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.justmotor.ui.home.HomeFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_navigation_Home"
+            app:destination="@id/navigation_Home" />
+        <action
+            android:id="@+id/action_nav_home_to_registrarFragment"
+            app:destination="@id/registrarFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_Filter"
+        android:name="com.example.justmotor.ui.Filtrar.FilterFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_filter" />
+
+    <fragment
+        android:id="@+id/nav_comparador"
+        android:name="com.example.justmotor.ui.Comparador.ComparadorFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_comparador" />
+
+
+    //Fragments para el nav bottom.
+    <fragment
+        android:id="@+id/navigation_Home"
+        android:name="com.example.justmotor.ui.home.HomeFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_Opciones"
+        android:name="com.example.justmotor.ui.Settings.SetingsFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_setings" />
+
+    <fragment
+        android:id="@+id/navigation_Buzon"
+        android:name="com.example.justmotor.ui.Buzon.BuzonFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_buzon" />
+    <fragment
+        android:id="@+id/navigation_Fav"
+        android:name="com.example.justmotor.ui.Favoritos.FavFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_fav" />
+    <fragment
+        android:id="@+id/registrarFragment"
+        android:name="com.example.justmotor.ui.RegistrarLogin.RegistrarFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_registrar" >
+        <action
+            android:id="@+id/action_registrarFragment_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/registrarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.justmotor.ui.RegistrarLogin.LoginFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/registrarConseFragment"
+        android:name="com.example.justmotor.ui.RegistrarLogin.RegistrarConseFragment"
+        android:label="JustMotor"
+        tools:layout="@layout/fragment_registrar_conse" />
+    <fragment
+        android:id="@+id/filterMotoFragment"
+        android:name="com.example.justmotor.ui.Filtrar.FilterMotoFragment"
+        android:label="fragment_filter_moto"
+        tools:layout="@layout/fragment_filter_moto" />
+</navigation>

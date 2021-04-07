@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "544367052515",
+    "project_id": "justmotor-3a355",
+    "storage_bucket": "justmotor-3a355.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:544367052515:android:a12140a3a85a3b81f027d6",
+        "android_client_info": {
+          "package_name": "com.example.justmotor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "544367052515-5e57ss2g3fngqdioep09721jjnfng2ck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI1JktqPnZ64-HpEsYkiG5CvxTdVo-jAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "544367052515-5e57ss2g3fngqdioep09721jjnfng2ck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

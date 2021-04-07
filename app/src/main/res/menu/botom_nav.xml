@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Casa" />
+
+    <item
+        android:id="@+id/navigation_Fav"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="Favoritos" />
+
+    <item
+        android:id="@+id/placeholder"
+        android:title=""/>
+
+    <item
+        android:id="@+id/navigation_Buzon"
+        android:icon="@drawable/ic_baseline_mail_24"
+        android:title="Buzón" />
+
+    <item
+        android:id="@+id/navigation_Opciones"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Opciones" />
+
+</menu>
