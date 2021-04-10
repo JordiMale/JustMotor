@@ -78,5 +78,5 @@
         android:id="@+id/filterMotoFragment"
         android:name="com.example.justmotor.ui.Filtrar.FilterMotoFragment"
         android:label="fragment_filter_moto"
-        tools:layout="@layout/fragment_filter_moto" />
+        tools:layout="Buscar Moto" />
 </navigation>

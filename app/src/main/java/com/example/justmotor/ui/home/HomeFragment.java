@@ -1,10 +1,14 @@
 package com.example.justmotor.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,12 +23,24 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.justmotor.R;
+import com.example.justmotor.ui.Filtrar.FilterMotoFragment;
+import com.example.justmotor.ui.GetSet.Mix_Oferta;
+import com.example.justmotor.ui.GetSet.Modelo;
 import com.example.justmotor.ui.RegistrarLogin.RegistrarFragment;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
 
     Button btnRegistrarLogear;
+
+    SearchView searchView;
+    ListView listView;
+    ArrayList<com.example.justmotor.ui.GetSet.Modelo> Modelo;
+    ArrayList<com.example.justmotor.ui.GetSet.Marca> Marca;
+    ArrayList<com.example.justmotor.ui.GetSet.Ficha_Tecnica_Modelo> Ficha_Tecnica_Modelo;
+    ArrayList<Mix_Oferta> Total;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +59,57 @@ public class HomeFragment extends Fragment {
         });
 
 
+        //searchView = v.findViewById(R.id.Comp_Filt_Buscador);
+        listView = v.findViewById(R.id.list1);
+
+        Modelo = new ArrayList<>();
+        Marca = new ArrayList<>();
+        Ficha_Tecnica_Modelo = new ArrayList<>();
+
+        Total = new ArrayList<>();
+
+        Modelo MiModelito = new Modelo(1,1, 1, "Carretera", "MT125", "Muy veloz");
+
+
+        Mix_Oferta MiTotal = new Mix_Oferta("moto", "Hola", MiModelito.getNombre_Modelo(), "34543564");
+
+        Total.add(MiTotal);
+
+
+        HomeFragment.AdaptadorElements OfertaTotal = new AdaptadorElements(getContext(), Total);
+
+        listView.setAdapter(OfertaTotal);
+
+
         return v;
+    }
+
+    class AdaptadorElements extends ArrayAdapter<Mix_Oferta> {
+
+        public AdaptadorElements(Context context, ArrayList<Mix_Oferta> total) {
+            super(context, R.layout.row_oferta, total);
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            View item = inflater.inflate(R.layout.row_oferta, null);
+
+            TextView Nombre = (TextView) item.findViewById(R.id.Oferta_Nombre_Marca);
+            Nombre.setText(Total.get(position).getNombre_Marca());
+
+            TextView Lletra = (TextView) item.findViewById(R.id.Oferta_Nombre_Modelo);
+            Lletra.setText(Total.get(position).getNombre_Modelo());
+
+            TextView Numero = (TextView) item.findViewById(R.id.Oferta_Precio);
+            Numero.setText(Total.get(position).getPrecio());
+/*
+            TextView Peso = (TextView) item.findViewById(R.id.Peso);
+            Peso.setText(Elements[position].getPes());
+
+ */
+            return item;
+        }
     }
 }
 
