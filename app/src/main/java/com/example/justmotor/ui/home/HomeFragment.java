@@ -58,6 +58,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        searchView = v.findViewById(R.id.Comp_Filt_Buscador_Home);
 
         //searchView = v.findViewById(R.id.Comp_Filt_Buscador);
         listView = v.findViewById(R.id.list1);
@@ -72,8 +73,10 @@ public class HomeFragment extends Fragment {
 
 
         Mix_Oferta MiTotal = new Mix_Oferta("moto", "Hola", MiModelito.getNombre_Modelo(), "34543564");
+        Mix_Oferta MiTotal2 = new Mix_Oferta("Motos", "Adeu", MiModelito.getNombre_Modelo(), "3454");
 
         Total.add(MiTotal);
+        Total.add(MiTotal2);
 
 
         HomeFragment.AdaptadorElements OfertaTotal = new AdaptadorElements(getContext(), Total);
@@ -81,6 +84,36 @@ public class HomeFragment extends Fragment {
         listView.setAdapter(OfertaTotal);
 
 
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+            ArrayList<Mix_Oferta>Total2 = new ArrayList<>();
+                for(int i = 0; i < Total.size(); i++){
+                    if(Total.get(i).getNombre_Marca().equalsIgnoreCase(s)){
+                        Total2.add(Total.get(i));
+                        OfertaTotal.getFilter().filter(s);
+                    }
+                }
+
+                if(s.equals("")){
+                    HomeFragment.AdaptadorElements OfertaTotal = new AdaptadorElements(getContext(), Total);
+
+                    listView.setAdapter(OfertaTotal);
+                }else{
+                    HomeFragment.AdaptadorElements OfertaTotal2 = new AdaptadorElements(getContext(), Total2);
+
+                    listView.setAdapter(OfertaTotal2);
+                }
+                return true;
+            }
+        });
         return v;
     }
 

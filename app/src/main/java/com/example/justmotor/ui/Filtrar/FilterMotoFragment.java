@@ -18,6 +18,7 @@ import com.example.justmotor.ui.GetSet.Ficha_Tecnica_Modelo;
 import com.example.justmotor.ui.GetSet.Marca;
 import com.example.justmotor.ui.GetSet.Mix_Oferta;
 import com.example.justmotor.ui.GetSet.Modelo;
+import com.example.justmotor.ui.home.HomeFragment;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class FilterMotoFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_filter_moto, container, false);
 
 
-        //searchView = v.findViewById(R.id.Comp_Filt_Buscador);
+        searchView = v.findViewById(R.id.Comp_Filt_Buscador);
         listView = v.findViewById(R.id.list1);
 
         Modelo = new ArrayList<>();
@@ -54,10 +55,40 @@ public class FilterMotoFragment extends Fragment {
 
         Total.add(MiTotal);
 
-
         FilterMotoFragment.AdaptadorElements OfertaTotal = new AdaptadorElements(getContext(), Total);
 
         listView.setAdapter(OfertaTotal);
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                ArrayList<Mix_Oferta>Total2 = new ArrayList<>();
+                for(int i = 0; i < Total.size(); i++){
+                    if(Total.get(i).getNombre_Marca().equalsIgnoreCase(s)){
+                        Total2.add(Total.get(i));
+                        OfertaTotal.getFilter().filter(s);
+                    }
+                }
+
+                if(s.equals("")){
+                    FilterMotoFragment.AdaptadorElements OfertaTotal = new FilterMotoFragment.AdaptadorElements(getContext(), Total);
+
+                    listView.setAdapter(OfertaTotal);
+                }else{
+                    FilterMotoFragment.AdaptadorElements OfertaTotal2 = new FilterMotoFragment.AdaptadorElements(getContext(), Total2);
+
+                    listView.setAdapter(OfertaTotal2);
+                }
+                return true;
+            }
+        });
 
         return v;
     }

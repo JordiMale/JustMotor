@@ -49,11 +49,13 @@
         android:name="com.example.justmotor.ui.Buzon.BuzonFragment"
         android:label="JustMotor"
         tools:layout="@layout/fragment_buzon" />
+
     <fragment
         android:id="@+id/navigation_Fav"
         android:name="com.example.justmotor.ui.Favoritos.FavFragment"
         android:label="JustMotor"
         tools:layout="@layout/fragment_fav" />
+
     <fragment
         android:id="@+id/registrarFragment"
         android:name="com.example.justmotor.ui.RegistrarLogin.RegistrarFragment"
@@ -64,6 +66,7 @@
             app:destination="@id/nav_home"
             app:popUpTo="@id/registrarFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.justmotor.ui.RegistrarLogin.LoginFragment"
@@ -74,9 +77,23 @@
         android:name="com.example.justmotor.ui.RegistrarLogin.RegistrarConseFragment"
         android:label="JustMotor"
         tools:layout="@layout/fragment_registrar_conse" />
+
     <fragment
         android:id="@+id/filterMotoFragment"
         android:name="com.example.justmotor.ui.Filtrar.FilterMotoFragment"
-        android:label="fragment_filter_moto"
-        tools:layout="Buscar Moto" />
+        android:label="Buscar Moto"
+        tools:layout="@layout/fragment_filter_moto" />
+
+    <fragment
+        android:id="@+id/terminosFragment"
+        android:name="com.example.justmotor.ui.Terminos.TerminosFragment"
+        android:label="Terminos y Condiciones"
+        tools:layout="@layout/fragment_terminos" />
+    <fragment
+        android:id="@+id/privacidadFragment"
+        android:name="com.example.justmotor.ui.Privacidad.PrivacidadFragment"
+        android:label="Politica de Privacidad"
+        tools:layout="@layout/fragment_privacidad" />
+
+
 </navigation>

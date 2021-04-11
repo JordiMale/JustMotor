@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Terminos.TerminosFragment"
+    android:layout_marginBottom="?actionBarSize">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="19dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="335dp"
+            android:layout_height="42dp"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:text="Terminos y Condiciones"
+            android:autoSizeTextType="uniform"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="19dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TituloTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/UnoTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/DosTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/TresTermino" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/CuatroTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/CincoTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/SeisTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/SieteTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/SieteTerminoA" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/SieteTerminoB" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/SieteTerminoC" />
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/OchoTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/NueveTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/DiezTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/OnceTermino" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="7dp" />
+
+        <TextView
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
+            android:text="@string/DoceTermino" />
+
+    </LinearLayout>
+
+
+</ScrollView>

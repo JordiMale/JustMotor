@@ -18,9 +18,14 @@
             android:title="Comparador" />
 
         <item
-            android:id="@+id/Terminos"
+            android:id="@+id/terminosFragment"
             android:icon="@drawable/ic_baseline_insert_drive_file_24"
             android:title="Terminos"/>
+
+        <item
+            android:id="@+id/privacidadFragment"
+            android:icon="@drawable/politicadeprivacidad"
+            android:title="Privacidad"/>
 
         <item
             android:id="@+id/setingsFragment"
