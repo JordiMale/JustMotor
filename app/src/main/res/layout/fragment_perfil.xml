@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Perfil.PerfilFragment"
+    android:layout_marginBottom="?actionBarSize">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="352dp"
+            android:layout_height="55dp"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/aclonica"
+            android:text="Perfil"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.068" />
+
+
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.085"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.195" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <LinearLayout
+            android:layout_width="316dp"
+            android:layout_height="56dp">
+
+
+            <EditText
+                android:id="@+id/EtNombreUsu"
+                android:layout_width="316dp"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.678"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.207" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <LinearLayout
+            android:layout_width="316dp"
+            android:layout_height="56dp">
+
+            <EditText
+                android:id="@+id/EtApellido"
+                android:layout_width="316dp"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:hint="Primer Apellido"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.311" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <LinearLayout
+            android:layout_width="316dp"
+            android:layout_height="56dp">
+
+            <EditText
+                android:id="@+id/EtSegundoApellido"
+                android:layout_width="316dp"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:hint="Segundo Apellido"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.414" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <LinearLayout
+            android:layout_width="316dp"
+            android:layout_height="56dp">
+
+            <EditText
+                android:id="@+id/EtPassword"
+                android:layout_width="316dp"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.72" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <LinearLayout
+            android:layout_width="316dp"
+            android:layout_height="56dp">
+
+            <EditText
+                android:id="@+id/EtGmail"
+                android:layout_width="316dp"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:hint="Gmail"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.614" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <LinearLayout
+            android:layout_width="316dp"
+            android:layout_height="56dp">
+
+            <EditText
+                android:id="@+id/EtTelefono"
+                android:layout_width="316dp"
+                android:layout_height="56dp"
+                android:ems="10"
+                android:hint="Telefono"
+                android:inputType="textPersonName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.515" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <LinearLayout
+            android:layout_width="380dp"
+            android:layout_height="56dp"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/CancelaPerfil"
+                android:layout_width="120dp"
+                android:layout_height="56dp"
+                android:autoSizeTextType="uniform"
+                android:background="@drawable/bnt_dos"
+                android:text="Cancelar"
+                android:textColor="@drawable/txt_btn_uno"
+                app:backgroundTint="@color/teal_200"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.099"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.847" />
+
+            <Space
+                android:layout_width="142dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/AcceptarPerfil"
+                android:layout_width="120dp"
+                android:layout_height="56dp"
+                android:autoSizeTextType="uniform"
+                android:background="@drawable/bnt_dos"
+                android:text="Acceptar"
+                android:textColor="@drawable/txt_btn_uno"
+                app:backgroundTint="@color/teal_200"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.945"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.847" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -72,8 +72,8 @@ public class HomeFragment extends Fragment {
         Modelo MiModelito = new Modelo(1,1, 1, "Carretera", "MT125", "Muy veloz");
 
 
-        Mix_Oferta MiTotal = new Mix_Oferta("moto", "Hola", MiModelito.getNombre_Modelo(), "34543564");
-        Mix_Oferta MiTotal2 = new Mix_Oferta("Motos", "Adeu", MiModelito.getNombre_Modelo(), "3454");
+        Mix_Oferta MiTotal = new Mix_Oferta("moto", "Yamaha", MiModelito.getNombre_Modelo(), "34543564");
+        Mix_Oferta MiTotal2 = new Mix_Oferta("Motos", "Motorola", MiModelito.getNombre_Modelo(), "3454");
 
         Total.add(MiTotal);
         Total.add(MiTotal2);

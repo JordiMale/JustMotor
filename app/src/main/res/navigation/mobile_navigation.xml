@@ -94,6 +94,16 @@
         android:name="com.example.justmotor.ui.Privacidad.PrivacidadFragment"
         android:label="Politica de Privacidad"
         tools:layout="@layout/fragment_privacidad" />
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.justmotor.ui.Perfil.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/ayudaFragment"
+        android:name="com.example.justmotor.AyudaFragment"
+        android:label="fragment_ayuda"
+        tools:layout="@layout/fragment_ayuda" />
 
 
 </navigation>
