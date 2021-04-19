@@ -53,6 +53,7 @@ public class FilterMotoFragment extends Fragment {
 
         Mix_Oferta MiTotal = new Mix_Oferta("moto", "Hola", MiModelito.getNombre_Modelo(), "34543564");
 
+
         Total.add(MiTotal);
 
         FilterMotoFragment.AdaptadorElements OfertaTotal = new AdaptadorElements(getContext(), Total);
@@ -89,6 +90,7 @@ public class FilterMotoFragment extends Fragment {
                 return true;
             }
         });
+
 
         return v;
     }

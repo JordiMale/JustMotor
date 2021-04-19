@@ -22,13 +22,18 @@ import androidx.navigation.NavHostController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.justmotor.Conexion;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.Filtrar.FilterMotoFragment;
 import com.example.justmotor.ui.GetSet.Mix_Oferta;
 import com.example.justmotor.ui.GetSet.Modelo;
 import com.example.justmotor.ui.RegistrarLogin.RegistrarFragment;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class HomeFragment extends Fragment {
 
@@ -58,6 +63,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        HacerPeticionApi();
+
         searchView = v.findViewById(R.id.Comp_Filt_Buscador_Home);
 
         //searchView = v.findViewById(R.id.Comp_Filt_Buscador);
@@ -71,13 +78,19 @@ public class HomeFragment extends Fragment {
 
         Modelo MiModelito = new Modelo(1,1, 1, "Carretera", "MT125", "Muy veloz");
 
-
-        Mix_Oferta MiTotal = new Mix_Oferta("moto", "Yamaha", MiModelito.getNombre_Modelo(), "34543564");
+        Mix_Oferta MiTotal = new Mix_Oferta("Motos", "Yamaha", MiModelito.getNombre_Modelo(), "34543564");
         Mix_Oferta MiTotal2 = new Mix_Oferta("Motos", "Motorola", MiModelito.getNombre_Modelo(), "3454");
+        Mix_Oferta MiTotal3 = new Mix_Oferta("Motos", "Coche", MiModelito.getNombre_Modelo(), "3454");
+        Mix_Oferta MiTotal4 = new Mix_Oferta("Motos", "Coche", MiModelito.getNombre_Modelo(), "3454");
+        Mix_Oferta MiTotal5 = new Mix_Oferta("Motos", "Coche", MiModelito.getNombre_Modelo(), "3454");
+        Mix_Oferta MiTotal6 = new Mix_Oferta("Motos", "Coche", MiModelito.getNombre_Modelo(), "3454");
 
         Total.add(MiTotal);
         Total.add(MiTotal2);
-
+        Total.add(MiTotal3);
+        Total.add(MiTotal4);
+        Total.add(MiTotal5);
+        //Total.add(MiTotal6);
 
         HomeFragment.AdaptadorElements OfertaTotal = new AdaptadorElements(getContext(), Total);
 
@@ -116,6 +129,63 @@ public class HomeFragment extends Fragment {
         });
         return v;
     }
+
+    private void HacerPeticionApi() {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.setMaxRetriesAndTimeout(1, 10000);
+        //crearHandlerParaPeticon(client);
+
+    }
+/*
+    private void crearHandlerParaPeticon(AsyncHttpClient client) {
+        String url = Conexion.URL + "api/prueba";
+
+        client.get(url, new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+
+                progressDialog.setTitle("Probando la conexión y los permisos basicos del token");
+                progressDialog.show();
+
+                super.onStart();
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+                progressDialog.hide();
+
+                String response = new String(responseBody);
+
+                // Si la respuesta, los primeros 15 carácteres coinciden con <!DOCTYPE html>
+                // quiere decir que nos está devolviendo un html de login
+                // el status code se pone a 400 de error
+                if (response.substring(0, 15).equalsIgnoreCase("<!DOCTYPE html>")) statusCode = 400;
+
+                if (statusCode == 200) {
+                    mostrarToastInvitado("Token correctamente configurado");
+                }
+                else {
+                    mostrarAlertErrorPermisosToken(response);
+                }
+
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+                progressDialog.hide();
+
+                mostrarAlertErrorPermisosToken(error.toString());
+
+            }
+        });
+    }
+
+ */
+
+
 
     class AdaptadorElements extends ArrayAdapter<Mix_Oferta> {
 

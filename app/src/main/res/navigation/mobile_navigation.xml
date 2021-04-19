@@ -101,7 +101,7 @@
         tools:layout="@layout/fragment_perfil" />
     <fragment
         android:id="@+id/ayudaFragment"
-        android:name="com.example.justmotor.AyudaFragment"
+        android:name="com.example.justmotor.ui.Ayuda.AyudaFragment"
         android:label="fragment_ayuda"
         tools:layout="@layout/fragment_ayuda" />
 
