@@ -2,5 +2,5 @@ package com.example.justmotor;
 
 public class Conexion {
     //Poner la url.
-    public static String URL = "";
+    public static String URL = "http://";
 }

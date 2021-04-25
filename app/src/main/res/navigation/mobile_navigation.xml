@@ -72,11 +72,6 @@
         android:name="com.example.justmotor.ui.RegistrarLogin.LoginFragment"
         android:label="JustMotor"
         tools:layout="@layout/fragment_login" />
-    <fragment
-        android:id="@+id/registrarConseFragment"
-        android:name="com.example.justmotor.ui.RegistrarLogin.RegistrarConseFragment"
-        android:label="JustMotor"
-        tools:layout="@layout/fragment_registrar_conse" />
 
     <fragment
         android:id="@+id/filterMotoFragment"

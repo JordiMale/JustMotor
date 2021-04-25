@@ -63,7 +63,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        HacerPeticionApi();
+        //HacerPeticionApi();
 
         searchView = v.findViewById(R.id.Comp_Filt_Buscador_Home);
 
@@ -130,12 +130,15 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
+    /*
     private void HacerPeticionApi() {
         AsyncHttpClient client = new AsyncHttpClient();
         client.setMaxRetriesAndTimeout(1, 10000);
-        //crearHandlerParaPeticon(client);
+        crearHandlerParaPeticon(client);
 
     }
+
+     */
 /*
     private void crearHandlerParaPeticon(AsyncHttpClient client) {
         String url = Conexion.URL + "api/prueba";
@@ -182,6 +185,8 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+
 
  */
 
