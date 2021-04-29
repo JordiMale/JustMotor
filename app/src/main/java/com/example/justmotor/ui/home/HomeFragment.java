@@ -33,8 +33,13 @@ import com.example.justmotor.ui.Filtrar.FilterMotoFragment;
 import com.example.justmotor.ui.GetSet.Mix_Oferta;
 import com.example.justmotor.ui.GetSet.Modelo;
 import com.example.justmotor.ui.RegistrarLogin.RegistrarFragment;
+import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -47,6 +52,7 @@ public class HomeFragment extends Fragment {
 
     SearchView searchView;
     ListView listView;
+    private AsyncHttpResponseHandler handler;
     ArrayList<com.example.justmotor.ui.GetSet.Modelo> Modelo;
     ArrayList<com.example.justmotor.ui.GetSet.Marca> Marca;
     ArrayList<com.example.justmotor.ui.GetSet.Ficha_Tecnica_Modelo> Ficha_Tecnica_Modelo;
@@ -76,7 +82,7 @@ public class HomeFragment extends Fragment {
             }
         }
 
-        //HacerPeticionApi();
+        HacerPeticionApi();
 
         searchView = v.findViewById(R.id.Comp_Filt_Buscador_Home);
 
@@ -143,65 +149,55 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
-    /*
+
     private void HacerPeticionApi() {
         AsyncHttpClient client = new AsyncHttpClient();
         client.setMaxRetriesAndTimeout(1, 10000);
         crearHandlerParaPeticon(client);
 
+        String url = Conexion.URL;
+        url += "api/";
+        client.get(url, this.handler);
+
     }
 
-     */
-/*
+
+
     private void crearHandlerParaPeticon(AsyncHttpClient client) {
-        String url = Conexion.URL + "api/prueba";
-
-        client.get(url, new AsyncHttpResponseHandler() {
-
-            @Override
-            public void onStart() {
-
-                progressDialog.setTitle("Probando la conexión y los permisos basicos del token");
-                progressDialog.show();
-
-                super.onStart();
-            }
-
+        handler = new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
-                progressDialog.hide();
+                String respnse = new String(responseBody);
 
-                String response = new String(responseBody);
+                try {
+                    JSONArray jsonArray = new JSONArray(respnse);
 
-                // Si la respuesta, los primeros 15 carácteres coinciden con <!DOCTYPE html>
-                // quiere decir que nos está devolviendo un html de login
-                // el status code se pone a 400 de error
-                if (response.substring(0, 15).equalsIgnoreCase("<!DOCTYPE html>")) statusCode = 400;
+                    for(int i = 0; i<jsonArray.length();i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                if (statusCode == 200) {
-                    mostrarToastInvitado("Token correctamente configurado");
+                        String Modelo = jsonObject.getString("Modelo");
+
+                        //Añadir a la base de datos.
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-                else {
-                    mostrarAlertErrorPermisosToken(response);
-                }
+
 
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
 
-                progressDialog.hide();
-
-                mostrarAlertErrorPermisosToken(error.toString());
-
             }
-        });
+        };
     }
 
 
 
- */
+
 
 
 
