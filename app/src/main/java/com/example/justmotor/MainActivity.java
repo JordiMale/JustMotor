@@ -1,6 +1,8 @@
 package com.example.justmotor;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
@@ -8,7 +10,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -20,11 +24,13 @@ import androidx.appcompat.widget.Toolbar;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        auth = FirebaseAuth.getInstance();
         //Toolbar derecho
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -63,13 +69,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottom_nav_view, navController);
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
     }
+
+ */
+
+
 
 
 
@@ -79,6 +89,50 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+
+   public  boolean OnNavegationItemSelected(MenuItem item) {
+       int id = item.getItemId();
+
+       Intent intent;
+
+       if (id == R.id.Salir) {
+           auth.signOut();
+           //menu = navigationView.getMenu();
+           //MenuItem visi = menu.findItem(R.id.Salir);
+           //visi.setVisible(isChequed)
+       }
+
+            /*
+        } else if (id == R.id.double_phase) {
+            Toast.makeText(this, "Doble Fase", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.penalization) {
+            Toast.makeText(this, "Penalizacion", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.what_is_operative_research) {
+            what_is_operative_research what_is_operative_research = new what_is_operative_research();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, what_is_operative_research).commit();
+        } else if (id == which_is_the_simplex_method) {
+            which_is_the_simplex_method which_id_the_simplex_method = new which_is_the_simplex_method();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, which_id_the_simplex_method).commit();
+        } else if (id == R.id.which_is_the_method_of_the_double_phase) {
+            which_is_the_method_of_the_double_phase which_is_the_method_of_the_double_phase = new which_is_the_method_of_the_double_phase();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, which_is_the_method_of_the_double_phase).commit();
+        } else if (id == R.id.which_is_the_method_of_penalization){
+            which_is_the_method_of_penalization which_is_the_method_of_penalization = new which_is_the_method_of_penalization();
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction().replace(R.id.content_main, which_is_the_method_of_penalization).commit();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+
+*/return true;
+    }
+
+
 
 
 }

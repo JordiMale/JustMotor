@@ -9,15 +9,15 @@
 
     <ImageView
         android:id="@+id/Logo_Pantalla_Principal"
-        android:layout_width="322dp"
-        android:layout_height="90dp"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.332"
-        app:srcCompat="@drawable/justmotor" />
+        app:layout_constraintVertical_bias="0.281"
+        app:srcCompat="@drawable/f01d9d29d6cb479a8b07dc4be27c3e8a" />
 
     <ImageView
         android:id="@+id/Gif_Pantalla_Carga"

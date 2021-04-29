@@ -3,7 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/registrarFragment"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="Registrarse" />
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
@@ -17,10 +23,19 @@
             android:icon="@drawable/ic_baseline_compare_24"
             android:title="Comparador" />
 
-        <item
-            android:id="@+id/setingsFragment"
-            android:icon="@drawable/ic_baseline_exit_to_app_24"
-            android:title="Salir"/>
+        <item android:title="" />
+        <item android:title="" />
+        <item android:title="" />
+        <item android:title="" />
+        <item android:title="" />
 
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/Salir"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="Salir"/>
     </group>
 </menu>

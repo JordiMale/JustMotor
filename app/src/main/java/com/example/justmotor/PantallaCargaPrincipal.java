@@ -25,10 +25,7 @@ public class PantallaCargaPrincipal extends AppCompatActivity {
 
 
 
-        RotateAnimation rotate = new RotateAnimation(180, 360, Animation.RELATIVE_TO_SELF,
-                0.5f,  Animation.RELATIVE_TO_SELF, 0.5f);
-        rotate.setDuration(2000);
-        Imagen.startAnimation(rotate);
+
 
         new Handler().postDelayed(new Runnable() {
             @Override

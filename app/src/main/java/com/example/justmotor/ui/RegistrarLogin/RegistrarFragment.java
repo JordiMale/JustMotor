@@ -47,8 +47,8 @@ public class RegistrarFragment extends Fragment {
     private FirebaseAuth mAuth;
 
 
-    private TextInputLayout layoutEmail, layoutPassword, layoutConfirm, layoutName;
-    private TextInputEditText txtEmail, txtPassword, txtName, txtConfirm;
+    private TextInputLayout layoutEmail, layoutPassword, layoutConfirm, layoutName, layoutPhone;
+    private TextInputEditText txtEmail, txtPassword, txtName, txtConfirm, txtphone;
     private TextView txtSignin;
     ArrayList<String> Fav = new ArrayList<>();
 
@@ -57,6 +57,7 @@ public class RegistrarFragment extends Fragment {
     String GuardarName;
     String GuardarGmail;
     String GuardarPassword;
+    String GuardarPhone;
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -71,10 +72,12 @@ public class RegistrarFragment extends Fragment {
 
         layoutName = v.findViewById(R.id.TxtLayoutNameSignUp);
         layoutEmail = v.findViewById(R.id.TxtLayoutEmailSignUp);
+        layoutPhone = v.findViewById(R.id.TxtLayoutTelfSignUp);
         layoutPassword = v.findViewById(R.id.TxtLayoutPasswordSignUp);
         layoutConfirm = v.findViewById(R.id.TxtLayoutPassword2SignUp);
         txtName = v.findViewById(R.id.Nombre_Registrar);
         txtEmail = v.findViewById(R.id.gmail_Registrar);
+        txtphone = v.findViewById(R.id.tel_Registrar);
         txtPassword = v.findViewById(R.id.contra_Registrar);
         txtConfirm = v.findViewById(R.id.contra2_Registrar);
 
@@ -142,6 +145,25 @@ public class RegistrarFragment extends Fragment {
             }
         });
 
+        txtphone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!txtphone.getText().toString().isEmpty()){
+                    layoutPhone.setErrorEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         txtPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -196,6 +218,13 @@ public class RegistrarFragment extends Fragment {
             return false;
         }
 
+        if(txtphone.getText().toString().isEmpty()){
+            layoutPhone.setErrorEnabled(true);
+            layoutPhone.setError("Phone is Required");
+            return false;
+        }
+
+
         if(txtPassword.getText().toString().length() < 8){
             layoutPassword.setErrorEnabled(true);
             layoutPassword.setError("Required at least 8 characters");
@@ -214,6 +243,7 @@ public class RegistrarFragment extends Fragment {
         GuardarName = txtName.getText().toString();
         GuardarGmail = txtEmail.getText().toString();
         GuardarPassword = txtPassword.getText().toString();
+        GuardarPhone = txtphone.getText().toString();
         mAuth.createUserWithEmailAndPassword(GuardarGmail, GuardarPassword)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -227,6 +257,7 @@ public class RegistrarFragment extends Fragment {
                             user1.put("Email", GuardarGmail);
                             user1.put("Nombre", GuardarName);
                             user1.put("Fav", Fav);
+                            user1.put("Phone", GuardarPhone);
                             user1.put("Password", GuardarPassword);
 
 
