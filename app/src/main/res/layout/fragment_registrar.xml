@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/fondo2"
+    android:background="@drawable/fondoooooo"
     android:orientation="vertical"
     android:paddingLeft="50dp"
     android:paddingRight="50dp"
@@ -19,6 +19,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/aclonica"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="JustMotors"
         android:textSize="32dp" />
 
