@@ -177,7 +177,7 @@ public class LoginFragment extends Fragment {
                         },1000);
 
                     }else{
-                        Toast.makeText(getActivity(), "No esta registrat aquest usuari :(", Toast.LENGTH_LONG);
+                        Toast.makeText(getActivity(), "No esta registrat aquest usuari ", Toast.LENGTH_LONG);
                     }
                 }
             });

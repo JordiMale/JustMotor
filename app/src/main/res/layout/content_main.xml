@@ -35,6 +35,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
+            app:itemIconTint="@drawable/drawe_selector"
+            app:itemTextColor="@drawable/drawe_selector"
             app:menu="@menu/botom_nav"
             android:layout_marginRight="16dp"
             android:layout_marginEnd="16dp" />

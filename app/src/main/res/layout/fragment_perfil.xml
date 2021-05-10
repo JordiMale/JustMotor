@@ -63,6 +63,8 @@
                 android:ems="10"
                 android:hint="Nombre"
                 android:inputType="textPersonName"
+                android:gravity="center"
+                android:fontFamily="@font/aclonica"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.678"
@@ -87,6 +89,8 @@
                 android:ems="10"
                 android:hint="Gmail"
                 android:inputType="textPersonName"
+                android:gravity="center"
+                android:fontFamily="@font/aclonica"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -109,36 +113,14 @@
                 android:layout_height="56dp"
                 android:ems="10"
                 android:hint="Telefono"
+                android:gravity="center"
+                android:fontFamily="@font/aclonica"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.515" />
-
-        </LinearLayout>
-
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="17dp" />
-
-        <LinearLayout
-            android:layout_width="316dp"
-            android:layout_height="56dp">
-
-            <EditText
-                android:id="@+id/EtPassword"
-                android:layout_width="316dp"
-                android:layout_height="56dp"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.72" />
 
         </LinearLayout>
 
@@ -169,7 +151,7 @@
                 app:layout_constraintVertical_bias="0.847" />
 
             <Space
-                android:layout_width="142dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent" />
 
             <Button

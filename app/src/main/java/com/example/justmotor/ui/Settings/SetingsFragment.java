@@ -9,8 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.justmotor.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SetingsFragment extends Fragment {
 
@@ -18,6 +22,9 @@ public class SetingsFragment extends Fragment {
     Button Terminos;
     Button Politica;
     Button Ayuda;
+
+
+    private FirebaseUser Usu = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +41,13 @@ public class SetingsFragment extends Fragment {
         Perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.perfilFragment);
+                if(Usu != null){
+                    NavHostFragment.findNavController(getParentFragment()).navigate(R.id.perfilFragment);
+                }else{
+                    Toast.makeText(getContext(), "NO estas registrat o logueat.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
             }
         });
 
@@ -48,6 +61,7 @@ public class SetingsFragment extends Fragment {
         Politica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.privacidadFragment);
             }
         });

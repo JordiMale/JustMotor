@@ -92,12 +92,12 @@
     <fragment
         android:id="@+id/perfilFragment"
         android:name="com.example.justmotor.ui.Perfil.PerfilFragment"
-        android:label="fragment_perfil"
+        android:label="Perfil"
         tools:layout="@layout/fragment_perfil" />
     <fragment
         android:id="@+id/ayudaFragment"
         android:name="com.example.justmotor.ui.Ayuda.AyudaFragment"
-        android:label="fragment_ayuda"
+        android:label="Ayuda"
         tools:layout="@layout/fragment_ayuda" />
 
 
