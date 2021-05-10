@@ -30,6 +30,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -49,9 +50,10 @@ public class RegistrarFragment extends Fragment {
 
     private TextInputLayout layoutEmail, layoutPassword, layoutConfirm, layoutName, layoutPhone;
     private TextInputEditText txtEmail, txtPassword, txtName, txtConfirm, txtphone;
-    private TextView txtSignin;
+
     ArrayList<String> Fav = new ArrayList<>();
 
+    float vi = 0;
     Button Registrar;
 
     String GuardarName;
@@ -81,18 +83,6 @@ public class RegistrarFragment extends Fragment {
         txtPassword = v.findViewById(R.id.contra_Registrar);
         txtConfirm = v.findViewById(R.id.contra2_Registrar);
 
-
-
-
-        txtSignin = v.findViewById(R.id.AnarLoginClient);
-
-
-        txtSignin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.loginFragment);
-            }
-        });
 
         Registrar = v.findViewById(R.id.btnRegistrarClient);
 

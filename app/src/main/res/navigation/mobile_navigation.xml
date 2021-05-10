@@ -13,9 +13,7 @@
         <action
             android:id="@+id/action_nav_home_to_navigation_Home"
             app:destination="@id/navigation_Home" />
-        <action
-            android:id="@+id/action_nav_home_to_registrarFragment"
-            app:destination="@id/registrarFragment" />
+
     </fragment>
 
     <fragment
@@ -61,10 +59,7 @@
         android:name="com.example.justmotor.ui.RegistrarLogin.RegistrarFragment"
         android:label="JustMotor"
         tools:layout="@layout/fragment_registrar" >
-        <action
-            android:id="@+id/action_registrarFragment_to_nav_home"
-            app:destination="@id/nav_home"
-            app:popUpTo="@id/registrarFragment" />
+
     </fragment>
 
     <fragment

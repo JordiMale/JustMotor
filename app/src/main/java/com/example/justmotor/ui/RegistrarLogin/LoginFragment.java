@@ -42,13 +42,12 @@ public class LoginFragment extends Fragment {
     String EmailS;
     String PassS;
 
+    float vi = 0;
+    int num = 800;
     String Identificador;
 
     private TextInputLayout layoutEmail, layoutPassword;
     private TextInputEditText txtEmail, txtPassword;
-    private TextView txtSignup;
-
-
 
     FirebaseFirestore Acceso = FirebaseFirestore.getInstance();
 
@@ -63,19 +62,24 @@ public class LoginFragment extends Fragment {
         layoutPassword = v.findViewById(R.id.TxtLayoutPasswordSignIn);
         txtEmail = v.findViewById(R.id.EmailLogin);
         txtPassword = v.findViewById(R.id.PasswordLogin);
-        txtSignup = v.findViewById(R.id.TextAnarSignUp);
-
-        txtSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.registrarFragment);
-            }
-        });
-
-
-
-
         Log = v.findViewById(R.id.btnLoginClient);
+
+        layoutEmail.setTranslationX(800);
+        layoutPassword.setTranslationX(800);
+        Log.setTranslationX(800);
+
+        layoutEmail.setAlpha(vi);
+        layoutPassword.setAlpha(vi);
+        Log.setAlpha(vi);
+
+
+        layoutEmail.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        layoutPassword.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        Log.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+
+
+
+
 
         Log.setOnClickListener(new View.OnClickListener() {
             @Override

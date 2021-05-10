@@ -96,16 +96,31 @@ public class MainActivity extends AppCompatActivity {
                 int id=menuItem.getItemId();
                 //it's possible to do more actions on several items, if there is a large amount of items I prefer switch(){case} instead of if()
                 if (id == R.id.salir){
-                    FirebaseAuth.getInstance().signOut();
-                    if(Usu == null){
-                        Toast.makeText(getApplicationContext(), "Ya no estas logeado", Toast.LENGTH_LONG).show();
+                    if(Usu != null){
+                        FirebaseAuth.getInstance().signOut();
+                        if(Usu == null){
+                            Toast.makeText(getApplicationContext(), "Ya no estas logeado", Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Toast.makeText(getApplicationContext(), "NO estas registrado o logeado.", Toast.LENGTH_LONG).show();
                     }
+
                 }else{
                     if(id == R.id.nav_comparador){
                         if(Usu != null) {
-
+                            //NavHostFragment.findNavController(getApplication().navigate(R.id.nav_comparador);
                         }else{
-                            Toast.makeText(getApplicationContext(), "NO estas registrat o logueat.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "NO estas registrado o logeado.", Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        if(id == R.id.reg){
+                            if(Usu != null){
+                                Toast.makeText(getApplicationContext(), "Ya estas registrado o logeado.", Toast.LENGTH_LONG).show();
+                            }else{
+                                Intent i = new Intent(getApplicationContext(), LocginActivity.class);
+                                startActivity(i);
+                            }
+
                         }
                     }
                 }
