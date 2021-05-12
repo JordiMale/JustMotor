@@ -10,9 +10,7 @@
         android:name="com.example.justmotor.ui.home.HomeFragment"
         android:label="JustMotor"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_home_to_navigation_Home"
-            app:destination="@id/navigation_Home" />
+
 
     </fragment>
 
@@ -30,11 +28,7 @@
 
 
     //Fragments para el nav bottom.
-    <fragment
-        android:id="@+id/navigation_Home"
-        android:name="com.example.justmotor.ui.home.HomeFragment"
-        android:label="JustMotor"
-        tools:layout="@layout/fragment_home" />
+
 
     <fragment
         android:id="@+id/navigation_Opciones"
@@ -60,13 +54,20 @@
         android:label="JustMotor"
         tools:layout="@layout/fragment_registrar" >
 
+        <action
+            android:id="@+id/action_registrarFragment_to_nav_home"
+            app:destination="@id/nav_home" />
     </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.justmotor.ui.RegistrarLogin.LoginFragment"
         android:label="JustMotor"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/filterMotoFragment"
@@ -94,6 +95,5 @@
         android:name="com.example.justmotor.ui.Ayuda.AyudaFragment"
         android:label="Ayuda"
         tools:layout="@layout/fragment_ayuda" />
-
 
 </navigation>

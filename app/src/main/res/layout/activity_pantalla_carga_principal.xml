@@ -4,32 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PantallaCargaPrincipal"
-    android:background="#001E31">
+    tools:context=".PantallaCargaPrincipal">
+
 
     <ImageView
-        android:id="@+id/Logo_Pantalla_Principal"
-        android:layout_width="450dp"
-        android:layout_height="450dp"
+        android:id="@+id/Imagen_Fondo_Principal"
+        android:layout_width="wrap_content"
+        android:layout_height="900dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/folo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281"
-        app:srcCompat="@drawable/f01d9d29d6cb479a8b07dc4be27c3e8a" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/Gif_Pantalla_Carga"
-        android:layout_width="348dp"
-        android:layout_height="187dp"
+    <TextView
+        android:id="@+id/Texto_Principal"
+        android:layout_width="354dp"
+        android:layout_height="82dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="JustMotor"
+        android:textColor="@color/black"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.854"
-        app:srcCompat="@drawable/loading" />
+        app:layout_constraintVertical_bias="0.195" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/Lottie_Carga_Principal"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/loading"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

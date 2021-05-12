@@ -1,10 +1,14 @@
 package com.example.justmotor.ui.Settings;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +16,15 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.justmotor.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Objects;
 
 public class SetingsFragment extends Fragment {
 
@@ -22,6 +32,7 @@ public class SetingsFragment extends Fragment {
     Button Terminos;
     Button Politica;
     Button Ayuda;
+
 
 
     private FirebaseUser Usu = FirebaseAuth.getInstance().getCurrentUser();
@@ -38,10 +49,13 @@ public class SetingsFragment extends Fragment {
         Politica = v.findViewById(R.id.Politica);
         Ayuda = v.findViewById(R.id.Ayuda);
 
+
+
+
         Perfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Usu != null){
+                if(Usu != null ){
                     NavHostFragment.findNavController(getParentFragment()).navigate(R.id.perfilFragment);
                 }else{
                     Toast.makeText(getContext(), "NO estas registrat o logueat.", Toast.LENGTH_LONG).show();
@@ -75,4 +89,6 @@ public class SetingsFragment extends Fragment {
 
         return v;
     }
+
+
 }

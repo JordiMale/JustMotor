@@ -2,6 +2,7 @@ package com.example.justmotor.ui.GetSet;
 
 public class Motor {
     private int Id_Motor;
+    private String Nombre_Motor;
     private int Tipo_Motor;
     private int Refrigeracion;
     private int Encendido;
@@ -14,8 +15,9 @@ public class Motor {
 
 
     //Constructor
-    public Motor(int id_Motor, int tipo_Motor, int refrigeracion, int encendido, int cambio, int alimentacion, int potencia, double cilindrada, int relacion_De_Compresion, String capacidad_De_Aceite) {
+    public Motor(int id_Motor, String Nombr_Motor, int tipo_Motor, int refrigeracion, int encendido, int cambio, int alimentacion, int potencia, double cilindrada, int relacion_De_Compresion, String capacidad_De_Aceite) {
         Id_Motor = id_Motor;
+        Nombre_Motor = Nombr_Motor;
         Tipo_Motor = tipo_Motor;
         Refrigeracion = refrigeracion;
         Encendido = encendido;
@@ -27,6 +29,20 @@ public class Motor {
         Capacidad_De_Aceite = capacidad_De_Aceite;
     }
 
+    public String toString(){
+        return "\tId Motor: " + Id_Motor + '\n' +
+                "\tNombre Motor: " + Nombre_Motor + '\n' +
+                "\tTipo motor: " + Tipo_Motor + '\n' +
+                "\tRegrigeracion: " + Refrigeracion + '\n'+
+                "\tEncendido: " + Encendido + '\n' +
+                "\tCambio: " + Cambio + '\n' +
+                "\tAlimentacion: " + Alimentacion + '\n' +
+                "\tPotencia: " + Potencia + '\n' +
+                "\tCilindrada: " + Cilindrada + '\n' +
+                "\tRelacion de compresion: " + Relacion_De_Compresion + '\n'+
+                "\tCapacidad de aceite: " + Capacidad_De_Aceite + '\n';
+    }
+
     //Getters i setters
     public int getId_Motor() {
         return Id_Motor;
@@ -34,6 +50,14 @@ public class Motor {
 
     public void setId_Motor(int id_Motor) {
         Id_Motor = id_Motor;
+    }
+
+    public String getNombre_Motor() {
+        return Nombre_Motor;
+    }
+
+    public void setNombre_Motor(String Nombr_Motor) {
+        Nombre_Motor = Nombr_Motor;
     }
 
     public int getTipo_Motor() {

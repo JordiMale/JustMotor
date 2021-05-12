@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.justmotor.MainActivity;
 import com.example.justmotor.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +39,7 @@ import java.util.Objects;
 
 public class LoginFragment extends Fragment {
 
-    Button Log;
+    Button Logi;
 
     String EmailS;
     String PassS;
@@ -62,26 +64,26 @@ public class LoginFragment extends Fragment {
         layoutPassword = v.findViewById(R.id.TxtLayoutPasswordSignIn);
         txtEmail = v.findViewById(R.id.EmailLogin);
         txtPassword = v.findViewById(R.id.PasswordLogin);
-        Log = v.findViewById(R.id.btnLoginClient);
+        Logi = v.findViewById(R.id.btnLoginClient);
 
         layoutEmail.setTranslationX(800);
         layoutPassword.setTranslationX(800);
-        Log.setTranslationX(800);
+        Logi.setTranslationX(800);
 
         layoutEmail.setAlpha(vi);
         layoutPassword.setAlpha(vi);
-        Log.setAlpha(vi);
+        Logi.setAlpha(vi);
 
 
         layoutEmail.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         layoutPassword.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
-        Log.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
+        Logi.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
 
 
 
 
 
-        Log.setOnClickListener(new View.OnClickListener() {
+        Logi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(validate()){
@@ -156,10 +158,15 @@ public class LoginFragment extends Fragment {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        String u = String.valueOf(user);
+                        Log.d("USer", u);
                         if(user != null){
                             boolean EmailVeri = user.isEmailVerified();
-
+                            String u2 = String.valueOf(user);
                             String User =  user.getUid();
+
+                            Log.d("USer", u2);
+
                         }
 
                         new Handler().postDelayed(new Runnable() {
@@ -170,15 +177,16 @@ public class LoginFragment extends Fragment {
                             }
                         },1000);
 
-
-
-
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.navigation_Home);
+                                String mie = String.valueOf(getView());
+                                Log.d("View de mierda:", mie);
+                                Intent i  =  new Intent(getContext(), MainActivity.class);
+                                startActivity(i);
+                                //NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_home);
                             }
-                        },1000);
+                        },1500);
 
                     }else{
                         Toast.makeText(getActivity(), "No esta registrat aquest usuari ", Toast.LENGTH_LONG);
@@ -188,6 +196,7 @@ public class LoginFragment extends Fragment {
 
         }
     }
+
 
     private void MirarPersona(){
         Acceso.collection("users").whereEqualTo("Email",EmailS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

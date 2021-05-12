@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.justmotor.MainActivity;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.home.HomeFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -60,6 +61,7 @@ public class RegistrarFragment extends Fragment {
     String GuardarGmail;
     String GuardarPassword;
     String GuardarPhone;
+
 
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -251,13 +253,15 @@ public class RegistrarFragment extends Fragment {
                             user1.put("Password", GuardarPassword);
 
 
+
                             db.collection("Usuarios")
                                     .add(user1)
                                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
                                             Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
-                                            NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_home);
+                                            Intent i  =  new Intent(getContext(), MainActivity.class);
+                                            startActivity(i);
 
 
                                         }

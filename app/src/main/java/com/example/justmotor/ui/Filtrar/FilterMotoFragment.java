@@ -1,19 +1,24 @@
 package com.example.justmotor.ui.Filtrar;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.justmotor.R;
+import com.example.justmotor.ui.BD.Datasource;
 import com.example.justmotor.ui.GetSet.Ficha_Tecnica_Modelo;
 import com.example.justmotor.ui.GetSet.Marca;
 import com.example.justmotor.ui.GetSet.Mix_Oferta;
@@ -25,13 +30,13 @@ import java.util.ArrayList;
 
 public class FilterMotoFragment extends Fragment {
 
-
+    private Datasource bd;
+    private long idActual;
+    SwipeRefreshLayout Referesh;
+    private adapterTodoIcon scTasks;
     SearchView searchView;
-    ListView listView;
-    ArrayList<com.example.justmotor.ui.GetSet.Modelo> Modelo;
-    ArrayList<com.example.justmotor.ui.GetSet.Marca> Marca;
-    ArrayList<com.example.justmotor.ui.GetSet.Ficha_Tecnica_Modelo> Ficha_Tecnica_Modelo;
-    ArrayList<Mix_Oferta> Total;
+    ListView lv;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,25 +45,17 @@ public class FilterMotoFragment extends Fragment {
 
 
         searchView = v.findViewById(R.id.Comp_Filt_Buscador);
-        listView = v.findViewById(R.id.list1);
+        Referesh = v.findViewById(R.id.RefreshLayoutFiltroCompara);
+        bd = new Datasource(getContext());
+        lv = v.findViewById(R.id.list1);
 
-        Modelo = new ArrayList<>();
-        Marca = new ArrayList<>();
-        Ficha_Tecnica_Modelo = new ArrayList<>();
-
-        Total = new ArrayList<>();
-
-        Modelo MiModelito = new Modelo(1,1, 1, "Carretera", "MT125", "Muy veloz");
-
-
-        Mix_Oferta MiTotal = new Mix_Oferta("moto", "Hola", MiModelito.getNombre_Modelo(), "34543564");
-
-
-        Total.add(MiTotal);
-
-        FilterMotoFragment.AdaptadorElements OfertaTotal = new AdaptadorElements(getContext(), Total);
-
-        listView.setAdapter(OfertaTotal);
+        Referesh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "Has echo un refresh", Toast.LENGTH_LONG).show();
+                Referesh.setRefreshing(false);
+            }
+        });
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -70,23 +67,7 @@ public class FilterMotoFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                ArrayList<Mix_Oferta>Total2 = new ArrayList<>();
-                for(int i = 0; i < Total.size(); i++){
-                    if(Total.get(i).getNombre_Marca().equalsIgnoreCase(s)){
-                        Total2.add(Total.get(i));
-                        OfertaTotal.getFilter().filter(s);
-                    }
-                }
 
-                if(s.equals("")){
-                    FilterMotoFragment.AdaptadorElements OfertaTotal = new FilterMotoFragment.AdaptadorElements(getContext(), Total);
-
-                    listView.setAdapter(OfertaTotal);
-                }else{
-                    FilterMotoFragment.AdaptadorElements OfertaTotal2 = new FilterMotoFragment.AdaptadorElements(getContext(), Total2);
-
-                    listView.setAdapter(OfertaTotal2);
-                }
                 return true;
             }
         });
@@ -95,31 +76,59 @@ public class FilterMotoFragment extends Fragment {
         return v;
     }
 
-    class AdaptadorElements extends ArrayAdapter<Mix_Oferta> {
+    private void loadTasks(View v) {
+        // Demanem totes les tasques
+        //Cursor cursorTasks = bd.Todo_Maquina();
 
-        public AdaptadorElements(Context context, ArrayList<Mix_Oferta> total) {
-            super(context, R.layout.row_oferta, total);
+        // Now create a simple cursor adapter and set it to display
+        /*scTasks = new adapterTodoIcon(getContext(),
+                R.layout.row_oferta,
+                cursorTasks,
+                from,
+                to,
+                1, HomeFragment.this);*/
+
+        lv = (ListView) v.findViewById(R.id.list1);
+        lv.setAdapter(scTasks);
+
+        lv.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> arg0, View view,
+                                            int position, long id) {
+
+                        //modifiquem el id
+                        //MirarOferta(id);
+                    }
+
+
+                }
+        );
+    }
+
+
+    class adapterTodoIcon extends android.widget.SimpleCursorAdapter {
+
+
+        private HomeFragment oTodoListIcon;
+
+        public adapterTodoIcon(Context context, int layout, Cursor c, String[] from, int[] to, int flags, HomeFragment HomFra) {
+            super(context, layout, c, from, to, flags);
+            oTodoListIcon = HomFra;
         }
 
+        @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            View item = inflater.inflate(R.layout.row_oferta, null);
+            View view = super.getView(position, convertView, parent);
 
-            TextView Nombre = (TextView) item.findViewById(R.id.Oferta_Nombre_Marca);
-            Nombre.setText(Total.get(position).getNombre_Marca());
+            // Agafem l'objecte de la view que es una LINEA DEL CURSOR
+            Cursor linia = (Cursor) getItem(position);
 
-            TextView Lletra = (TextView) item.findViewById(R.id.Oferta_Nombre_Modelo);
-            Lletra.setText(Total.get(position).getNombre_Modelo());
 
-            TextView Numero = (TextView) item.findViewById(R.id.Oferta_Precio);
-            Numero.setText(Total.get(position).getPrecio());
-/*
-            TextView Peso = (TextView) item.findViewById(R.id.Peso);
-            Peso.setText(Elements[position].getPes());
-
- */
-            return item;
+            return view;
         }
     }
 }
+
+
