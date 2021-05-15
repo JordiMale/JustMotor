@@ -16,7 +16,7 @@ public class Datasource {
 
     //Tabla NUMERO CILINDORS
     public static final String TABLE_NUM_CILINDROS = "Numero_Cilindros";
-    public static final String NUMERO_DE_CILINDROS = "Numero_de_cilindros";
+    public static final String NUMERO_DE_CILINDROS = "Numero_De_Cilindros";
 
     //Tabla TIPO MOTOR
     public static final String TABLE_TIPO_MOTOR = "Tipo_Motor";
@@ -74,7 +74,7 @@ public class Datasource {
 
     //Table DIMENSION MOTO
     public static final String TABLE_DIM_MOTO = "Dimension_Moto";
-    public static final String LONGITUD_TOTAL = "Longitud_total";
+    public static final String LONGITUD_TOTAL = "Longitud_Total";
     public static final String NOMBRE_DIMENSION = "Nombre_Dimension";
     public static final String ANCHO_TOTAL = "Ancho_Total";
     public static final String ALTURA_TOTAL = "Altura_Total";
@@ -147,12 +147,20 @@ public class Datasource {
             values.put(TIPO_TIEMPO, Tipo_Tiempo);
             return dbW.insert(TABLE_TIEMPO, null, values);
         }
+        //Eliminar all los datos de la tabala tiempo
+        public void Delete_All_Tiempo(){
+            dbW.execSQL("delete from "+ TABLE_TIEMPO);
+        }
 
         //Insert de numero cilindros
         public long Crear_Numero_Cilindros(String Numero_Cilindros) {
             ContentValues values = new ContentValues();
             values.put(NUMERO_DE_CILINDROS, Numero_Cilindros);
             return dbW.insert(TABLE_NUM_CILINDROS, null, values);
+        }
+        //Elimina all los datos de la tabala Numero de cilindros
+        public void Delete_All_Numero_Cilindros(){
+            dbW.execSQL("delete from "+ TABLE_NUM_CILINDROS);
         }
 
         //Insert de Tipo motor
@@ -162,12 +170,20 @@ public class Datasource {
             values.put(NUMERO_CILINDROS, Numero_Cilindros);
             return dbW.insert(TABLE_TIPO_MOTOR, null, values);
         }
+        //Elimina all los datos de la tabala Tipo motor
+        public void Delete_All_Tipo_Motor(){
+            dbW.execSQL("delete from "+ TABLE_TIPO_MOTOR);
+        }
 
         //Insert de refrigeracion
         public long Crear_Refrigeracion(String Refrigeracion) {
             ContentValues values = new ContentValues();
             values.put(TIPO_REFRIGERACION, Refrigeracion);
             return dbW.insert(TABLE_REFRIGERACION, null, values);
+        }
+        //Elimina all los datos de la tabala refrigeracion
+        public void Delete_All_Refrigeracion(){
+            dbW.execSQL("delete from "+ TABLE_REFRIGERACION);
         }
 
         //Insert de encendio
@@ -176,12 +192,20 @@ public class Datasource {
             values.put(TIPO_ENCENDIDO, Encendido);
             return dbW.insert(TABLE_ENCENDIDO, null, values);
         }
+        //Elimina all los datos de la tabala encendio
+        public void Delete_All_Encendido(){
+            dbW.execSQL("delete from "+ TABLE_ENCENDIDO);
+        }
 
         //Insert de Cambio
         public long Crear_Cambio(String Cambio) {
             ContentValues values = new ContentValues();
             values.put(TIPO_CAMBIO, Cambio);
             return dbW.insert(TABLE_CAMBIO, null, values);
+        }
+        //Elimina all los datos de la tabala Cambio
+        public void Delete_All_Cambio(){
+            dbW.execSQL("delete from "+ TABLE_CAMBIO);
         }
 
         //Insert de alimentacion
@@ -190,8 +214,12 @@ public class Datasource {
             values.put(TIPO_ALIMENTACION, Alimentacion);
             return dbW.insert(TABLE_ALIMENTACION, null, values);
         }
+        //Elimina all los datos de la tabala alimentacion
+        public void Delete_All_Alimentacion(){
+            dbW.execSQL("delete from "+ TABLE_ALIMENTACION);
+        }
 
-        //Insert de dimension neumatico traseo
+        //Insert de dimension neumatico trasero
         public long Crear_Neum_Traseros(int AnchoTra, int PerfilTra, int RadioTra) {
             ContentValues values = new ContentValues();
             values.put(ANCHO_TRA, AnchoTra);
@@ -199,14 +227,22 @@ public class Datasource {
             values.put(RADIO_TRA, RadioTra);
             return dbW.insert(TABLE_DIM_NEU_TRA, null, values);
         }
+        //Elimina all los datos de la tabala neumatico trasero
+        public void Delete_All_Neum_Traseros(){
+            dbW.execSQL("delete from "+ TABLE_DIM_NEU_TRA);
+        }
 
-        //Insert de dimension neumatico traseo
+        //Insert de dimension neumatico delantero
         public long Crear_Neum_Delanteros(int AnchoDel, int PerfilDel, int RadioDel) {
             ContentValues values = new ContentValues();
             values.put(ANCHO_DEL, AnchoDel);
             values.put(PERFIL_DEL, PerfilDel);
             values.put(RADIO_DEL, RadioDel);
             return dbW.insert(TABLE_DIM_NEU_DEL, null, values);
+        }
+        //Elimina all los datos de la tabala neumatico delantero
+        public void Delete_All_Neum_Delanteros(){
+            dbW.execSQL("delete from "+ TABLE_DIM_NEU_DEL);
         }
 
         //Insert de motor
@@ -224,6 +260,10 @@ public class Datasource {
             values.put(CAPACIDAD_DE_ACEITE, Capacidad_de_Aceite);
             return dbW.insert(TABLE_MOTOR, null, values);
         }
+        //Elimina all los datos de la tabala motor
+        public void Delete_All_Motor(){
+            dbW.execSQL("delete  from "+ TABLE_MOTOR);
+        }
 
         //Insert de Neumatico
         public long Crear_Neumatico(int Dimension_Neumatico_trasero,int Dimension_Neumatico_delantero, String Marca_Neumaticos, String Modelo_Neumaticos) {
@@ -233,6 +273,10 @@ public class Datasource {
             values.put(MARCA_NEUMATICO, Marca_Neumaticos);
             values.put(MODELO_NEUMATICOS, Modelo_Neumaticos);
             return dbW.insert(TABLE_NEUMATICO, null, values);
+        }
+        //Elimina all los datos de la tabala Neumatico
+        public void Delete_All_Neumatico(){
+            dbW.execSQL("delete  from "+ TABLE_NEUMATICO);
         }
 
         //Insert de Dimensiones
@@ -247,6 +291,10 @@ public class Datasource {
             values.put(DEPOSITO_DE_GASOLINA, Deposito_De_gasolina);
             values.put(PESO, Peso);
             return dbW.insert(TABLE_DIM_MOTO, null, values);
+        }
+        //Elimina all los datos de la tabala Dimension
+        public void Delete_All_Dimension(){
+            dbW.execSQL("delete  from "+ TABLE_DIM_MOTO);
         }
 
         //Insert de Ficha tecnica
@@ -264,6 +312,10 @@ public class Datasource {
             values.put(COLOR, Color);
             return dbW.insert(TABLE_FICHA_TECNICA, null, values);
         }
+        //Elimina all los datos de la tabala Ficha Tecnica
+        public void Delete_All_Ficha_Tecnica(){
+            dbW.execSQL("delete  from "+ TABLE_FICHA_TECNICA);
+        }
 
         //Insert de Modelo
         public long Crear_Modelo(int Ficha_Tecnica, String Nombre_Modelo, String Tipo_Modelo, String Descripcion) {
@@ -273,6 +325,10 @@ public class Datasource {
             values.put(TIPO_MODELO, Tipo_Modelo);
             values.put(DESCRIPCION, Descripcion);
             return dbW.insert(TABLE_MODELO, null, values);
+        }
+        //Elimina all los datos de la tabala Modelo
+        public void Delete_All_Modelo(){
+            dbW.execSQL("delete  from "+ TABLE_MODELO);
         }
 
         //Insert de Oferta
@@ -288,6 +344,10 @@ public class Datasource {
             values.put(MATRICULA, Matricula);
             return dbW.insert(TABLE_OFERTA, null, values);
         }
+        //Elimina all los datos de la tabala Oferta
+        public void Delete_All_Oferta(){
+            dbW.execSQL("delete  from "+ TABLE_OFERTA);
+        }
 
         //Per poder mostrar la oferta en el listview
         public Cursor Todo_Oferta() {
@@ -298,5 +358,108 @@ public class Datasource {
 
 
     }
+
+
+
+        //Per mirar la ficha tecnica sencera
+
+        //Per poder mirar el temps
+        public Cursor MirarTiempo(long id){
+            return dbR.query(TABLE_TIEMPO, new String[]{IDGENERAL, TIPO_TIEMPO},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el numero de cilindres
+        public Cursor MirarNumeroCilindros(long id){
+            return dbR.query(TABLE_NUM_CILINDROS, new String[]{IDGENERAL, NUMERO_DE_CILINDROS},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar la refrigeracio
+        public Cursor MirarRefrigeracion(long id){
+            return dbR.query(TABLE_REFRIGERACION, new String[]{IDGENERAL, TIPO_REFRIGERACION},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el encendido
+        public Cursor MirarEncendido(long id){
+            return dbR.query(TABLE_ENCENDIDO, new String[]{IDGENERAL, TIPO_ENCENDIDO},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Camibo
+        public Cursor MirarCambio(long id){
+            return dbR.query(TABLE_CAMBIO, new String[]{IDGENERAL, TIPO_CAMBIO},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar la alimentacio
+        public Cursor MirarAlimentacion(long id){
+            return dbR.query(TABLE_ALIMENTACION, new String[]{IDGENERAL, TIPO_ALIMENTACION},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Neumatico trasero
+        public Cursor MirarNeumaticoTrasero(long id){
+            return dbR.query(TABLE_DIM_NEU_TRA, new String[]{IDGENERAL, ANCHO_TRA, PERFIL_TRA, RADIO_TRA},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Neumatico delantero
+        public Cursor MirarNeumaticoDelantero(long id){
+            return dbR.query(TABLE_DIM_NEU_DEL, new String[]{IDGENERAL, ANCHO_DEL, PERFIL_DEL, RADIO_DEL},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el motor
+        public Cursor MirarMotor(long id){
+            return dbR.query(TABLE_MOTOR, new String[]{IDGENERAL, NOMBRE_MOTOR, CILINDRADA, POTENCIA, RELACION_DE_COMPRESION, CAPACIDAD_DE_ACEITE},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Neumatico
+        public Cursor MirarNeumatico(long id){
+            return dbR.query(TABLE_NEUMATICO, new String[]{IDGENERAL, MARCA_NEUMATICO, MODELO_NEUMATICOS},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Dimensiones
+        public Cursor MirarDimensiones(long id){
+            return dbR.query(TABLE_DIM_MOTO, new String[]{IDGENERAL, ANCHO_TOTAL, LONGITUD_TOTAL, ALTURA_TOTAL, DISTANCIA_ENTRE_EJES, ALTURA_DES_DEL_SUELO, DEPOSITO_DE_GASOLINA, PESO},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Ficha Tecnica
+        public Cursor MirarFichaTecnica(long id){
+            return dbR.query(TABLE_FICHA_TECNICA, new String[]{IDGENERAL, KM, AÑO, CONSUMO, MARCA_FRENOS, ABS, COLOR},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Modelo
+        public Cursor MirarModelo(long id){
+            return dbR.query(TABLE_MODELO, new String[]{IDGENERAL, NOMBRE_MODELO, TIPO_MODELO, DESCRIPCION},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
+        //Per poder mirar el Oferta
+        public Cursor MirarOferta(long id){
+            return dbR.query(TABLE_OFERTA, new String[]{IDGENERAL, FOTO, MARCA, PRECIO},
+                    IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                    null, null, null);
+        }
+
 
 }

@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
 
     SearchView searchView;
     ListView lv;
-
+    private long idActual;
     private Datasource bd;
     private long Numero_de_Cilindorsbd;
     private long Tiempobd;
@@ -116,8 +116,15 @@ public class HomeFragment extends Fragment {
         bd = new Datasource(getContext());
         lv =  v.findViewById(R.id.list1);
 
+        Cursor cur = bd.Todo_Oferta();
+        if(cur.moveToNext()){
 
-        HacerPeticionApi();
+        }else{
+            if(!cur.moveToNext()){
+                HacerPeticionApi();
+            }
+        }
+
         loadTasks(v);
         searchView = v.findViewById(R.id.Comp_Filt_Buscador_Home);
 
@@ -125,6 +132,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Toast.makeText(getContext(), "Has echo un refresh", Toast.LENGTH_LONG).show();
+                //EliminarCamposSqlite();
+                HacerPeticionApi();
                 Referesh.setRefreshing(false);
             }
         });
@@ -146,6 +155,24 @@ public class HomeFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void EliminarCamposSqlite() {
+        bd.Delete_All_Tiempo();
+        bd.Delete_All_Numero_Cilindros();
+        bd.Delete_All_Tipo_Motor();
+        bd.Delete_All_Refrigeracion();
+        bd.Delete_All_Encendido();
+        bd.Delete_All_Cambio();
+        bd.Delete_All_Alimentacion();
+        bd.Delete_All_Neum_Traseros();
+        bd.Delete_All_Neum_Delanteros();
+        bd.Delete_All_Motor();
+        bd.Delete_All_Neumatico();
+        bd.Delete_All_Dimension();
+        bd.Delete_All_Ficha_Tecnica();
+        bd.Delete_All_Modelo();
+        bd.Delete_All_Oferta();
     }
 
     private void loadTasks(View v) {
@@ -170,7 +197,7 @@ public class HomeFragment extends Fragment {
                                             int position, long id) {
 
                         //modifiquem el id
-                        //MirarOferta(id);
+                        MirarOferta(id);
                     }
 
 
@@ -179,28 +206,15 @@ public class HomeFragment extends Fragment {
     }
 
 
-
-
-    /*
     private void MirarOferta(long id) {
 
         Bundle bundle = new Bundle();
         bundle.putLong("id", id);
 
-        idActual = id;
-
-
-        /* HAcerlo en una activity
-        Intent i = new Intent(getActivity(), CrearEditarMaquina.class);
-        i.putExtras(bundle);
-        startActivityForResult(i, TASK_UPDATE);
-
-        Hacerlo en un fragment
-        NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_navigation_Gestion_Maquines_to_GoogleFragment, bundle);
+        NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_nav_home_to_mirarFichaFragment, bundle);
 
     }
 
-         */
 
 
         private void HacerPeticionApi(){

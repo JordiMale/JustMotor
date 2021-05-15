@@ -12,6 +12,9 @@
         tools:layout="@layout/fragment_home" >
 
 
+        <action
+            android:id="@+id/action_nav_home_to_mirarFichaFragment"
+            app:destination="@id/mirarFichaFragment" />
     </fragment>
 
     <fragment
@@ -95,5 +98,10 @@
         android:name="com.example.justmotor.ui.Ayuda.AyudaFragment"
         android:label="Ayuda"
         tools:layout="@layout/fragment_ayuda" />
+    <fragment
+        android:id="@+id/mirarFichaFragment"
+        android:name="com.example.justmotor.ui.MirarFicha.MirarFichaFragment"
+        android:label="Ficha Tecnica"
+        tools:layout="@layout/fragment_mirar_ficha" />
 
 </navigation>
