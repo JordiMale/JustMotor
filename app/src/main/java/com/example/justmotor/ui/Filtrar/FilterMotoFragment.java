@@ -37,6 +37,21 @@ public class FilterMotoFragment extends Fragment {
     SearchView searchView;
     ListView lv;
 
+    private static String[] from = new String[]{
+            Datasource.FOTO,
+            Datasource.DATA_ENTRADA,
+            Datasource.ACTIVA,
+            Datasource.MARCA,
+            Datasource.PRECIO,
+            Datasource.NOMBRE_MODELO,};
+
+    private static int[] to = new int[]{
+            R.id.Imagen_moto,
+            R.id.Oferta_Data_Entrada,
+            R.id.Oferta_Activa,
+            R.id.Oferta_Nombre_Marca,
+            R.id.Oferta_Precio,
+            R.id.Oferta_Nombre_Modelo,};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +63,8 @@ public class FilterMotoFragment extends Fragment {
         Referesh = v.findViewById(R.id.RefreshLayoutFiltroCompara);
         bd = new Datasource(getContext());
         lv = v.findViewById(R.id.list1);
+
+        loadTasks(v);
 
         Referesh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -78,15 +95,15 @@ public class FilterMotoFragment extends Fragment {
 
     private void loadTasks(View v) {
         // Demanem totes les tasques
-        //Cursor cursorTasks = bd.Todo_Maquina();
+        Cursor cursorTasks = bd.Todo_Oferta();
 
         // Now create a simple cursor adapter and set it to display
-        /*scTasks = new adapterTodoIcon(getContext(),
+        scTasks = new adapterTodoIcon(getContext(),
                 R.layout.row_oferta,
                 cursorTasks,
                 from,
                 to,
-                1, HomeFragment.this);*/
+                1, FilterMotoFragment.this);
 
         lv = (ListView) v.findViewById(R.id.list1);
         lv.setAdapter(scTasks);
@@ -110,11 +127,11 @@ public class FilterMotoFragment extends Fragment {
     class adapterTodoIcon extends android.widget.SimpleCursorAdapter {
 
 
-        private HomeFragment oTodoListIcon;
+        private FilterMotoFragment oTodoListIcon;
 
-        public adapterTodoIcon(Context context, int layout, Cursor c, String[] from, int[] to, int flags, HomeFragment HomFra) {
+        public adapterTodoIcon(Context context, int layout, Cursor c, String[] from, int[] to, int flags, FilterMotoFragment FiltFra) {
             super(context, layout, c, from, to, flags);
-            oTodoListIcon = HomFra;
+            oTodoListIcon = FiltFra;
         }
 
         @Override

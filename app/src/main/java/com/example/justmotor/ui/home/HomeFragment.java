@@ -40,6 +40,7 @@ import com.example.justmotor.ui.Filtrar.FilterMotoFragment;
 import com.example.justmotor.ui.GetSet.Mix_Oferta;
 import com.example.justmotor.ui.GetSet.Modelo;
 import com.example.justmotor.ui.GetSet.Motor;
+import com.example.justmotor.ui.GetSet.Ofertas;
 import com.example.justmotor.ui.RegistrarLogin.RegistrarFragment;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
@@ -61,12 +62,47 @@ public class HomeFragment extends Fragment {
     ListView lv;
 
     private Datasource bd;
-    private long idActual;
+    private long Numero_de_Cilindorsbd;
+    private long Tiempobd;
+    private long Tipo_Motorbd;
+    private long Refrigeracionbd;
+    private long Encendidobd;
+    private long Cambiobd;
+    private long Alimentacionbd;
+    private long Dimension_Neumatico_Traserobd;
+    private long Dimension_Neumatico_Delanterobd;
+    private long Motorbd;
+    private long Neumaticosbd;
+    private long Dimension_Motobd;
+    private long Ficha_Tecnicabd;
+    private long Modelobd;
+    private long Ofertabd;
     SwipeRefreshLayout Referesh;
     private adapterTodoIcon scTasks;
     private AsyncHttpResponseHandler handler;
 
+    /*
     ArrayList<Motor> motor = new ArrayList<Motor>();
+    ArrayList<Ofertas> oferta = new ArrayList<Ofertas>();
+
+     */
+
+    private static String[] from = new String[]{
+            Datasource.FOTO,
+            Datasource.DATA_ENTRADA,
+            Datasource.ACTIVA,
+            Datasource.MARCA,
+            Datasource.PRECIO,
+            Datasource.NOMBRE_MODELO,};
+
+    private static int[] to = new int[]{
+            R.id.Imagen_moto,
+            R.id.Oferta_Data_Entrada,
+            R.id.Oferta_Activa,
+            R.id.Oferta_Nombre_Marca,
+            R.id.Oferta_Precio,
+            R.id.Oferta_Nombre_Modelo,};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -80,8 +116,9 @@ public class HomeFragment extends Fragment {
         bd = new Datasource(getContext());
         lv =  v.findViewById(R.id.list1);
 
-        //loadTasks(v);
+
         HacerPeticionApi();
+        loadTasks(v);
         searchView = v.findViewById(R.id.Comp_Filt_Buscador_Home);
 
         Referesh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -113,15 +150,15 @@ public class HomeFragment extends Fragment {
 
     private void loadTasks(View v) {
         // Demanem totes les tasques
-        //Cursor cursorTasks = bd.Todo_Maquina();
+        Cursor cursorTasks = bd.Todo_Oferta();
 
         // Now create a simple cursor adapter and set it to display
-        /*scTasks = new adapterTodoIcon(getContext(),
+        scTasks = new adapterTodoIcon(getContext(),
                 R.layout.row_oferta,
                 cursorTasks,
                 from,
                 to,
-                1, HomeFragment.this);*/
+                1, HomeFragment.this);
 
         lv = (ListView) v.findViewById(R.id.list1);
         lv.setAdapter(scTasks);
@@ -172,7 +209,7 @@ public class HomeFragment extends Fragment {
             crearHandlerParaPeticon(client);
 
             String url = Conexion.URL;
-            url += "api/motor";
+            url += "api/ofertas";
             client.get(url, this.handler);
 
         }
@@ -190,7 +227,23 @@ public class HomeFragment extends Fragment {
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject jsonObject = jsonArray.getJSONObject(i);
+/*
+                            int id = Integer.parseInt(jsonObject.getString("Id_Ofertas"));
+                            String Precio = String.valueOf(jsonObject.getString("Precio"));
+                            String Foto = jsonObject.getString("Fotos");
+                            String Matricula = String.valueOf(jsonObject.getString("Matricula"));
+                            String Marca = String.valueOf(jsonObject.getString("Marca"));
+                            String Modelo = String.valueOf(jsonObject.getString("Modelo"));
+                            String Data_Entrada = jsonObject.getString("Data_entrada");
+                            String Data_Final = jsonObject.getString("Data_Final");
+                            boolean activa = Boolean.parseBoolean(jsonObject.getString("Activa"));
 
+                            Ofertas of = new Ofertas(id,Precio,Matricula,Marca,Foto,Modelo,Data_Entrada,Data_Final,activa);
+                            oferta.add(of);
+
+ */
+
+/*
                             int id = Integer.parseInt(jsonObject.getString("Id_Motor"));
                             int Tipo_de_motor = Integer.parseInt(jsonObject.getString("Tipo_Motor"));
                             String Nombre_Motor = jsonObject.getString("nombre_motor");
@@ -206,110 +259,177 @@ public class HomeFragment extends Fragment {
                             Motor Motor = new Motor(id,Nombre_Motor,Tipo_de_motor,Refrigeracion,Encendidoo,Cambio,Alimentacionn,Cilindrada,Potencia,Relacion_De_Comprersion,Capacidad_de_aceite);
                             motor.add(Motor);
 
-/*
+ */
+
                             //Json de Tiempo
-                            String Tipo_Tiempo = jsonObject.getString("tipo_tiempo");
+                            int id_Tiempo = Integer.parseInt(jsonObject.getString("id"));
+                            String Tipo_Tiempo = jsonObject.getString("tipotiempo");
 
                             //Json de Numero de cilindros
-                            String Numero_de_cilindors = jsonObject.getString("nummero_de_cilindros");
+                            int id_Numero_de_cilindors = Integer.parseInt(jsonObject.getString("id"));
+                            String Numero_de_cilindors = jsonObject.getString("numerocilindro");
 
                             //Json de Tipo motor
-                            int Tiempo = Integer.parseInt(jsonObject.getString(""));
-                            int Numero_Cilindros = Integer.parseInt(jsonObject.getString(""));
+                            int id_Tipo_Motor = Integer.parseInt(jsonObject.getString("id"));
+                            int Tiempo = Integer.parseInt(jsonObject.getString("tiempo_id"));
+                            int Numero_Cilindros = Integer.parseInt(jsonObject.getString("numerocilindro_id"));
 
                             //Json de refrigeracion
-                            String Tipo_Refrigeracion = jsonObject.getString("");
+                            int id_Tipo_Refrigeracion = Integer.parseInt(jsonObject.getString("id"));
+                            String Tipo_Refrigeracion = jsonObject.getString("tiporefrigeracion");
 
                             //Json de encendio
-                            String Encendido = jsonObject.getString("");
+                            int id_Encendido = Integer.parseInt(jsonObject.getString("id"));
+                            String Tipo_Encendido = jsonObject.getString("tipoencendido");
 
                             //Json de Cambio
-                            String Tipo_Cambio = jsonObject.getString("");
+                            int id_cambio = Integer.parseInt(jsonObject.getString("id"));
+                            String Tipo_Cambio = jsonObject.getString("tipocambio");
 
                             //Json de alimentacion
-                            String Alimentacion = jsonObject.getString("");
+                            int id_Alimentacion = Integer.parseInt(jsonObject.getString("id"));
+                            String Tipo_Alimentacion = jsonObject.getString("tipoalimentacion");
 
                             //Json de dimension neumatico traseo
-                            String Ancho_tra = jsonObject.getString("");
-                            String Perfil_tra = jsonObject.getString("");
-                            int Radio_tra = Integer.parseInt(jsonObject.getString(""));
+                            int id_Dim_Neu_Tra = Integer.parseInt(jsonObject.getString("id"));
+                            int Ancho_tra = Integer.parseInt(jsonObject.getString("anchotra"));
+                            int Perfil_tra = Integer.parseInt(jsonObject.getString("perfiltra"));
+                            int Radio_tra = Integer.parseInt(jsonObject.getString("radiotra"));
 
                             //Json de dimension neumatico delantero
-                            String Ancho_del = jsonObject.getString("");
-                            String Perfil_del = jsonObject.getString("");
-                            int Radio_del = Integer.parseInt(jsonObject.getString(""));
+                            int id_Dim_Neu_Del = Integer.parseInt(jsonObject.getString("id"));
+                            int Ancho_del = Integer.parseInt(jsonObject.getString("anchodel"));
+                            int Perfil_del = Integer.parseInt(jsonObject.getString("perfildel"));
+                            int Radio_del = Integer.parseInt(jsonObject.getString("radiodel"));
 
                             //Json de motor
-                            int Tipo_de_motor = Integer.parseInt(jsonObject.getString(""));
-                            String Nombre_Motor = jsonObject.getString("");
-                            int Refrigeracion = Integer.parseInt(jsonObject.getString(""));
-                            int Encendidoo = Integer.parseInt(jsonObject.getString(""));
-                            int Cambio = Integer.parseInt(jsonObject.getString(""));
-                            int Alimentacionn = Integer.parseInt(jsonObject.getString(""));
-                            String Cilindrada = jsonObject.getString("");
-                            String Capacidad_de_aceite = jsonObject.getString("");
+                            int id = Integer.parseInt(jsonObject.getString("id"));
+                            int Tipo_de_motor = Integer.parseInt(jsonObject.getString("tipomotor_id"));
+                            String Nombre_Motor = jsonObject.getString("nombremotor");
+                            int Refrigeracion = Integer.parseInt(jsonObject.getString("refrigeracion_id"));
+                            int Encendido = Integer.parseInt(jsonObject.getString("encendido_id"));
+                            int Cambio = Integer.parseInt(jsonObject.getString("cambio_id"));
+                            int Alimentacion = Integer.parseInt(jsonObject.getString("alimentacion_id"));
+                            int Cilindrada = Integer.parseInt(jsonObject.getString("cilindrada"));
+                            double Potencia = Double.parseDouble(jsonObject.getString("potencia"));
+                            int Relacion_De_Comprersion = Integer.parseInt(jsonObject.getString("relaciondecompresion"));
+                            String Capacidad_de_aceite = jsonObject.getString("capacidadeaceite");
+
 
                             //Json de neumatico
-                            int Dimension_Neumatico_trasero = Integer.parseInt(jsonObject.getString(""));
-                            int Dimension_Neumatico_delantero = Integer.parseInt(jsonObject.getString(""));
-                            String Marca_Neumaticos = jsonObject.getString("");
-                            String Modelo_Neumaticos = jsonObject.getString("");
+                            int id_neumatico = Integer.parseInt(jsonObject.getString("id"));
+                            int Dimension_Neumatico_trasero = Integer.parseInt(jsonObject.getString("dimensionesneumaticotrasero_id"));
+                            int Dimension_Neumatico_delantero = Integer.parseInt(jsonObject.getString("dimensionesneumaticodelantero_id"));
+                            String Marca_Neumaticos = jsonObject.getString("marcaneumatico");
+                            String Modelo_Neumaticos = jsonObject.getString("modeloneumatico");
 
-                            //Json de dimension neumatico
-                            float Longitud_Total = Float.parseFloat(jsonObject.getString(""));
-                            String Nombre_Dimension = jsonObject.getString("");
-                            float Ancho_Total = Float.parseFloat(jsonObject.getString(""));
-                            float Altura_Total = Float.parseFloat(jsonObject.getString(""));
-                            float Distancia_Entre_Ejes = Float.parseFloat(jsonObject.getString(""));
-                            float Altura_Des_Del_Suelo = Float.parseFloat(jsonObject.getString(""));
-                            float Deposito_De_gasolina = Float.parseFloat(jsonObject.getString(""));
-                            float Peso = Float.parseFloat(jsonObject.getString(""));
+                            //Json de dimension
+                            int id_Dimension = Integer.parseInt(jsonObject.getString("id"));
+                            float Longitud_Total = Float.parseFloat(jsonObject.getString("longitud"));
+                            String Nombre_Dimension = jsonObject.getString("nombredimension");
+                            float Ancho_Total = Float.parseFloat(jsonObject.getString("anchototal"));
+                            float Altura_Total = Float.parseFloat(jsonObject.getString("alturatotal"));
+                            float Distancia_Entre_Ejes = Float.parseFloat(jsonObject.getString("distanciaentrejes"));
+                            float Altura_Des_Del_Suelo = Float.parseFloat(jsonObject.getString("alturadesdelsuelo"));
+                            float Deposito_De_gasolina = Float.parseFloat(jsonObject.getString("depositodegasolina"));
+                            float Peso = Float.parseFloat(jsonObject.getString("peso"));
+
 
 
                             //Json de Ficha tecnica
-                            int Motor = Integer.parseInt(jsonObject.getString(""));
-                            int Neumaticos = Integer.parseInt(jsonObject.getString(""));
-                            int Dimensiones = Integer.parseInt(jsonObject.getString(""));
-                            String Nombre_Ficha_tecnica = jsonObject.getString("");
-                            String KM = jsonObject.getString("");
-                            String Año = jsonObject.getString("");
-                            String Consumo = jsonObject.getString("");
-                            String Marca_Frenos = jsonObject.getString("");
-                            String ABS = jsonObject.getString("");
-                            String Color = jsonObject.getString("");
+                            int id_Ficha_Tecnia = Integer.parseInt(jsonObject.getString("id"));
+                            int Motor = Integer.parseInt(jsonObject.getString("motor_id"));
+                            int Neumaticos = Integer.parseInt(jsonObject.getString("neumatico_id"));
+                            int Dimensiones = Integer.parseInt(jsonObject.getString("dimension_id"));
+                            String Nombre_Ficha_tecnica = jsonObject.getString("nombreficha");
+                            String KM = jsonObject.getString("km");
+                            String Año = jsonObject.getString("anyo");
+                            String Consumo = jsonObject.getString("consumo");
+                            String Marca_Frenos = jsonObject.getString("marcafrenos");
+                            String ABS = jsonObject.getString("abs");
+                            String Color = jsonObject.getString("color");
+
+
 
                             //Json de Modelo
-                            int Ficha_Tecnica = Integer.parseInt(jsonObject.getString(""));
-                            String Nombre_Modelo = jsonObject.getString("");
-                            int Tipo_Modelo = Integer.parseInt(jsonObject.getString(""));
-                            String Descripcion = jsonObject.getString("");
+                            int id_Modelo = Integer.parseInt(jsonObject.getString("id"));
+                            int Ficha_Tecnica = Integer.parseInt(jsonObject.getString("fichatecnica_id"));
+                            String Nombre_Modelo = jsonObject.getString("nombremodelo");
+                            String Tipo_Modelo = jsonObject.getString("tipomodelo");
+                            String Descripcion = jsonObject.getString("descripcion");
 
 
                             //Json de Oferta
-                            String Usuario_Concesionario = jsonObject.getString("");
-                            int Modelo = Integer.parseInt(jsonObject.getString(""));
-                            String Foto = jsonObject.getString("");
-                            String Data_Entrada = jsonObject.getString("");
-                            String Data_Final = jsonObject.getString("");
-                            boolean Activa = jsonObject.getBoolean("");
-                            int Marca = Integer.parseInt(jsonObject.getString(""));
-                            String Precio = jsonObject.getString("");
-                            String Matricula = jsonObject.getString("");
+                            int id_Oferta = Integer.parseInt(jsonObject.getString("id"));
+                            String Precio = String.valueOf(jsonObject.getString("precio"));
+                            String Foto = jsonObject.getString("fotos");
+                            String Matricula = String.valueOf(jsonObject.getString("matricula"));
+                            String Marca = String.valueOf(jsonObject.getString("marca"));
+                            String Modelo = String.valueOf(jsonObject.getString("modelo_id"));
+                            String Data_Entrada = jsonObject.getString("dataentrada");
+                            String Data_Final = jsonObject.getString("datafinal");
+                            boolean activa = Boolean.parseBoolean(jsonObject.getString("activa"));
 
- */
 
 
                             //Añadir a la base de datos.
+
+                            //Tipo tiemo
+                            Tiempobd = bd.Crear_Tiempo(Tipo_Tiempo);
+
+                            //Numero de cilindors
+                            Numero_de_Cilindorsbd = bd.Crear_Numero_Cilindros(Numero_de_cilindors);
+
+                            //Tipo motor
+                            Tipo_Motorbd = bd.Crear_Tipo_Motor(Tiempo, Numero_Cilindros);
+
+                            //Refrigeracion
+                            Refrigeracionbd = bd.Crear_Refrigeracion(Tipo_Refrigeracion);
+
+                            //Encendido
+                            Encendidobd = bd.Crear_Encendido(Tipo_Encendido);
+
+                            //Cambio
+                            Cambiobd = bd.Crear_Cambio(Tipo_Cambio);
+
+                            //Alimentacion
+                            Alimentacionbd = bd.Crear_Alimentacion(Tipo_Alimentacion);
+
+                            //Dimensiones Neumatico Trasero
+                            Dimension_Neumatico_Traserobd = bd.Crear_Neum_Traseros(Ancho_tra, Perfil_tra, Radio_tra);
+
+                            //Dimensiones Neumatico Delantero
+                            Dimension_Neumatico_Delanterobd = bd.Crear_Neum_Delanteros(Ancho_del, Perfil_del, Radio_del);
+
+                            //Motor
+                            Motorbd = bd.Crear_Motor(Tipo_de_motor,Nombre_Motor,Refrigeracion, Encendido, Cambio, Alimentacion, Cilindrada, Potencia, Relacion_De_Comprersion, Capacidad_de_aceite);
+
+                            //Neumaticos
+                            Neumaticosbd = bd.Crear_Neumatico(Dimension_Neumatico_trasero, Dimension_Neumatico_delantero, Marca_Neumaticos, Modelo_Neumaticos);
+
+                            //Dimensiones
+                            Dimension_Motobd = bd.Crear_Dimension(Longitud_Total, Nombre_Dimension, Ancho_Total, Altura_Total, Distancia_Entre_Ejes, Altura_Des_Del_Suelo, Deposito_De_gasolina, Peso);
+
+                            //Ficha tecnica
+                            Ficha_Tecnicabd = bd.Crear_Ficha_Tecnica(Motor, Neumaticos, Dimensiones, Nombre_Ficha_tecnica, KM, Año, Consumo, Marca_Frenos, ABS, Color);
+
+                            //Modelo
+                            Modelobd = bd.Crear_Modelo(Ficha_Tecnica, Nombre_Modelo, Tipo_Modelo, Descripcion);
+
+                            //Ofertas
+                            Ofertabd = bd.Crear_Oferta(Precio, Foto, Matricula, Marca, Modelo, Data_Entrada, Data_Final, activa);
 
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
-                    if(motor.size() > 0){
-                        ArrayAdapter<Motor> adapter = new ArrayAdapter<Motor>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, motor);
+                    /*
+                    if(oferta.size() > 0){
+                        ArrayAdapter<Ofertas> adapter = new ArrayAdapter<Ofertas>(getActivity().getApplicationContext(), android.R.layout.simple_list_item_1, oferta );
                         lv.setAdapter(adapter);
                     }
+                     */
 
                 }
 

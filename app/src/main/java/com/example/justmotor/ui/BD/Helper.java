@@ -52,14 +52,14 @@ public class Helper extends SQLiteOpenHelper {
 
         String CREATE_DIM_NEU_TRA =
                 "CREATE TABLE Dimension_Neumatico_Trasero ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Ancho TEXT NOT NULL," +
-                        "Perfil TEXT NOT NULL," +
+                        "Ancho INTEGER NOT NULL," +
+                        "Perfil INTEGER NOT NULL," +
                         "Radio INTEGER NOT NULL"  + ")";
 
         String CREATE_DIM_NEU_DEL =
                 "CREATE TABLE Dimension_Neumatico_Delantero ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Ancho TEXT NOT NULL," +
-                        "Perfil TEXT NOT NULL," +
+                        "Ancho INTEGER NOT NULL," +
+                        "Perfil INTEGER NOT NULL," +
                         "Radio INTEGER NOT NULL"  + ")";
 
         String CREATE_MOTOR =
@@ -70,8 +70,9 @@ public class Helper extends SQLiteOpenHelper {
                         "Encendido INTEGER NOT NULL," +
                         "Cambio INTEGER NOT NULL," +
                         "Alimentacion INTEGER NOT NULL," +
-                        "Potencia TEXT UNIQUE NOT NULL," +
-                        "Cilindrada TEXT," +
+                        "Potencia TEXT NOT NULL," +
+                        "Cilindrada TEXT NOT NULL," +
+                        "Relacion_De_Compresion INTEGER NOT NULL," +
                         "Capacidad_De_Aceite INTEGER NOT NULL," +
                         "FOREIGN KEY(Tipo_De_Motor) REFERENCES Tipo_Motor(_id)," +
                         "FOREIGN KEY(Encendido) REFERENCES Encendido(_id)," +
@@ -97,18 +98,19 @@ public class Helper extends SQLiteOpenHelper {
                         "Distancia_Entre_Ejes REAL NOT NULL," +
                         "Altura_Des_Del_Suelo TEXT NOT NULL," +
                         "Deposito_De_Gasolina REAL NOT NULL," +
-                        "Peso REAL UNIQUE NOT NULL" + ")";
+                        "Peso REAL NOT NULL" + ")";
 
         String CREATE_FICHA_TECNICA =
                 "CREATE TABLE Ficha_Tecnica ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "Motor INTEGER NOT NULL," +
                         "Neumaticos INTEGER NOT NULL," +
                         "Dimensiones INTEGER NOT NULL," +
+                        "Nombre_Ficha_Tecnica TEXT NOT NULL," +
                         "KM TEXT NOT NULL," +
                         "Año TEXT NOT NULL," +
                         "Consumo TEXT NOT NULL," +
                         "Marca_Frenos TEXT NOT NULL," +
-                        "ABS TEXT NOT NULL," +
+                        "ABS BOOLEAN NOT NULL," +
                         "Color TEXT NOT NULL," +
                         "FOREIGN KEY(Motor) REFERENCES Motor(_id)," +
                         "FOREIGN KEY(Neumaticos) REFERENCES Neumaticos(_id)," +
@@ -124,12 +126,11 @@ public class Helper extends SQLiteOpenHelper {
 
         String CREATE_OFERTA =
                 "CREATE TABLE Oferta ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Usuario_Concesionario TEXT NOT NULL," +
                         "Modelo INTEGER NOT NULL," +
                         "FOTO TEXT NOT NULL," +
                         "Data_Entrada DATE NOT NULL," +
                         "Data_Final DATE NOT NULL," +
-                        "Activa BOOLEAN," +
+                        "Activa BOOLEAN NOT NULL," +
                         "Marca INTEGER NOT NULL," +
                         "Precio TEXT  NOT NULL," +
                         "Matricula TEXT ," +
