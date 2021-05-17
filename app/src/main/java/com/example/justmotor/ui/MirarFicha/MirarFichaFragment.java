@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.BD.Datasource;
 
@@ -24,6 +25,7 @@ public class MirarFichaFragment extends Fragment {
     //General
     TextView Marca;
     ImageView Foto;
+    String GuardarFoto;
     TextView Modelo;
     TextView Año;
     TextView Tipo;
@@ -240,7 +242,8 @@ public class MirarFichaFragment extends Fragment {
         Cursor Cursor_Oferta = bd.MirarOferta(idTask);
         Cursor_Oferta.moveToFirst();
         Precio.setText(Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.PRECIO)));
-        //Foto.setText(Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.NOMBRE_MODELO)));
+        GuardarFoto = Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.FOTO));
+        Glide.with(getContext()).load(GuardarFoto).into(Foto);
         Marca.setText(Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.MARCA)));
         Cursor_Oferta.close();
 

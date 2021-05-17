@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -36,6 +38,7 @@ public class FilterMotoFragment extends Fragment {
     private adapterTodoIcon scTasks;
     SearchView searchView;
     ListView lv;
+    int Recibir_Id_Moto_1 = 0;
 
     private static String[] from = new String[]{
             Datasource.FOTO,
@@ -46,12 +49,12 @@ public class FilterMotoFragment extends Fragment {
             Datasource.NOMBRE_MODELO,};
 
     private static int[] to = new int[]{
-            R.id.Imagen_moto,
-            R.id.Oferta_Data_Entrada,
-            R.id.Oferta_Activa,
-            R.id.Oferta_Nombre_Marca,
-            R.id.Oferta_Precio,
-            R.id.Oferta_Nombre_Modelo,};
+            R.id.Imagen_moto_Filtro_Escoger,
+            R.id.Oferta_Data_Entrada_Filtro_Escoger,
+            R.id.Oferta_Activa_Filtro_Escoger,
+            R.id.Oferta_Nombre_Marca_Filtro_Escoger,
+            R.id.Oferta_Precio_Filtro_Escoger,
+            R.id.Oferta_Nombre_Modelo_Filtro_Escoger,};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -63,6 +66,12 @@ public class FilterMotoFragment extends Fragment {
         Referesh = v.findViewById(R.id.RefreshLayoutFiltroCompara);
         bd = new Datasource(getContext());
         lv = v.findViewById(R.id.list1);
+
+
+        //Recibir_Id_Moto_1 = getArguments().getInt("id");
+
+
+
 
         loadTasks(v);
 
@@ -85,12 +94,35 @@ public class FilterMotoFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
 
-                return true;
+                String Aux;
+                Aux = s;
+                Cursor CursorFilt = bd.FiltrarNombreModelo(Aux);
+
+                scTasks = new adapterTodoIcon(getContext(),
+                        R.layout.row_oferta,
+                        CursorFilt,
+                        from,
+                        to,
+                        1, FilterMotoFragment.this);
+
+                lv.setAdapter(scTasks);
+                return false;
             }
         });
 
 
         return v;
+    }
+
+    private void Coger_id(int id) {
+
+        int Guardar_Primer_Id = id;
+
+        Bundle bundle = new Bundle();
+        bundle.putLong("id", Guardar_Primer_Id);
+
+        NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_filterMotoFragment_to_nav_comparador, bundle);
+
     }
 
     private void loadTasks(View v) {
@@ -99,7 +131,7 @@ public class FilterMotoFragment extends Fragment {
 
         // Now create a simple cursor adapter and set it to display
         scTasks = new adapterTodoIcon(getContext(),
-                R.layout.row_oferta,
+                R.layout.row_oferta_escojer_moto,
                 cursorTasks,
                 from,
                 to,
@@ -142,10 +174,22 @@ public class FilterMotoFragment extends Fragment {
             // Agafem l'objecte de la view que es una LINEA DEL CURSOR
             Cursor linia = (Cursor) getItem(position);
 
+            ImageView Coger_Id = view.findViewById(R.id.Cojer_Id);
+            Coger_Id.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Cursor linia = (Cursor) getItem(position);
+
+                    oTodoListIcon.Coger_id(linia.getInt(linia.getColumnIndexOrThrow(Datasource.IDGENERAL)));
+                }
+            });
+
 
             return view;
         }
     }
+
+
 }
 
 

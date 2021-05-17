@@ -33,6 +33,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.justmotor.Conexion;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.BD.Datasource;
@@ -60,6 +61,7 @@ public class HomeFragment extends Fragment {
 
     SearchView searchView;
     ListView lv;
+    String Imagen;
     private long idActual;
     private Datasource bd;
     private long Numero_de_Cilindorsbd;
@@ -150,7 +152,19 @@ public class HomeFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String s) {
 
-                return true;
+                String Aux;
+                Aux = s;
+                Cursor CursorFilt = bd.FiltrarNombreModelo(Aux);
+
+                scTasks = new adapterTodoIcon(getContext(),
+                        R.layout.row_oferta,
+                        CursorFilt,
+                        from,
+                        to,
+                        1, HomeFragment.this);
+
+                lv.setAdapter(scTasks);
+                return false;
             }
         });
 

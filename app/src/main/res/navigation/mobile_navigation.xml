@@ -21,13 +21,21 @@
         android:id="@+id/nav_Filter"
         android:name="com.example.justmotor.ui.Filtrar.FilterFragment"
         android:label="JustMotor"
-        tools:layout="@layout/fragment_filter" />
+        tools:layout="@layout/fragment_filter" >
+        <action
+            android:id="@+id/action_nav_Filter_to_nav_comparador"
+            app:destination="@id/nav_comparador" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_comparador"
         android:name="com.example.justmotor.ui.Comparador.ComparadorFragment"
         android:label="JustMotor"
-        tools:layout="@layout/fragment_comparador" />
+        tools:layout="@layout/fragment_comparador" >
+        <action
+            android:id="@+id/action_nav_comparador_to_nav_Filter"
+            app:destination="@id/nav_Filter" />
+    </fragment>
 
 
     //Fragments para el nav bottom.
@@ -76,7 +84,14 @@
         android:id="@+id/filterMotoFragment"
         android:name="com.example.justmotor.ui.Filtrar.FilterMotoFragment"
         android:label="Buscar Moto"
-        tools:layout="@layout/fragment_filter_moto" />
+        tools:layout="@layout/fragment_filter_moto" >
+        <action
+            android:id="@+id/action_filterMotoFragment_to_nav_comparador"
+            app:destination="@id/nav_comparador" />
+        <action
+            android:id="@+id/action_filterMotoFragment_to_nav_comparador2"
+            app:destination="@id/nav_comparador" />
+    </fragment>
 
     <fragment
         android:id="@+id/terminosFragment"

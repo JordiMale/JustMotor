@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +22,14 @@ public class ComparadorFragment extends Fragment {
     Button btnMoto1;
     Button btnMoto2;
 
+    long Guardar_Primer_Id_Moto = 0;
+    int Guardar_Segundo_Id_Moto = 0;
+    boolean Verif = false;
+    boolean Vefir2 = false;
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,16 +42,40 @@ public class ComparadorFragment extends Fragment {
         btnMoto1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 NavHostFragment.findNavController(getParentFragment()).navigate(R.id.filterMotoFragment);
             }
         });
 
-        btnMoto2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(getParentFragment()).navigate(R.id.filterMotoFragment);
-            }
-        });
+        if(getArguments() != null){
+            Guardar_Primer_Id_Moto = getArguments().getLong("id");
+        }
+
+
+
+        if(Vefir2 == true){
+            btnMoto2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("id", Guardar_Primer_Id_Moto);
+
+                    NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_nav_comparador_to_nav_Filter, bundle);
+                }
+            });
+        }else{
+            Toast.makeText(getContext(), "Escoje la primera moto antes", Toast.LENGTH_LONG).show();
+        }
+
+
+
+        if(Verif == false && Vefir2 == false){
+            Toast.makeText(getContext(), "Escoje las motos antes", Toast.LENGTH_LONG).show();
+        }
+
+
 
         return v;
     }

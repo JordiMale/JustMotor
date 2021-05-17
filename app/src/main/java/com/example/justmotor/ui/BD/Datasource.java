@@ -461,5 +461,16 @@ public class Datasource {
                     null, null, null);
         }
 
+        //Filtrar motos por el nombre del modelo
+        public Cursor FiltrarNombreModelo(String nums) {
+            final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Matricula, Marca, Data_Entrada, Data_Final, Activa, Mod.Nombre_Modelo " +
+                    "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id WHERE Mod.Nombre_Modelo LIKE '%" + nums + "%'";
+
+            return dbR.rawQuery(MY_QUERY, null);
+
+        }
+
+
+
 
 }

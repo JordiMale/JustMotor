@@ -139,6 +139,13 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(i);
                             }
 
+                        }else{
+                            if(id == R.id.nav_home){
+                                fragment = new ComparadorFragment();
+                                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                                ft.replace(R.id.nav_home, fragment);
+                                ft.commit();
+                            }
                         }
                     }
                 }
