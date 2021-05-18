@@ -180,8 +180,6 @@ public class LoginFragment extends Fragment {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                String mie = String.valueOf(getView());
-                                Log.d("View de mierda:", mie);
                                 Intent i  =  new Intent(getContext(), MainActivity.class);
                                 startActivity(i);
                                 //NavHostFragment.findNavController(getParentFragment()).navigate(R.id.nav_home);

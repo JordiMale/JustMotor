@@ -202,33 +202,45 @@ public class MirarFichaFragment extends Fragment {
 
         Cursor Cursor_Dimensiones = bd.MirarDimensiones(idTask);
         Cursor_Dimensiones.moveToFirst();
-        Longitud.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.LONGITUD_TOTAL)));
-        AnchoDim.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.ANCHO_TOTAL)));
-        Altura.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.ALTURA_TOTAL)));
-        DistanciaEntreEjes.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES)));
-        AlturaDesdeElSuelo.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO)));
+        Longitud.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.LONGITUD_TOTAL)) + "mm");
+        AnchoDim.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.ANCHO_TOTAL)) + "mm");
+        Altura.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.ALTURA_TOTAL)) + "mm");
+        DistanciaEntreEjes.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES)) + "mm");
+        AlturaDesdeElSuelo.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO)) + "mm");
         DepositoDeGasolina.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.DEPOSITO_DE_GASOLINA)));
-        Peso.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.PESO)));
+        Peso.setText(Cursor_Dimensiones.getString(Cursor_Dimensiones.getColumnIndex(Datasource.PESO)) + "Kg");
         Cursor_Dimensiones.close();
 
         Cursor Cursor_Moto = bd.MirarMotor(idTask);
         Cursor_Moto.moveToFirst();
         Nombre.setText(Cursor_Moto.getString(Cursor_Moto.getColumnIndex(Datasource.NOMBRE_MOTOR)));
-        Potencia.setText(Cursor_Moto.getString(Cursor_Moto.getColumnIndex(Datasource.POTENCIA)));
+        Potencia.setText(Cursor_Moto.getString(Cursor_Moto.getColumnIndex(Datasource.POTENCIA)) + "CV");
         Cilindrada.setText(Cursor_Moto.getString(Cursor_Moto.getColumnIndex(Datasource.CILINDRADA)));
         RDC.setText(Cursor_Moto.getString(Cursor_Moto.getColumnIndex(Datasource.RELACION_DE_COMPRESION)));
-        CapacidadDeAceite.setText(Cursor_Moto.getString(Cursor_Moto.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE)));
+        CapacidadDeAceite.setText(Cursor_Moto.getString(Cursor_Moto.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE)) + "l");
         Cursor_Moto.close();
 
 
 
         Cursor Cursor_FichaTecnica = bd.MirarFichaTecnica(idTask);
         Cursor_FichaTecnica.moveToFirst();
-        KM.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.KM)));
+
+        KM.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.KM)) + "Km");
         Año.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.AÑO)));
-        Consumo.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.CONSUMO)));
+        Consumo.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.CONSUMO)) + "L");
         MarcaFrenos.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.MARCA_FRENOS)));
-        ABS.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.ABS)));
+
+        int ABSs = Integer.parseInt(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.ABS)));
+
+        if(ABSs == 0 ){
+            ABS.setText("Si");
+        }else{
+            if(ABSs == 1){
+                ABS.setText("No");
+            }
+        }
+
+        //ABS.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.ABS)));
         Color.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.COLOR)));
         Cursor_FichaTecnica.close();
 
@@ -241,7 +253,7 @@ public class MirarFichaFragment extends Fragment {
 
         Cursor Cursor_Oferta = bd.MirarOferta(idTask);
         Cursor_Oferta.moveToFirst();
-        Precio.setText(Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.PRECIO)));
+        Precio.setText(Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.PRECIO)) + " €");
         GuardarFoto = Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.FOTO));
         Glide.with(getContext()).load(GuardarFoto).into(Foto);
         Marca.setText(Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.MARCA)));

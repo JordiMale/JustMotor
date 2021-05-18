@@ -36,7 +36,7 @@ public class FilterFragment extends Fragment {
     private adapterTodoIcon scTasks;
     SearchView searchView;
     ListView lv;
-    int Recibir_Id_Moto_1 = 0;
+    long Recibir_Id_Moto_1 = 0;
 
     private static String[] from = new String[]{
             Datasource.FOTO,
@@ -47,12 +47,12 @@ public class FilterFragment extends Fragment {
             Datasource.NOMBRE_MODELO,};
 
     private static int[] to = new int[]{
-            R.id.Imagen_moto_Filtro_Escoger,
-            R.id.Oferta_Data_Entrada_Filtro_Escoger,
-            R.id.Oferta_Activa_Filtro_Escoger,
-            R.id.Oferta_Nombre_Marca_Filtro_Escoger,
-            R.id.Oferta_Precio_Filtro_Escoger,
-            R.id.Oferta_Nombre_Modelo_Filtro_Escoger,};
+            R.id.Imagen_moto_Filtro_Escoger2,
+            R.id.Oferta_Data_Entrada_Filtro_Escoger2,
+            R.id.Oferta_Activa_Filtro_Escoger2,
+            R.id.Oferta_Nombre_Marca_Filtro_Escoger2,
+            R.id.Oferta_Precio_Filtro_Escoger2,
+            R.id.Oferta_Nombre_Modelo_Filtro_Escoger2,};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,8 +67,10 @@ public class FilterFragment extends Fragment {
         lv = v.findViewById(R.id.list1);
 
 
-        Recibir_Id_Moto_1 = getArguments().getInt("id");
 
+        if(getArguments() != null){
+            Recibir_Id_Moto_1 = getArguments().getLong("id");
+        }
 
 
 
@@ -98,7 +100,7 @@ public class FilterFragment extends Fragment {
                 Cursor CursorFilt = bd.FiltrarNombreModelo(Aux);
 
                 scTasks = new adapterTodoIcon(getContext(),
-                        R.layout.row_oferta,
+                        R.layout.raw_oferta_escojer_moto_dos,
                         CursorFilt,
                         from,
                         to,
@@ -115,9 +117,9 @@ public class FilterFragment extends Fragment {
 
     }
 
-    private void Coger_id(int id) {
+    private void Coger_id(long id) {
 
-        int Guardar_Segon_Id = id;
+        long Guardar_Segon_Id = id;
 
         long[] Array = new long[2];
         Array[0] = Long.valueOf(Recibir_Id_Moto_1);
@@ -141,7 +143,7 @@ public class FilterFragment extends Fragment {
 
         // Now create a simple cursor adapter and set it to display
         scTasks = new adapterTodoIcon(getContext(),
-                R.layout.row_oferta_escojer_moto,
+                R.layout.raw_oferta_escojer_moto_dos,
                 cursorTasks,
                 from,
                 to,
@@ -184,7 +186,7 @@ public class FilterFragment extends Fragment {
             // Agafem l'objecte de la view que es una LINEA DEL CURSOR
             Cursor linia = (Cursor) getItem(position);
 
-            ImageView Coger_Id = view.findViewById(R.id.Cojer_Id);
+            ImageView Coger_Id = view.findViewById(R.id.Cojer_Id2);
             Coger_Id.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -21,11 +21,16 @@ public class ComparadorFragment extends Fragment {
 
     Button btnMoto1;
     Button btnMoto2;
+    Button Ir_Comparador_Final;
 
     long Guardar_Primer_Id_Moto = 0;
-    int Guardar_Segundo_Id_Moto = 0;
+    long[] Guardar_Segundo_Id_Moto = new long[2];
+
+    long GuradarId1Final;
+    long GuradarId2Final;
     boolean Verif = false;
     boolean Vefir2 = false;
+    boolean IrComp = false;
 
 
 
@@ -38,6 +43,7 @@ public class ComparadorFragment extends Fragment {
 
         btnMoto1 = v.findViewById(R.id.btnMoto1);
         btnMoto2 = v.findViewById(R.id.btnMoto2);
+        Ir_Comparador_Final = v.findViewById(R.id.Boton_Ir_Comparador_Final);
 
         btnMoto1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +55,20 @@ public class ComparadorFragment extends Fragment {
 
         if(getArguments() != null){
             Guardar_Primer_Id_Moto = getArguments().getLong("id");
+
+            //GuradarId1Final = Guardar_Segundo_Id_Moto[0];
+            //GuradarId2Final = Guardar_Segundo_Id_Moto[1];
+            Vefir2 = true;
+
         }
+
+
+            if(getArguments() != null){
+                Guardar_Segundo_Id_Moto = getArguments().getLongArray("idz");
+                IrComp = true;
+            }
+
+
 
 
 
@@ -57,7 +76,6 @@ public class ComparadorFragment extends Fragment {
             btnMoto2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
 
                     Bundle bundle = new Bundle();
                     bundle.putLong("id", Guardar_Primer_Id_Moto);
@@ -70,10 +88,22 @@ public class ComparadorFragment extends Fragment {
         }
 
 
+        if(IrComp == true){
+            Ir_Comparador_Final.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        if(Verif == false && Vefir2 == false){
-            Toast.makeText(getContext(), "Escoje las motos antes", Toast.LENGTH_LONG).show();
+                    Bundle bundle = new Bundle();
+                    bundle.putLongArray("idz", Guardar_Segundo_Id_Moto);
+
+
+                    NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_nav_comparador_to_comparadorFinalFragment, bundle);
+                }
+            });
+        }else{
+            Toast.makeText(getContext(), "Escoje las motos para poder ir.", Toast.LENGTH_LONG).show();
         }
+
 
 
 

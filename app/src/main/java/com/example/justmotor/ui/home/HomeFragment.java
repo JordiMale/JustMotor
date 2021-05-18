@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.example.justmotor.Conexion;
+import com.example.justmotor.MainActivity;
+import com.example.justmotor.PantallaCargaPrincipal;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.BD.Datasource;
 import com.example.justmotor.ui.Filtrar.FilterMotoFragment;
@@ -62,6 +65,7 @@ public class HomeFragment extends Fragment {
     SearchView searchView;
     ListView lv;
     String Imagen;
+    String Imagencur;
     private long idActual;
     private Datasource bd;
     private long Numero_de_Cilindorsbd;
@@ -118,16 +122,27 @@ public class HomeFragment extends Fragment {
         bd = new Datasource(getContext());
         lv =  v.findViewById(R.id.list1);
 
+
+        //HacerPeticionApi();
+
         Cursor cur = bd.Todo_Oferta();
         if(cur.moveToNext()){
-
+            loadTasks(v);
         }else{
-            if(!cur.moveToNext()){
+            if(!cur.moveToNext()) {
                 HacerPeticionApi();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadTasks(v);
+
+                    }
+                },5000);
+
+
             }
         }
 
-        loadTasks(v);
         searchView = v.findViewById(R.id.Comp_Filt_Buscador_Home);
 
         Referesh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -136,6 +151,15 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Has echo un refresh", Toast.LENGTH_LONG).show();
                 //EliminarCamposSqlite();
                 HacerPeticionApi();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        loadTasks(v);
+                    }
+                },4000);
+
                 Referesh.setRefreshing(false);
             }
         });
@@ -506,6 +530,12 @@ public class HomeFragment extends Fragment {
 
                 // Agafem l'objecte de la view que es una LINEA DEL CURSOR
                 Cursor linia = (Cursor) getItem(position);
+
+
+                    ImageView imagen = view.findViewById(R.id.Imagen_moto);
+                    Imagencur = linia.getString(linia.getColumnIndex(Datasource.FOTO));
+                    Glide.with(getContext()).load(Imagencur).into(imagen);
+
 
 
                 return view;

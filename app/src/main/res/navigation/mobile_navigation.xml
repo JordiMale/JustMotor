@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_nav_comparador_to_nav_Filter"
             app:destination="@id/nav_Filter" />
+        <action
+            android:id="@+id/action_nav_comparador_to_comparadorFinalFragment"
+            app:destination="@id/comparadorFinalFragment" />
     </fragment>
 
 
@@ -118,5 +121,10 @@
         android:name="com.example.justmotor.ui.MirarFicha.MirarFichaFragment"
         android:label="Ficha Tecnica"
         tools:layout="@layout/fragment_mirar_ficha" />
+    <fragment
+        android:id="@+id/comparadorFinalFragment"
+        android:name="com.example.justmotor.ComparadorFinalFragment"
+        android:label="Comparativa"
+        tools:layout="@layout/fragment_comparador_final" />
 
 </navigation>

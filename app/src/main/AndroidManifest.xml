@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JustMotor">
-        <activity android:name=".LocginActivity"
-            android:theme="@style/Theme.JustMotor.NoActionBar"></activity>
+        <activity
+            android:name=".LocginActivity"
+            android:theme="@style/Theme.JustMotor.NoActionBar" />
         <activity
             android:name=".PantallaCargaPrincipal"
             android:theme="@style/Theme.JustMotor.NoActionBar">
@@ -29,7 +30,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.JustMotor.NoActionBar"></activity>
+            android:theme="@style/Theme.JustMotor.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"

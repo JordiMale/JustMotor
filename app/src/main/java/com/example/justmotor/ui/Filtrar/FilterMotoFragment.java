@@ -19,6 +19,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.BD.Datasource;
 import com.example.justmotor.ui.GetSet.Ficha_Tecnica_Modelo;
@@ -99,7 +100,7 @@ public class FilterMotoFragment extends Fragment {
                 Cursor CursorFilt = bd.FiltrarNombreModelo(Aux);
 
                 scTasks = new adapterTodoIcon(getContext(),
-                        R.layout.row_oferta,
+                        R.layout.row_oferta_escojer_moto,
                         CursorFilt,
                         from,
                         to,
@@ -173,6 +174,12 @@ public class FilterMotoFragment extends Fragment {
 
             // Agafem l'objecte de la view que es una LINEA DEL CURSOR
             Cursor linia = (Cursor) getItem(position);
+/*
+            ImageView imagen = view.findViewById(R.id.Imagen_moto);
+            Imagencur = linia.getString(linia.getColumnIndex(Datasource.FOTO));
+            Glide.with(getContext()).load(Imagencur).into(imagen);
+
+ */
 
             ImageView Coger_Id = view.findViewById(R.id.Cojer_Id);
             Coger_Id.setOnClickListener(new View.OnClickListener() {
