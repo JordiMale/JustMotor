@@ -500,4 +500,18 @@ public class Datasource {
     }
 
 
+    //Per poder mostrar la oferta en el listview de favoritos
+    public Cursor FavOfertas(long id) {
+        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Matricula, Marca, Data_Entrada, Data_Final, Activa, Mod.Nombre_Modelo " +
+                "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id LIKE '%" + id + "%' ORDER BY Mod.Nombre_Modelo";
+
+        return dbR.rawQuery(MY_QUERY, null);
+
+
+    }
+
+
+
+
+
 }

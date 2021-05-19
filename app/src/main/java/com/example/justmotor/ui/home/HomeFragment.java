@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -46,6 +48,13 @@ import com.example.justmotor.ui.GetSet.Modelo;
 import com.example.justmotor.ui.GetSet.Motor;
 import com.example.justmotor.ui.GetSet.Ofertas;
 import com.example.justmotor.ui.RegistrarLogin.RegistrarFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.JsonObject;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -54,9 +63,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Array;
 import java.sql.Ref;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -87,6 +101,15 @@ public class HomeFragment extends Fragment {
     private adapterTodoIcon scTasks;
     private AsyncHttpResponseHandler handler;
 
+    private FirebaseUser Usu = FirebaseAuth.getInstance().getCurrentUser();
+    private String Email = Usu.getEmail();
+    String Identificador;
+    long GuardarId = 0;
+    Array[] Guardar_Ids = new Array[30];
+    Object Guardar;
+
+    FirebaseFirestore Acceso = FirebaseFirestore.getInstance();
+
     /*
     ArrayList<Motor> motor = new ArrayList<Motor>();
     ArrayList<Ofertas> oferta = new ArrayList<Ofertas>();
@@ -115,6 +138,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_home, container, false);
+        MirarPersona();
 
         Referesh = v.findViewById(R.id.RefreshLayout);
 
@@ -244,7 +268,7 @@ public class HomeFragment extends Fragment {
     }
 
 
-    private void MirarOferta(long id) {
+        private void MirarOferta(long id) {
 
         Bundle bundle = new Bundle();
         bundle.putLong("id", id);
@@ -252,7 +276,6 @@ public class HomeFragment extends Fragment {
         NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_nav_home_to_mirarFichaFragment, bundle);
 
     }
-
 
 
         private void HacerPeticionApi(){
@@ -512,6 +535,35 @@ public class HomeFragment extends Fragment {
             }
         }
 
+    private void Coger_id(long id) {
+        GuardarId = id;
+        Acceso.collection("Usuarios").document(Identificador).update("Fav",GuardarId);
+
+
+    }
+
+    private void MirarPersona(){
+        Acceso.collection("Usuarios").whereEqualTo("Email",Email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                        Log.d("TAG", document.getId() + " => " + document.getData());
+                        Identificador = document.getId();
+                        //Guardar_Ids = document.getData().get("Fav");
+                        //usuari = document.getData().get("nom").toString();
+                        //Guardar_Ids = (Array[]) Guardar;
+                    }
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
+            }
+        });
+    }
+
+
+
 
         class adapterTodoIcon extends android.widget.SimpleCursorAdapter {
 
@@ -536,10 +588,22 @@ public class HomeFragment extends Fragment {
                     Imagencur = linia.getString(linia.getColumnIndex(Datasource.FOTO));
                     Glide.with(getContext()).load(Imagencur).into(imagen);
 
+                ImageView Meter_Fav = view.findViewById(R.id.Fav);
+                Meter_Fav.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor linia = (Cursor) getItem(position);
+
+                        oTodoListIcon.Coger_id(linia.getInt(linia.getColumnIndexOrThrow(Datasource.IDGENERAL)));
+                    }
+                });
+
 
 
                 return view;
         }
     }
+
+
 }
 

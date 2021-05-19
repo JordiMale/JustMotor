@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.BD.Datasource;
 import com.example.justmotor.ui.GetSet.Ficha_Tecnica_Modelo;
@@ -36,6 +37,7 @@ public class FilterFragment extends Fragment {
     private adapterTodoIcon scTasks;
     SearchView searchView;
     ListView lv;
+    String Imagencur;
     long Recibir_Id_Moto_1 = 0;
 
     private static String[] from = new String[]{
@@ -65,6 +67,7 @@ public class FilterFragment extends Fragment {
         Referesh = v.findViewById(R.id.RefreshLayoutFiltroCompara);
         bd = new Datasource(getContext());
         lv = v.findViewById(R.id.list1);
+
 
 
 
@@ -185,6 +188,10 @@ public class FilterFragment extends Fragment {
 
             // Agafem l'objecte de la view que es una LINEA DEL CURSOR
             Cursor linia = (Cursor) getItem(position);
+
+            ImageView imagen = view.findViewById(R.id.Imagen_moto_Filtro_Escoger2);
+            Imagencur = linia.getString(linia.getColumnIndex(Datasource.FOTO));
+            Glide.with(getContext()).load(Imagencur).into(imagen);
 
             ImageView Coger_Id = view.findViewById(R.id.Cojer_Id2);
             Coger_Id.setOnClickListener(new View.OnClickListener() {

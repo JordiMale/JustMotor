@@ -136,6 +136,8 @@ public class Helper extends SQLiteOpenHelper {
                         "Matricula TEXT ," +
                         "FOREIGN KEY(Modelo) REFERENCES Modelo(_id)" + ")";
 
+
+
         db.execSQL(CREATE_TIEMPO);
         db.execSQL(CREATE_NUM_CILINDORS);
         db.execSQL(CREATE_TIPO_MOTOR);

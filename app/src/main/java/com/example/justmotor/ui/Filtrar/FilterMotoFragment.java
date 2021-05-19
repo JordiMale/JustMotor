@@ -39,6 +39,7 @@ public class FilterMotoFragment extends Fragment {
     private adapterTodoIcon scTasks;
     SearchView searchView;
     ListView lv;
+    String Imagencur;
     int Recibir_Id_Moto_1 = 0;
 
     private static String[] from = new String[]{
@@ -174,12 +175,11 @@ public class FilterMotoFragment extends Fragment {
 
             // Agafem l'objecte de la view que es una LINEA DEL CURSOR
             Cursor linia = (Cursor) getItem(position);
-/*
-            ImageView imagen = view.findViewById(R.id.Imagen_moto);
+
+            ImageView imagen = view.findViewById(R.id.Imagen_moto_Filtro_Escoger);
             Imagencur = linia.getString(linia.getColumnIndex(Datasource.FOTO));
             Glide.with(getContext()).load(Imagencur).into(imagen);
 
- */
 
             ImageView Coger_Id = view.findViewById(R.id.Cojer_Id);
             Coger_Id.setOnClickListener(new View.OnClickListener() {
