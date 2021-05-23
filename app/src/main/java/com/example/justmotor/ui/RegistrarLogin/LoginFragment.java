@@ -197,7 +197,7 @@ public class LoginFragment extends Fragment {
 
 
     private void MirarPersona(){
-        Acceso.collection("users").whereEqualTo("Email",EmailS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Acceso.collection("Usuarios").whereEqualTo("Email",EmailS).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {

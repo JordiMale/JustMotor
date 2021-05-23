@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/moto"
@@ -15,9 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.JustMotor">
+
         <activity
             android:name=".LocginActivity"
             android:theme="@style/Theme.JustMotor.NoActionBar" />
+
         <activity
             android:name=".PantallaCargaPrincipal"
             android:theme="@style/Theme.JustMotor.NoActionBar">

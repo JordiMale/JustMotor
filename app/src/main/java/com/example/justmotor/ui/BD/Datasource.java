@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.MediaStore;
+import android.widget.ImageView;
+
+import java.util.Map;
 
 public class Datasource {
 
@@ -115,6 +118,15 @@ public class Datasource {
     public static final String PRECIO = "Precio";
     public static final String MATRICULA = "Matricula";
 
+    //Table Favoritos
+    public static final String TABLE_OFERTA_FAV = "Oferta_Fav";
+    public static final String FOTOO = "Fotoo";
+    public static final String DATA_ENTRADAA = "Data_Entradaa";
+    public static final String ACTIVAA = "Activaa";
+    public static final String MARCAA = "Marcaa";
+    public static final String PRECIOO = "Precioo";
+    public static final String MODELOO = "Nombre_Modeloo";
+
 
     private Helper dbHelper;
     private SQLiteDatabase dbW, dbR;
@@ -150,7 +162,7 @@ public class Datasource {
 
     //Eliminar all los datos de la tabala tiempo
     public void Delete_All_Tiempo() {
-        dbW.execSQL("delete from " + TABLE_TIEMPO);
+        dbW.delete(TABLE_TIEMPO, null, null);
     }
 
     //Insert de numero cilindros
@@ -162,7 +174,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Numero de cilindros
     public void Delete_All_Numero_Cilindros() {
-        dbW.execSQL("delete from " + TABLE_NUM_CILINDROS);
+        dbW.delete(TABLE_NUM_CILINDROS, null, null);
     }
 
     //Insert de Tipo motor
@@ -175,7 +187,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Tipo motor
     public void Delete_All_Tipo_Motor() {
-        dbW.execSQL("delete from " + TABLE_TIPO_MOTOR);
+        dbW.delete(TABLE_TIPO_MOTOR, null, null);
     }
 
     //Insert de refrigeracion
@@ -187,7 +199,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala refrigeracion
     public void Delete_All_Refrigeracion() {
-        dbW.execSQL("delete from " + TABLE_REFRIGERACION);
+        dbW.delete(TABLE_REFRIGERACION, null, null);
     }
 
     //Insert de encendio
@@ -199,7 +211,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala encendio
     public void Delete_All_Encendido() {
-        dbW.execSQL("delete from " + TABLE_ENCENDIDO);
+        dbW.delete(TABLE_ENCENDIDO, null, null);
     }
 
     //Insert de Cambio
@@ -211,7 +223,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Cambio
     public void Delete_All_Cambio() {
-        dbW.execSQL("delete from " + TABLE_CAMBIO);
+        dbW.delete(TABLE_CAMBIO, null, null);
     }
 
     //Insert de alimentacion
@@ -223,7 +235,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala alimentacion
     public void Delete_All_Alimentacion() {
-        dbW.execSQL("delete from " + TABLE_ALIMENTACION);
+        dbW.delete(TABLE_ALIMENTACION, null, null);
     }
 
     //Insert de dimension neumatico trasero
@@ -237,7 +249,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala neumatico trasero
     public void Delete_All_Neum_Traseros() {
-        dbW.execSQL("delete from " + TABLE_DIM_NEU_TRA);
+        dbW.delete(TABLE_DIM_NEU_TRA, null, null);
     }
 
     //Insert de dimension neumatico delantero
@@ -251,7 +263,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala neumatico delantero
     public void Delete_All_Neum_Delanteros() {
-        dbW.execSQL("delete from " + TABLE_DIM_NEU_DEL);
+        dbW.delete(TABLE_DIM_NEU_DEL, null, null);
     }
 
     //Insert de motor
@@ -272,7 +284,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala motor
     public void Delete_All_Motor() {
-        dbW.execSQL("delete  from " + TABLE_MOTOR);
+        dbW.delete(TABLE_MOTOR, null, null);
     }
 
     //Insert de Neumatico
@@ -287,7 +299,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Neumatico
     public void Delete_All_Neumatico() {
-        dbW.execSQL("delete  from " + TABLE_NEUMATICO);
+        dbW.delete(TABLE_NEUMATICO, null, null);
     }
 
     //Insert de Dimensiones
@@ -306,7 +318,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Dimension
     public void Delete_All_Dimension() {
-        dbW.execSQL("delete  from " + TABLE_DIM_MOTO);
+        dbW.delete(TABLE_DIM_MOTO, null, null);
     }
 
     //Insert de Ficha tecnica
@@ -327,7 +339,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Ficha Tecnica
     public void Delete_All_Ficha_Tecnica() {
-        dbW.execSQL("delete  from " + TABLE_FICHA_TECNICA);
+        dbW.delete(TABLE_FICHA_TECNICA, null, null);
     }
 
     //Insert de Modelo
@@ -342,7 +354,7 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Modelo
     public void Delete_All_Modelo() {
-        dbW.execSQL("delete  from " + TABLE_MODELO);
+        dbW.delete(TABLE_MODELO, null, null);
     }
 
     //Insert de Oferta
@@ -361,17 +373,28 @@ public class Datasource {
 
     //Elimina all los datos de la tabala Oferta
     public void Delete_All_Oferta() {
-        dbW.execSQL("delete  from " + TABLE_OFERTA);
+        dbW.delete(TABLE_OFERTA, null, null);
     }
 
     //Per poder mostrar la oferta en el listview
     public Cursor Todo_Oferta() {
-        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Matricula, Marca, Data_Entrada, Data_Final, Activa, Mod.Nombre_Modelo " +
+        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
                 "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id ORDER BY Mod.Nombre_Modelo";
 
         return dbR.rawQuery(MY_QUERY, null);
+    }
 
-
+    //Per poder mostrar la oferta en el listview
+    public boolean Mirar_Si_Hay_Oferta() {
+        String Query = "Select * from " + TABLE_OFERTA;
+        Cursor cursor = dbR.rawQuery(Query, null);
+        if(cursor.getCount() > 0){
+            cursor.close();
+            return true;
+        }else{
+            cursor.close();
+            return false;
+        }
     }
 
 
@@ -485,32 +508,92 @@ public class Datasource {
     }
 
 
+    //Per poder mostrar la oferta en el listview
+    public Cursor MirarOfertaFav(Long id) {
+        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
+                "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id WHERE Ofer._id = " + id + " ORDER BY Mod.Nombre_Modelo";
+
+        return dbR.rawQuery(MY_QUERY, null);
+    }
+
+
+
+
 
     //Cursores para el comparador de las fichas tecnicas.
 
     //Cursor para ver los datos generales de la primera moto.
     //Per poder mostrar la oferta en el listview
+    /*
     public Cursor MirarMoto1(long id) {
         final String MY_QUERY = "SELECT Ofer._id, Precio, Marca, Mod.Nombre_Modelo, Mod.Tipo_Modelo, Fich.KM, Fich.Año, Fich.Consumo, Fich.Marca_Frenos, Fich.ABS, Fich.Color " +
                 "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id INNER JOIN Ficha_Tecnica AS Fich ON Mod.Ficha_Tecnica = Fich._id LIKE '%" + id + "%'";
 
         return dbR.rawQuery(MY_QUERY, null);
 
+    }
 
+     */
+    //Insert de Para ver Fav
+    public long FavOfertas(String Fotoo, String Data_Entradaa, String Nombre_Modeloo, String Activaa, String Marcaa, String Precioo) {
+        ContentValues values = new ContentValues();
+        values.put(FOTOO, Fotoo);
+        values.put(DATA_ENTRADAA, Data_Entradaa);
+        values.put(MODELOO, Nombre_Modeloo);
+        values.put(ACTIVAA, Activaa);
+        values.put(MARCAA, Marcaa);
+        values.put(PRECIOO, Precioo);
+        return dbW.insert(TABLE_OFERTA_FAV, null, values);
+    }
+
+    public Cursor ListOfertas(){
+        return dbR.query(TABLE_OFERTA_FAV,
+                new String[]{
+                        IDGENERAL,
+                        FOTOO,
+                        DATA_ENTRADAA,
+                        MODELOO,
+                        ACTIVAA,
+                        MARCAA,
+                        PRECIOO
+                },
+                null,
+                null,
+                null,
+                null, null);
+    }
+
+    public boolean Mirar_Si_Hay_Oferta_Fav() {
+        String Query = "Select * from " + TABLE_OFERTA_FAV;
+        Cursor cursor = dbR.rawQuery(Query, null);
+        if(cursor.getCount() > 0){
+            cursor.close();
+            return true;
+        }else{
+            cursor.close();
+            return false;
+        }
     }
 
 
+
+
+
+
+    /*
     //Per poder mostrar la oferta en el listview de favoritos
-    public Cursor FavOfertas(long id) {
+    public Cursor FavOferts(long id) {
         final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Matricula, Marca, Data_Entrada, Data_Final, Activa, Mod.Nombre_Modelo " +
                 "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id LIKE '%" + id + "%' ORDER BY Mod.Nombre_Modelo";
 
         return dbR.rawQuery(MY_QUERY, null);
 
 
+
+
     }
 
-
+ */
 
 
 

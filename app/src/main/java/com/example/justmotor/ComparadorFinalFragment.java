@@ -438,8 +438,8 @@ public class ComparadorFinalFragment extends Fragment {
         //Datos moto 1
         mapChild2.put(listCategorias2.get(0), GeneralMoto2);
         mapChild2.put(listCategorias2.get(1), Motor2);
-        mapChild2.put(listCategorias2.get(2), Dimensiones1);
-        mapChild2.put(listCategorias2.get(3), Neumatico1);
+        mapChild2.put(listCategorias2.get(2), Dimensiones2);
+        mapChild2.put(listCategorias2.get(3), Neumatico2);
         mapChild2.put(listCategorias2.get(4), Del2);
         mapChild2.put(listCategorias2.get(5), Tra2);
 

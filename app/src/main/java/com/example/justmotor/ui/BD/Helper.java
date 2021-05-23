@@ -131,13 +131,22 @@ public class Helper extends SQLiteOpenHelper {
                         "Data_Entrada DATE NOT NULL," +
                         "Data_Final DATE NOT NULL," +
                         "Activa BOOLEAN NOT NULL," +
-                        "Marca INTEGER NOT NULL," +
+                        "Marca TEXT NOT NULL," +
                         "Precio TEXT  NOT NULL," +
                         "Matricula TEXT ," +
                         "FOREIGN KEY(Modelo) REFERENCES Modelo(_id)" + ")";
 
+        String CREATE_OFERTA_FAV =
+                "CREATE TABLE Oferta_Fav ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "Fotoo TEXT NOT NULL," +
+                        "Data_Entradaa DATE NOT NULL," +
+                        "Activaa BOOLEAN NOT NULL," +
+                        "Marcaa TEXT NOT NULL," +
+                        "Precioo TEXT  NOT NULL," +
+                        "Nombre_Modeloo TEXT NOT NULL " + ")";
 
 
+        db.execSQL(CREATE_OFERTA_FAV);
         db.execSQL(CREATE_TIEMPO);
         db.execSQL(CREATE_NUM_CILINDORS);
         db.execSQL(CREATE_TIPO_MOTOR);
@@ -153,6 +162,7 @@ public class Helper extends SQLiteOpenHelper {
         db.execSQL(CREATE_FICHA_TECNICA);
         db.execSQL(CREATE_MODELO);
         db.execSQL(CREATE_OFERTA);
+
 
 
     }

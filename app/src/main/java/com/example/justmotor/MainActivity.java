@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.justmotor.ui.Comparador.ComparadorFragment;
+import com.example.justmotor.ui.Favoritos.FavFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,6 +35,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,10 +57,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-
-
-        String ll = String.valueOf(Usu);
-        Log.d("Usu despues de deslog" ,ll);
 
 
         //Toolbar derecho
@@ -88,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottom_nav_view = findViewById(R.id.bottomNavigationView);
         bottom_nav_view.setBackground(null);
         NavigationUI.setupWithNavController(bottom_nav_view, navController);
+
+
+
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -145,6 +146,18 @@ public class MainActivity extends AppCompatActivity {
                                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                                 ft.replace(R.id.nav_home, fragment);
                                 ft.commit();
+                            }
+                            else{
+                                if( id == R.id.navigation_Fav){
+                                    if(Usu != null){
+                                        fragment = new FavFragment();
+                                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                                        ft.replace(R.id.navigation_Fav, fragment);
+                                        ft.commit();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "Ya estas registrado o logeado.", Toast.LENGTH_LONG).show();
+                                    }
+                                }
                             }
                         }
                     }

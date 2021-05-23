@@ -14,10 +14,7 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_Filter"
-            android:icon="@drawable/ic_baseline_filter_list_24"
-            android:title="Filtrar" />
+
         <item
             android:id="@+id/nav_comparador"
             android:icon="@drawable/ic_baseline_compare_24"
@@ -30,12 +27,9 @@
         <item android:title="" />
 
 
-    <group
-        android:id="@+id/group1"
-        android:checkableBehavior="single">
         <item
             android:id="@+id/salir"
             android:icon="@drawable/ic_baseline_logout_24"
             android:title="Salir"/>
-    </group>
+
 </menu>

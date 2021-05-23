@@ -60,7 +60,11 @@
         android:id="@+id/navigation_Fav"
         android:name="com.example.justmotor.ui.Favoritos.FavFragment"
         android:label="JustMotor"
-        tools:layout="@layout/fragment_fav" />
+        tools:layout="@layout/fragment_fav" >
+        <action
+            android:id="@+id/action_navigation_Fav_to_mirarFichaFragment"
+            app:destination="@id/mirarFichaFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/registrarFragment"
