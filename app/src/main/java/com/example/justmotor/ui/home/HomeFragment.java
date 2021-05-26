@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -58,6 +60,7 @@ public class HomeFragment extends Fragment {
     ListView lv;
     String Imagen;
     String Imagencur;
+    String Activa;
     private long idActual;
     private Datasource bd;
     private long Numero_de_Cilindorsbd;
@@ -133,47 +136,24 @@ public class HomeFragment extends Fragment {
 
                     loadTasks();
                 }
-            }, 3000);
+            }, 1000);
 
             Referesh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
                     Toast.makeText(getContext(), "Has hecho un refresh", Toast.LENGTH_LONG).show();
-                    //EliminarCamposSqlite();
+                    EliminarCamposSqlite();
+
                     HacerPeticionApi();
-                    if (bd.Mirar_Si_Hay_Oferta() == true) {
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
 
-                                loadTasks();
-                            }
-                        }, 3000);
 
-                    } else {
-                        Toast.makeText(getContext(), "NO hay motos.", Toast.LENGTH_LONG).show();
-                    }
                     Referesh.setRefreshing(false);
                 }
             });
+
         } else {
-            if (bd.Mirar_Si_Hay_Oferta() == false) {
-                HacerPeticionApi();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        loadTasks();
-                    }
-                }, 3000);
-
-            } else {
-                Toast.makeText(getContext(), "NO hay motos.", Toast.LENGTH_LONG).show();
-            }
-
+            HacerPeticionApi();
         }
-
-
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -206,7 +186,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     private void EliminarCamposSqlite() {
         bd.Delete_All_Oferta();
         bd.Delete_All_Modelo();
@@ -223,6 +202,7 @@ public class HomeFragment extends Fragment {
         bd.Delete_All_Tipo_Motor();
         bd.Delete_All_Numero_Cilindros();
         bd.Delete_All_Tiempo();
+        bd.ResetearIDGNEREAL();
 
     }
 
@@ -326,48 +306,48 @@ public class HomeFragment extends Fragment {
  */
 
                         //Json de Tiempo
-                        int id_Tiempo = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Tiempo = Integer.parseInt(jsonObject.getString("tiempo_id"));
                         String Tipo_Tiempo = jsonObject.getString("tipotiempo");
 
                         //Json de Numero de cilindros
-                        int id_Numero_de_cilindors = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Numero_de_cilindors = Integer.parseInt(jsonObject.getString("numerocilindro_id"));
                         String Numero_de_cilindors = jsonObject.getString("numerocilindro");
 
                         //Json de Tipo motor
-                        int id_Tipo_Motor = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Tipo_Motor = Integer.parseInt(jsonObject.getString("tipomotor_id"));
                         int Tiempo = Integer.parseInt(jsonObject.getString("tiempo_id"));
                         int Numero_Cilindros = Integer.parseInt(jsonObject.getString("numerocilindro_id"));
 
                         //Json de refrigeracion
-                        int id_Tipo_Refrigeracion = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Tipo_Refrigeracion = Integer.parseInt(jsonObject.getString("refrigeracion_id"));
                         String Tipo_Refrigeracion = jsonObject.getString("tiporefrigeracion");
 
                         //Json de encendio
-                        int id_Encendido = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Encendido = Integer.parseInt(jsonObject.getString("encendido_id"));
                         String Tipo_Encendido = jsonObject.getString("tipoencendido");
 
                         //Json de Cambio
-                        int id_cambio = Integer.parseInt(jsonObject.getString("id"));
+                        long id_cambio = Integer.parseInt(jsonObject.getString("cambio_id"));
                         String Tipo_Cambio = jsonObject.getString("tipocambio");
 
                         //Json de alimentacion
-                        int id_Alimentacion = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Alimentacion = Integer.parseInt(jsonObject.getString("alimentacion_id"));
                         String Tipo_Alimentacion = jsonObject.getString("tipoalimentacion");
 
                         //Json de dimension neumatico traseo
-                        int id_Dim_Neu_Tra = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Dim_Neu_Tra = Integer.parseInt(jsonObject.getString("dimensionesneumaticotrasero_id"));
                         int Ancho_tra = Integer.parseInt(jsonObject.getString("anchotra"));
                         int Perfil_tra = Integer.parseInt(jsonObject.getString("perfiltra"));
                         int Radio_tra = Integer.parseInt(jsonObject.getString("radiotra"));
 
                         //Json de dimension neumatico delantero
-                        int id_Dim_Neu_Del = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Dim_Neu_Del = Integer.parseInt(jsonObject.getString("dimensionesneumaticodelantero_id"));
                         int Ancho_del = Integer.parseInt(jsonObject.getString("anchodel"));
                         int Perfil_del = Integer.parseInt(jsonObject.getString("perfildel"));
                         int Radio_del = Integer.parseInt(jsonObject.getString("radiodel"));
 
                         //Json de motor
-                        int id = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Motor = Integer.parseInt(jsonObject.getString("motor_id"));
                         int Tipo_de_motor = Integer.parseInt(jsonObject.getString("tipomotor_id"));
                         String Nombre_Motor = jsonObject.getString("nombremotor");
                         int Refrigeracion = Integer.parseInt(jsonObject.getString("refrigeracion_id"));
@@ -381,14 +361,14 @@ public class HomeFragment extends Fragment {
 
 
                         //Json de neumatico
-                        int id_neumatico = Integer.parseInt(jsonObject.getString("id"));
+                        long id_neumatico = Integer.parseInt(jsonObject.getString("neumatico_id"));
                         int Dimension_Neumatico_trasero = Integer.parseInt(jsonObject.getString("dimensionesneumaticotrasero_id"));
                         int Dimension_Neumatico_delantero = Integer.parseInt(jsonObject.getString("dimensionesneumaticodelantero_id"));
                         String Marca_Neumaticos = jsonObject.getString("marcaneumatico");
                         String Modelo_Neumaticos = jsonObject.getString("modeloneumatico");
 
                         //Json de dimension
-                        int id_Dimension = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Dimension = Integer.parseInt(jsonObject.getString("dimension_id"));
                         float Longitud_Total = Float.parseFloat(jsonObject.getString("longitud"));
                         String Nombre_Dimension = jsonObject.getString("nombredimension");
                         float Ancho_Total = Float.parseFloat(jsonObject.getString("anchototal"));
@@ -400,7 +380,7 @@ public class HomeFragment extends Fragment {
 
 
                         //Json de Ficha tecnica
-                        int id_Ficha_Tecnia = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Ficha_Tecnia = Integer.parseInt(jsonObject.getString("fichatecnica_id"));
                         int Motor = Integer.parseInt(jsonObject.getString("motor_id"));
                         int Neumaticos = Integer.parseInt(jsonObject.getString("neumatico_id"));
                         int Dimensiones = Integer.parseInt(jsonObject.getString("dimension_id"));
@@ -414,7 +394,7 @@ public class HomeFragment extends Fragment {
 
 
                         //Json de Modelo
-                        int id_Modelo = Integer.parseInt(jsonObject.getString("id"));
+                        long id_Modelo = Integer.parseInt(jsonObject.getString("modelo_id"));
                         int Ficha_Tecnica = Integer.parseInt(jsonObject.getString("fichatecnica_id"));
                         String Nombre_Modelo = jsonObject.getString("nombremodelo");
                         String Tipo_Modelo = jsonObject.getString("tipomodelo");
@@ -436,46 +416,46 @@ public class HomeFragment extends Fragment {
                         //Añadir a la base de datos.
 
                         //Tipo tiemo
-                        Tiempobd = bd.Crear_Tiempo(Tipo_Tiempo);
+                        Tiempobd = bd.Crear_Tiempo(id_Tiempo, Tipo_Tiempo);
 
                         //Numero de cilindors
-                        Numero_de_Cilindorsbd = bd.Crear_Numero_Cilindros(Numero_de_cilindors);
+                        Numero_de_Cilindorsbd = bd.Crear_Numero_Cilindros(id_Numero_de_cilindors, Numero_de_cilindors);
 
                         //Tipo motor
-                        Tipo_Motorbd = bd.Crear_Tipo_Motor(Tiempo, Numero_Cilindros);
+                        Tipo_Motorbd = bd.Crear_Tipo_Motor(id_Tipo_Motor, Tiempo, Numero_Cilindros);
 
                         //Refrigeracion
-                        Refrigeracionbd = bd.Crear_Refrigeracion(Tipo_Refrigeracion);
+                        Refrigeracionbd = bd.Crear_Refrigeracion(id_Tipo_Refrigeracion, Tipo_Refrigeracion);
 
                         //Encendido
-                        Encendidobd = bd.Crear_Encendido(Tipo_Encendido);
+                        Encendidobd = bd.Crear_Encendido(id_Encendido, Tipo_Encendido);
 
                         //Cambio
-                        Cambiobd = bd.Crear_Cambio(Tipo_Cambio);
+                        Cambiobd = bd.Crear_Cambio(id_cambio, Tipo_Cambio);
 
                         //Alimentacion
-                        Alimentacionbd = bd.Crear_Alimentacion(Tipo_Alimentacion);
+                        Alimentacionbd = bd.Crear_Alimentacion(id_Alimentacion, Tipo_Alimentacion);
 
                         //Dimensiones Neumatico Trasero
-                        Dimension_Neumatico_Traserobd = bd.Crear_Neum_Traseros(Ancho_tra, Perfil_tra, Radio_tra);
+                        Dimension_Neumatico_Traserobd = bd.Crear_Neum_Traseros(id_Dim_Neu_Tra, Ancho_tra, Perfil_tra, Radio_tra);
 
                         //Dimensiones Neumatico Delantero
-                        Dimension_Neumatico_Delanterobd = bd.Crear_Neum_Delanteros(Ancho_del, Perfil_del, Radio_del);
+                        Dimension_Neumatico_Delanterobd = bd.Crear_Neum_Delanteros(id_Dim_Neu_Del, Ancho_del, Perfil_del, Radio_del);
 
                         //Motor
-                        Motorbd = bd.Crear_Motor(Tipo_de_motor, Nombre_Motor, Refrigeracion, Encendido, Cambio, Alimentacion, Cilindrada, Potencia, Relacion_De_Comprersion, Capacidad_de_aceite);
+                        Motorbd = bd.Crear_Motor(id_Motor, Tipo_de_motor, Nombre_Motor, Refrigeracion, Encendido, Cambio, Alimentacion, Cilindrada, Potencia, Relacion_De_Comprersion, Capacidad_de_aceite);
 
                         //Neumaticos
-                        Neumaticosbd = bd.Crear_Neumatico(Dimension_Neumatico_trasero, Dimension_Neumatico_delantero, Marca_Neumaticos, Modelo_Neumaticos);
+                        Neumaticosbd = bd.Crear_Neumatico(id_neumatico, Dimension_Neumatico_trasero, Dimension_Neumatico_delantero, Marca_Neumaticos, Modelo_Neumaticos);
 
                         //Dimensiones
-                        Dimension_Motobd = bd.Crear_Dimension(Longitud_Total, Nombre_Dimension, Ancho_Total, Altura_Total, Distancia_Entre_Ejes, Altura_Des_Del_Suelo, Deposito_De_gasolina, Peso);
+                        Dimension_Motobd = bd.Crear_Dimension(id_Dimension, Longitud_Total, Nombre_Dimension, Ancho_Total, Altura_Total, Distancia_Entre_Ejes, Altura_Des_Del_Suelo, Deposito_De_gasolina, Peso);
 
                         //Ficha tecnica
-                        Ficha_Tecnicabd = bd.Crear_Ficha_Tecnica(Motor, Neumaticos, Dimensiones, Nombre_Ficha_tecnica, KM, Año, Consumo, Marca_Frenos, ABS, Color);
+                        Ficha_Tecnicabd = bd.Crear_Ficha_Tecnica(id_Ficha_Tecnia, Motor, Neumaticos, Dimensiones, Nombre_Ficha_tecnica, KM, Año, Consumo, Marca_Frenos, ABS, Color);
 
                         //Modelo
-                        Modelobd = bd.Crear_Modelo(Ficha_Tecnica, Nombre_Modelo, Tipo_Modelo, Descripcion);
+                        Modelobd = bd.Crear_Modelo(id_Modelo, Ficha_Tecnica, Nombre_Modelo, Tipo_Modelo, Descripcion);
 
                         //Ofertas
                         Ofertabd = bd.Crear_Oferta(Precio, Foto, Matricula, Marca, Modelo, Data_Entrada, Data_Final, activa);
@@ -486,9 +466,16 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void run() {
 
-                            loadTasks();
+                            if (bd.Mirar_Si_Hay_Oferta() == true) {
+                                loadTasks();
+                            } else {
+                                Toast.makeText(getContext(), "NO hay motos.", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }, 3000);
+                    }, 1000);
+
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -535,7 +522,12 @@ public class HomeFragment extends Fragment {
 
     private void Coger_id(long id) {
         GuardarId = id;
-        Acceso.collection("Usuarios").document(Identificador).update("Fav", FieldValue.arrayUnion(GuardarId));
+        if(Usu != null){
+            Acceso.collection("Usuarios").document(Identificador).update("Fav", FieldValue.arrayUnion(GuardarId));
+        }else{
+            Toast.makeText(getContext(), "NO estas registrado.", Toast.LENGTH_LONG).show();
+        }
+
 
         /*
         DocumentReference washingtonRef = Acceso.collection("Usuarios").document("Fav");
@@ -597,6 +589,14 @@ public class HomeFragment extends Fragment {
             ImageView imagen = view.findViewById(R.id.Imagen_moto);
             Imagencur = linia.getString(linia.getColumnIndex(Datasource.FOTO));
             Glide.with(getContext()).load(Imagencur).into(imagen);
+
+            TextView Activaa = view.findViewById(R.id.Oferta_Activa);
+            Activa = linia.getString(linia.getColumnIndex((Datasource.ACTIVA)));
+            if (Activa.equalsIgnoreCase("0")) {
+                Activaa.setText("Activa");
+            } else {
+                Activaa.setText("Agotada");
+            }
 
             ImageView Meter_Fav = view.findViewById(R.id.Fav);
             Meter_Fav.setOnClickListener(new View.OnClickListener() {

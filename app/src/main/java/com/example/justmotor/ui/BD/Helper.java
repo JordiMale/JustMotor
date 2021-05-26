@@ -17,53 +17,63 @@ public class Helper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String CREATE_TIEMPO =
-                "CREATE TABLE Tiempo ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Tipo_Tiempo TEXT NOT NULL" + ")";
+                "CREATE TABLE Tiempo (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
+                        "Tipo_Tiempo TEXT NOT NULL)" ;
 
         String CREATE_NUM_CILINDORS =
-                "CREATE TABLE Numero_Cilindros ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Numero_Cilindros (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Numero_De_Cilindros TEXT NOT NULL" + ")";
 
         //Foraneas tipo i numero cilindros
         String CREATE_TIPO_MOTOR =
-                "CREATE TABLE Tipo_Motor ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "Tiempo INTEGER NOT NULL," +
-                        "Numero_Cilindros INTEGER NOT NULL," +
-                        "FOREIGN KEY(Tiempo) REFERENCES Tiempo(_id)," +
-                        "FOREIGN KEY(Numero_Cilindros) REFERENCES Numero_Cilindors(_id)" + ")";
+                "CREATE TABLE Tipo_Motor (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
+                        "Tiempooo INTEGER NOT NULL," +
+                        "Numero_Cilindroos INTEGER NOT NULL," +
+                        "FOREIGN KEY(Tiempooo) REFERENCES Tiempo(_id)," +
+                        "FOREIGN KEY(Numero_Cilindroos) REFERENCES Numero_Cilindors(_id)" + ")";
 
         String CREATE_REFRIGERACION =
-                "CREATE TABLE Refrigeracion ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Refrigeracion (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Tipo_Refrigeracion TEXT NOT NULL"  + ")";
 
         String CREATE_ENCENDIDO =
-                "CREATE TABLE Encendido ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Encendido (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Tipo_Encendido TEXT NOT NULL"  + ")";
 
         String CREATE_CAMBIO =
-                "CREATE TABLE Cambio ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Cambio (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Tipo_Cambio TEXT NOT NULL"  + ")";
 
         String CREATE_ALIMENTACION =
-                "CREATE TABLE Alimentacion ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Alimentacion (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Tipo_Alimentacion TEXT NOT NULL" + ")";
 
 
 
         String CREATE_DIM_NEU_TRA =
-                "CREATE TABLE Dimension_Neumatico_Trasero ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Dimension_Neumatico_Trasero (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Ancho INTEGER NOT NULL," +
                         "Perfil INTEGER NOT NULL," +
                         "Radio INTEGER NOT NULL"  + ")";
 
         String CREATE_DIM_NEU_DEL =
-                "CREATE TABLE Dimension_Neumatico_Delantero ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Dimension_Neumatico_Delantero (id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Ancho INTEGER NOT NULL," +
                         "Perfil INTEGER NOT NULL," +
                         "Radio INTEGER NOT NULL"  + ")";
 
         String CREATE_MOTOR =
-                "CREATE TABLE MOTOR ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE MOTOR ( id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Tipo_De_Motor INTEGER NOT NULL," +
                         "Nombre_Motor TEXT NOT NULL," +
                         "Refrigeracion INTEGER NOT NULL," +
@@ -81,7 +91,8 @@ public class Helper extends SQLiteOpenHelper {
                         "FOREIGN KEY(Refrigeracion) REFERENCES Refrigeracion(_id)" + ")";
 
         String CREATE_NEUMATICO =
-                "CREATE TABLE Neumaticos ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Neumaticos ( id INTEGER PRIMARY KEY, " +
+                        "_id INTEGER, " +
                         "Dimension_Neumatico_Trasera INTEGER NOT NULL," +
                         "Dimension_Neumatico_Delantera INTEGER NOT NULL," +
                         "Marca_Neumaticos TEXT NOT NULL," +
@@ -90,7 +101,8 @@ public class Helper extends SQLiteOpenHelper {
                         "FOREIGN KEY(Dimension_Neumatico_Delantera) REFERENCES Dimension_Neumatico_Delantero(_id)" + ")";
 
         String CREATE_DIM_MOTO =
-                "CREATE TABLE Dimension_Moto ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Dimension_Moto ( id INTEGER PRIMARY KEY," +
+                        "_id INTEGER, " +
                         "Longitud_Total REAL NOT NULL," +
                         "Nombre_Dimension REAL NOT NULL," +
                         "Ancho_Total REAL NOT NULL," +
@@ -101,7 +113,8 @@ public class Helper extends SQLiteOpenHelper {
                         "Peso REAL NOT NULL" + ")";
 
         String CREATE_FICHA_TECNICA =
-                "CREATE TABLE Ficha_Tecnica ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Ficha_Tecnica (id INTEGER PRIMARY KEY, " +
+                        "_id INTEGER , " +
                         "Motor INTEGER NOT NULL," +
                         "Neumaticos INTEGER NOT NULL," +
                         "Dimensiones INTEGER NOT NULL," +
@@ -117,7 +130,8 @@ public class Helper extends SQLiteOpenHelper {
                         "FOREIGN KEY(Dimensiones) REFERENCES Dimension_Moto(_id)"+ ")";
 
         String CREATE_MODELO =
-                "CREATE TABLE Modelo ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "CREATE TABLE Modelo ( id INTEGER PRIMARY KEY, " +
+                        "_id INTEGER , " +
                         "Ficha_Tecnica INTEGER NOT NULL," +
                         "Nombre_Modelo TEXT NOT NULL," +
                         "Tipo_Modelo INTEGER NOT NULL," +

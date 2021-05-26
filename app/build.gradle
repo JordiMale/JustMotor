@@ -55,7 +55,7 @@ dependencies {
     implementation 'com.cedarsoftware:json-io:4.10.1'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'com.googlecode.json-simple:json-simple:1.1'
-
+    
     implementation 'com.airbnb.android:lottie:3.4.4'
 
 

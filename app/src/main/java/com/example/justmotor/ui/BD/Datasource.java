@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.MediaStore;
 import android.widget.ImageView;
 
+import com.example.justmotor.ui.GetSet.Ofertas;
+
 import java.util.Map;
 
 public class Datasource {
@@ -15,48 +17,58 @@ public class Datasource {
 
     ///Tabla TIEMPO
     public static final String TABLE_TIEMPO = "Tiempo";
+    public static final String ID_TIEMPO = "_id";
     public static final String TIPO_TIEMPO = "Tipo_Tiempo";
 
     //Tabla NUMERO CILINDORS
     public static final String TABLE_NUM_CILINDROS = "Numero_Cilindros";
+    public static final String ID_NUMERO_CILINDORS = "_id";
     public static final String NUMERO_DE_CILINDROS = "Numero_De_Cilindros";
 
     //Tabla TIPO MOTOR
     public static final String TABLE_TIPO_MOTOR = "Tipo_Motor";
-    public static final String TIEMPO = "Tiempo";
-    public static final String NUMERO_CILINDROS = "Numero_Cilindros";
+    public static final String ID_TIPOMOTOR = "_id";
+    public static final String TIEMPO = "Tiempooo";
+    public static final String NUMERO_CILINDROS = "Numero_Cilindroos";
 
     //Tabla REFRIGERACION
     public static final String TABLE_REFRIGERACION = "Refrigeracion";
+    public static final String ID_REFRIGERACION = "_id";
     public static final String TIPO_REFRIGERACION = "Tipo_Refrigeracion";
 
     //Tabla ENCENDIDO
     public static final String TABLE_ENCENDIDO = "Encendido";
+    public static final String ID_ENCENDIDO = "_id";
     public static final String TIPO_ENCENDIDO = "Tipo_Encendido";
 
     //Table CAMBIO
     public static final String TABLE_CAMBIO = "Cambio";
+    public static final String ID_CAMBIO = "_id";
     public static final String TIPO_CAMBIO = "Tipo_Cambio";
 
     //Table ALIMENTACION
     public static final String TABLE_ALIMENTACION = "Alimentacion";
+    public static final String ID_ALIMENTACION = "_id";
     public static final String TIPO_ALIMENTACION = "Tipo_Alimentacion";
 
     //Table DIM_NEU_TRA
     public static final String TABLE_DIM_NEU_TRA = "Dimension_Neumatico_Trasero";
+    public static final String ID_DIM_NEU_TRA = "_id";
     public static final String ANCHO_TRA = "Ancho";
     public static final String PERFIL_TRA = "Perfil";
     public static final String RADIO_TRA = "Radio";
 
     //Table DIM_NEU_DEL
     public static final String TABLE_DIM_NEU_DEL = "Dimension_Neumatico_Delantero";
+    public static final String ID_DIM_NEU_DEL = "_id";
     public static final String ANCHO_DEL = "Ancho";
     public static final String PERFIL_DEL = "Perfil";
     public static final String RADIO_DEL = "Radio";
 
 
     //Table MOTOR
-    public static final String TABLE_MOTOR = "Motor";
+    public static final String TABLE_MOTOR = "MOTOR";
+    public static final String ID_MOTOR = "_id";
     public static final String TIPO_DE_MOTOR = "Tipo_de_motor";
     public static final String NOMBRE_MOTOR = "Nombre_Motor";
     public static final String REFRIGERACION = "Refrigeracion";
@@ -70,6 +82,7 @@ public class Datasource {
 
     //Table NEUMATICO
     public static final String TABLE_NEUMATICO = "Neumaticos";
+    public static final String ID_NEUMATICO = "_id";
     public static final String DIMENSION_NEUMATICO_TRASERO = "Dimension_Neumatico_Trasera";
     public static final String DIMENSION_NEUMATICO_DELANTERO = "Dimension_Neumatico_Delantera";
     public static final String MARCA_NEUMATICO = "Marca_Neumaticos";
@@ -77,6 +90,7 @@ public class Datasource {
 
     //Table DIMENSION MOTO
     public static final String TABLE_DIM_MOTO = "Dimension_Moto";
+    public static final String ID_DIMN_MOTO = "_id";
     public static final String LONGITUD_TOTAL = "Longitud_Total";
     public static final String NOMBRE_DIMENSION = "Nombre_Dimension";
     public static final String ANCHO_TOTAL = "Ancho_Total";
@@ -88,6 +102,7 @@ public class Datasource {
 
     //Table FICHA TECNICA
     public static final String TABLE_FICHA_TECNICA = "Ficha_Tecnica";
+    public static final String ID_FICHA_TECNICA = "_id";
     public static final String MOTOR = "Motor";
     public static final String NEUMATICOS = "Neumaticos";
     public static final String DIMENSIONES = "Dimensiones";
@@ -101,6 +116,7 @@ public class Datasource {
 
     //Table MODELO
     public static final String TABLE_MODELO = "Modelo";
+    public static final String ID_MODELO = "_id";
     public static final String FICHA_TECNICA = "Ficha_Tecnica";
     public static final String NOMBRE_MODELO = "Nombre_Modelo";
     public static final String TIPO_MODELO = "Tipo_Modelo";
@@ -153,9 +169,38 @@ public class Datasource {
 
     //Crear la mototo////
 
+
+
+    //cursor para la ficha tecnica donde pido todooo los datos de esa moto.
+    public Cursor Todo_Oferta_Prueba(long id) {
+        final String MY_QUERY = "SELECT Ofer._id, Marca, FOTO, Precio,Mod.Nombre_Modelo, Mod.Tipo_Modelo, Mod.Descripcion, Fich.Año, Fich.KM," +
+                "Fich.Consumo, Fich.Marca_Frenos, Fich.ABS, Fich.Color, Dim.Longitud_Total, Dim.Ancho_Total, Dim.Altura_Total, Dim.Distancia_Entre_Ejes," +
+                "Dim.Altura_Des_Del_Suelo, Dim.Deposito_De_Gasolina, Dim.Peso, Neu.Marca_Neumaticos, Neu.Modelo_Neumaticos, Mot.Potencia, Mot.Cilindrada," +
+                "Mot.relacion_De_Compresion, Mot.Capacidad_De_Aceite, Dim_Tra.Ancho, Dim_Tra.Perfil, Dim_Tra.Radio, Dim_Del.Ancho, Dim_Del.Perfil, Dim_Del.Radio," +
+                "Ali.Tipo_Alimentacion, Cam.Tipo_Cambio, Enc.Tipo_Encendido, Ref.Tipo_Refrigeracion, NumCil.Numero_De_Cilindros, Tie.Tipo_Tiempo, Mot.Nombre_Motor " +
+                "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id " +
+                "INNER JOIN Ficha_Tecnica AS Fich ON Mod.Ficha_Tecnica = Fich._id " +
+                "INNER JOIN Dimension_Moto AS Dim ON Fich.Dimensiones = Dim._id " +
+                "INNER JOIN Neumaticos AS Neu ON Fich.Neumaticos = Neu._id " +
+                "INNER JOIN Motor AS Mot ON Fich.Motor = Mot._id " +
+                "INNER JOIN Dimension_Neumatico_Trasero AS Dim_Tra ON Neu.Dimension_Neumatico_Trasera = Dim_Tra._id " +
+                "INNER JOIN Dimension_Neumatico_Delantero AS Dim_Del ON Neu.Dimension_Neumatico_Delantera = Dim_Del._id " +
+                "INNER JOIN Alimentacion AS Ali ON Mot.Alimentacion = Ali._id " +
+                "INNER JOIN Cambio AS Cam ON Mot.Cambio = Cam._id " +
+                "INNER JOIN Encendido AS Enc ON Mot.Encendido = Enc._id " +
+                "INNER JOIN Refrigeracion AS Ref ON Mot.Refrigeracion = Ref._id " +
+                "INNER JOIN Tipo_motor AS TiPoMo ON Mot.Tipo_de_motor = TiPoMo._id " +
+                "INNER JOIN Numero_Cilindros AS NumCil ON TiPoMo.Numero_Cilindroos = NumCil._id " +
+                "INNER JOIN Tiempo As Tie ON TipoMo.Tiempooo = Tie._id  WHERE Ofer._id = " + id;
+
+        return dbR.rawQuery(MY_QUERY, null);
+    }
+
+
     //Insert de tipo tiempo
-    public long Crear_Tiempo(String Tipo_Tiempo) {
+    public long Crear_Tiempo(long id, String Tipo_Tiempo) {
         ContentValues values = new ContentValues();
+        values.put(ID_TIEMPO, id);
         values.put(TIPO_TIEMPO, Tipo_Tiempo);
         return dbW.insert(TABLE_TIEMPO, null, values);
     }
@@ -166,8 +211,9 @@ public class Datasource {
     }
 
     //Insert de numero cilindros
-    public long Crear_Numero_Cilindros(String Numero_Cilindros) {
+    public long Crear_Numero_Cilindros(long id, String Numero_Cilindros) {
         ContentValues values = new ContentValues();
+        values.put(ID_NUMERO_CILINDORS, id);
         values.put(NUMERO_DE_CILINDROS, Numero_Cilindros);
         return dbW.insert(TABLE_NUM_CILINDROS, null, values);
     }
@@ -178,8 +224,9 @@ public class Datasource {
     }
 
     //Insert de Tipo motor
-    public long Crear_Tipo_Motor(int Tiempo, int Numero_Cilindros) {
+    public long Crear_Tipo_Motor(long id, int Tiempo, int Numero_Cilindros) {
         ContentValues values = new ContentValues();
+        values.put(ID_TIPOMOTOR, id);
         values.put(TIEMPO, Tiempo);
         values.put(NUMERO_CILINDROS, Numero_Cilindros);
         return dbW.insert(TABLE_TIPO_MOTOR, null, values);
@@ -191,8 +238,9 @@ public class Datasource {
     }
 
     //Insert de refrigeracion
-    public long Crear_Refrigeracion(String Refrigeracion) {
+    public long Crear_Refrigeracion(long id, String Refrigeracion) {
         ContentValues values = new ContentValues();
+        values.put(ID_REFRIGERACION, id);
         values.put(TIPO_REFRIGERACION, Refrigeracion);
         return dbW.insert(TABLE_REFRIGERACION, null, values);
     }
@@ -203,8 +251,9 @@ public class Datasource {
     }
 
     //Insert de encendio
-    public long Crear_Encendido(String Encendido) {
+    public long Crear_Encendido(long id, String Encendido) {
         ContentValues values = new ContentValues();
+        values.put(ID_REFRIGERACION, id);
         values.put(TIPO_ENCENDIDO, Encendido);
         return dbW.insert(TABLE_ENCENDIDO, null, values);
     }
@@ -215,8 +264,9 @@ public class Datasource {
     }
 
     //Insert de Cambio
-    public long Crear_Cambio(String Cambio) {
+    public long Crear_Cambio(long id, String Cambio) {
         ContentValues values = new ContentValues();
+        values.put(ID_CAMBIO, id);
         values.put(TIPO_CAMBIO, Cambio);
         return dbW.insert(TABLE_CAMBIO, null, values);
     }
@@ -227,8 +277,9 @@ public class Datasource {
     }
 
     //Insert de alimentacion
-    public long Crear_Alimentacion(String Alimentacion) {
+    public long Crear_Alimentacion(long id,String Alimentacion) {
         ContentValues values = new ContentValues();
+        values.put(ID_ALIMENTACION, id);
         values.put(TIPO_ALIMENTACION, Alimentacion);
         return dbW.insert(TABLE_ALIMENTACION, null, values);
     }
@@ -239,8 +290,9 @@ public class Datasource {
     }
 
     //Insert de dimension neumatico trasero
-    public long Crear_Neum_Traseros(int AnchoTra, int PerfilTra, int RadioTra) {
+    public long Crear_Neum_Traseros(long id,int AnchoTra, int PerfilTra, int RadioTra) {
         ContentValues values = new ContentValues();
+        values.put(ID_DIM_NEU_TRA, id);
         values.put(ANCHO_TRA, AnchoTra);
         values.put(PERFIL_TRA, PerfilTra);
         values.put(RADIO_TRA, RadioTra);
@@ -253,8 +305,9 @@ public class Datasource {
     }
 
     //Insert de dimension neumatico delantero
-    public long Crear_Neum_Delanteros(int AnchoDel, int PerfilDel, int RadioDel) {
+    public long Crear_Neum_Delanteros(long id, int AnchoDel, int PerfilDel, int RadioDel) {
         ContentValues values = new ContentValues();
+        values.put(ID_DIM_NEU_DEL, id);
         values.put(ANCHO_DEL, AnchoDel);
         values.put(PERFIL_DEL, PerfilDel);
         values.put(RADIO_DEL, RadioDel);
@@ -267,8 +320,9 @@ public class Datasource {
     }
 
     //Insert de motor
-    public long Crear_Motor(int Tipo_de_Motor, String Nombre_Motor, int Refrigeracion, int Encendido, int Cambio, int Alimentacion, int Cilindrada, Double Potencia, int Relacion_De_Compresion, String Capacidad_de_Aceite) {
+    public long Crear_Motor(long id, int Tipo_de_Motor, String Nombre_Motor, int Refrigeracion, int Encendido, int Cambio, int Alimentacion, int Cilindrada, Double Potencia, int Relacion_De_Compresion, String Capacidad_de_Aceite) {
         ContentValues values = new ContentValues();
+        values.put(ID_MOTOR, id);
         values.put(TIPO_DE_MOTOR, Tipo_de_Motor);
         values.put(NOMBRE_MOTOR, Nombre_Motor);
         values.put(REFRIGERACION, Refrigeracion);
@@ -288,8 +342,9 @@ public class Datasource {
     }
 
     //Insert de Neumatico
-    public long Crear_Neumatico(int Dimension_Neumatico_trasero, int Dimension_Neumatico_delantero, String Marca_Neumaticos, String Modelo_Neumaticos) {
+    public long Crear_Neumatico(long id, int Dimension_Neumatico_trasero, int Dimension_Neumatico_delantero, String Marca_Neumaticos, String Modelo_Neumaticos) {
         ContentValues values = new ContentValues();
+        values.put(ID_NEUMATICO, id);
         values.put(DIMENSION_NEUMATICO_TRASERO, Dimension_Neumatico_trasero);
         values.put(DIMENSION_NEUMATICO_DELANTERO, Dimension_Neumatico_delantero);
         values.put(MARCA_NEUMATICO, Marca_Neumaticos);
@@ -303,8 +358,9 @@ public class Datasource {
     }
 
     //Insert de Dimensiones
-    public long Crear_Dimension(Float Longitud_Total, String Nombre_Dimension, Float Ancho_Total, Float Altura_Total, Float Distancia_Entre_Ejes, Float Altura_Des_Del_Suelo, Float Deposito_De_gasolina, Float Peso) {
+    public long Crear_Dimension(long id, Float Longitud_Total, String Nombre_Dimension, Float Ancho_Total, Float Altura_Total, Float Distancia_Entre_Ejes, Float Altura_Des_Del_Suelo, Float Deposito_De_gasolina, Float Peso) {
         ContentValues values = new ContentValues();
+        values.put(ID_DIMN_MOTO, id);
         values.put(LONGITUD_TOTAL, Longitud_Total);
         values.put(NOMBRE_DIMENSION, Nombre_Dimension);
         values.put(ANCHO_TOTAL, Ancho_Total);
@@ -322,8 +378,9 @@ public class Datasource {
     }
 
     //Insert de Ficha tecnica
-    public long Crear_Ficha_Tecnica(int Motor, int Neumaticos, int Dimensiones, String Nombre_Ficha_Tecnica, String Km, String Año, String Consumo, String Marca_Frenos, String Abs, String Color) {
+    public long Crear_Ficha_Tecnica(long id, int Motor, int Neumaticos, int Dimensiones, String Nombre_Ficha_Tecnica, String Km, String Año, String Consumo, String Marca_Frenos, String Abs, String Color) {
         ContentValues values = new ContentValues();
+        values.put(ID_FICHA_TECNICA, id);
         values.put(MOTOR, Motor);
         values.put(NEUMATICOS, Neumaticos);
         values.put(DIMENSIONES, Dimensiones);
@@ -343,8 +400,9 @@ public class Datasource {
     }
 
     //Insert de Modelo
-    public long Crear_Modelo(int Ficha_Tecnica, String Nombre_Modelo, String Tipo_Modelo, String Descripcion) {
+    public long Crear_Modelo(long id, int Ficha_Tecnica, String Nombre_Modelo, String Tipo_Modelo, String Descripcion) {
         ContentValues values = new ContentValues();
+        values.put(ID_MODELO, id);
         values.put(FICHA_TECNICA, Ficha_Tecnica);
         values.put(NOMBRE_MODELO, Nombre_Modelo);
         values.put(TIPO_MODELO, Tipo_Modelo);
@@ -396,6 +454,8 @@ public class Datasource {
             return false;
         }
     }
+
+
 
 
     //Per mirar la ficha tecnica sencera
@@ -575,6 +635,31 @@ public class Datasource {
         }
     }
 
+
+    //Quitar favoritos.
+    public void BorrarFav(long id) {
+        // Eliminem la task amb clau primària "id"
+        dbW.delete(TABLE_OFERTA_FAV, IDGENERAL + " = ?", new String[]{String.valueOf(id)});
+    }
+
+    public void ResetearIDGNEREAL(){
+
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_TIEMPO + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_NUM_CILINDROS + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_TIPO_MOTOR + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_REFRIGERACION + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_ENCENDIDO + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_CAMBIO + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_ALIMENTACION + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_DIM_NEU_TRA + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_DIM_NEU_DEL + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_MOTOR + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_NEUMATICO + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_DIM_MOTO + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_FICHA_TECNICA + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_MODELO + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_OFERTA + "'");
+    }
 
 
 

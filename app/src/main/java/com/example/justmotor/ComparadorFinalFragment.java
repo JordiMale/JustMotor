@@ -71,6 +71,118 @@ public class ComparadorFinalFragment extends Fragment {
 
     private void cargardatos(long id1, long id2){
 
+        Cursor MotoTodo1 = bd.Todo_Oferta_Prueba(id1);
+        MotoTodo1.moveToFirst();
+        String Ti = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_TIEMPO));
+        String Cilindros1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.NUMERO_DE_CILINDROS));
+        String Refri1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_REFRIGERACION));
+        String Encendi1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_ENCENDIDO));
+        String Cambio1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_CAMBIO));
+        String Alimentacion1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_ALIMENTACION));
+        String AnchoTra1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.ANCHO_TRA));
+        String PerfilTra1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.PERFIL_TRA));
+        String RadioTra1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.RADIO_TRA));
+        String AnchoDel1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.ANCHO_DEL));
+        String PerfilDel1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.PERFIL_DEL));
+        String RadioTDel1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.RADIO_DEL));
+        String ModeloNeumatico1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.MODELO_NEUMATICOS));
+        String MarcaNeumatico1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.MARCA_NEUMATICO));
+        String Longitud1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.LONGITUD_TOTAL)) ;
+        String AnchoDim1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.ANCHO_TOTAL));
+        String Altura1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.ALTURA_TOTAL));
+        String DistanciaEntreEjes1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES));
+        String AlturaDesdeElSuelo1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO));
+        String DepositoDeGasolina1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.DEPOSITO_DE_GASOLINA));
+        String Peso1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.PESO));
+        String Nombre1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.NOMBRE_MOTOR));
+        String Potencia1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.POTENCIA));
+        String Cilindrada1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.CILINDRADA));
+        String RDC1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.RELACION_DE_COMPRESION));
+        String CapacidadDeAceite1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE));
+        String KM1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.KM));
+        String Año1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.AÑO));
+        String Consumo1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.CONSUMO));
+        String MarcaFrenos1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.MARCA_FRENOS));
+
+        int ABSs1 = Integer.parseInt(MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.ABS)));
+        String ABSFinal1 = " ";
+        if(ABSs1 == 0 ){
+            ABSFinal1 = "Si";
+        }else{
+            if(ABSs1 == 1){
+                ABSFinal1 = "No";
+            }
+        }
+
+
+        String Color1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.COLOR));
+        String Tipo1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_MODELO));
+        String Modelo1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.NOMBRE_MODELO));
+        String Descripcion1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.DESCRIPCION));
+        String Precio1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.PRECIO));
+        String GuardarFoto1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.FOTO));
+        Glide.with(getContext()).load(GuardarFoto1).into(Moto1);
+        String Marca1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.MARCA));
+        MotoTodo1.close();
+
+        Cursor MotoTod2 = bd.Todo_Oferta_Prueba(id2);
+        MotoTod2.moveToFirst();
+        String Ti2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_TIEMPO));
+        String Cilindros2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.NUMERO_DE_CILINDROS));
+        String Refri2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_REFRIGERACION));
+        String Encendi2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_ENCENDIDO));
+        String Cambio2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_CAMBIO));
+        String Alimentacion2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_ALIMENTACION));
+        String AnchoTra2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.ANCHO_TRA));
+        String PerfilTra2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.PERFIL_TRA));
+        String RadioTra2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.RADIO_TRA));
+        String AnchoDel2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.ANCHO_DEL));
+        String PerfilDel2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.PERFIL_DEL));
+        String RadioTDel2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.RADIO_DEL));
+        String ModeloNeumatico2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.MODELO_NEUMATICOS));
+        String MarcaNeumatico2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.MARCA_NEUMATICO));
+        String Longitud2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.LONGITUD_TOTAL)) ;
+        String AnchoDim2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.ANCHO_TOTAL));
+        String Altura2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.ALTURA_TOTAL));
+        String DistanciaEntreEjes2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES));
+        String AlturaDesdeElSuelo2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO));
+        String DepositoDeGasolina2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.DEPOSITO_DE_GASOLINA));
+        String Peso2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.PESO));
+        String Nombre2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.NOMBRE_MOTOR));
+        String Potencia2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.POTENCIA));
+        String Cilindrada2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.CILINDRADA));
+        String RDC2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.RELACION_DE_COMPRESION));
+        String CapacidadDeAceite2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE));
+        String KM2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.KM));
+        String Año2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.AÑO));
+        String Consumo2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.CONSUMO));
+        String MarcaFrenos2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.MARCA_FRENOS));
+
+        int ABSs2 = Integer.parseInt(MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.ABS)));
+        String ABSFinal2 = " ";
+        if(ABSs2 == 0 ){
+            ABSFinal2 = "Si";
+        }else{
+            if(ABSs2 == 1){
+                ABSFinal2 = "No";
+            }
+        }
+
+
+        String Color2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.COLOR));
+        String Tipo2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_MODELO));
+        String Modelo2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.NOMBRE_MODELO));
+        String Descripcion2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.DESCRIPCION));
+        String Precio2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.PRECIO));
+        String GuardarFoto2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.FOTO));
+        Glide.with(getContext()).load(GuardarFoto2).into(Moto2);
+        String Marca2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.MARCA));
+        MotoTod2.close();
+
+
+
+
+        /*
         Cursor Cursor_Tiempo1 = bd.MirarTiempo(id1);
         Cursor_Tiempo1.moveToFirst();
         String Ti = Cursor_Tiempo1.getString(Cursor_Tiempo1.getColumnIndex(Datasource.TIPO_TIEMPO));
@@ -287,6 +399,8 @@ public class ComparadorFinalFragment extends Fragment {
         Glide.with(getContext()).load(GuardarFoto2).into(Moto2);
         String Marca2 = Cursor_Oferta2.getString(Cursor_Oferta2.getColumnIndex(Datasource.MARCA));
         Cursor_Oferta2.close();
+
+         */
 
 
 

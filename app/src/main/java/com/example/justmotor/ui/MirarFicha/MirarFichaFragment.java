@@ -145,6 +145,61 @@ public class MirarFichaFragment extends Fragment {
 
     private void cargarDatos() {
 
+
+        Cursor Toda_Moto =  bd.Todo_Oferta_Prueba(idTask);
+        Toda_Moto.moveToFirst();
+        Tiempo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_TIEMPO)));
+        Cilindros.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NUMERO_DE_CILINDROS)));
+        Refrigeracion.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_REFRIGERACION)));
+        Encendido.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_ENCENDIDO)));
+        Cambio.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_CAMBIO)));
+        Alimentacion.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_ALIMENTACION)));
+        AnchoTra.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TRA)));
+        PerfilTra.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PERFIL_TRA)));
+        RadioTra.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RADIO_TRA)));
+        AnchoDel.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_DEL)));
+        PerfilDel.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PERFIL_DEL)));
+        RadioDel.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RADIO_DEL)));
+        MarcaNeu.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_NEUMATICO)));
+        ModeloNeu.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MODELO_NEUMATICOS)));
+        Longitud.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.LONGITUD_TOTAL)) + "mm");
+        AnchoDim.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TOTAL)) + "mm");
+        Altura.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_TOTAL)) + "mm");
+        DistanciaEntreEjes.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES)) + "mm");
+        AlturaDesdeElSuelo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO)) + "mm");
+        DepositoDeGasolina.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DEPOSITO_DE_GASOLINA)));
+        Peso.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PESO)) + "Kg");
+        Nombre.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MOTOR)));
+        Potencia.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.POTENCIA)) + "CV");
+        Cilindrada.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CILINDRADA)));
+        RDC.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RELACION_DE_COMPRESION)));
+        CapacidadDeAceite.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE)) + "l");
+        KM.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.KM)) + "Km");
+        Año.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.AÑO)));
+        Consumo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CONSUMO)) + "L");
+        MarcaFrenos.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_FRENOS)));
+
+        int ABSs = Integer.parseInt(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ABS)));
+
+        if(ABSs == 0 ){
+            ABS.setText("Si");
+        }else{
+            if(ABSs == 1){
+                ABS.setText("No");
+            }
+        }
+
+        //ABS.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.ABS)));
+        Color.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.COLOR)));
+        Tipo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_MODELO)));
+        Modelo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MODELO)));
+        Descripcion.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DESCRIPCION)));
+        Precio.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PRECIO)) + " €");
+        GuardarFoto = Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.FOTO));
+        Glide.with(getContext()).load(GuardarFoto).into(Foto);
+        Marca.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA)));
+        Toda_Moto.close();
+        /*
         Cursor Cursor_Tiempo = bd.MirarTiempo(idTask);
         Cursor_Tiempo.moveToFirst();
         Tiempo.setText(Cursor_Tiempo.getString(Cursor_Tiempo.getColumnIndex(Datasource.TIPO_TIEMPO)));
@@ -224,7 +279,6 @@ public class MirarFichaFragment extends Fragment {
 
         Cursor Cursor_FichaTecnica = bd.MirarFichaTecnica(idTask);
         Cursor_FichaTecnica.moveToFirst();
-
         KM.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.KM)) + "Km");
         Año.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.AÑO)));
         Consumo.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.CONSUMO)) + "L");
@@ -258,6 +312,8 @@ public class MirarFichaFragment extends Fragment {
         Glide.with(getContext()).load(GuardarFoto).into(Foto);
         Marca.setText(Cursor_Oferta.getString(Cursor_Oferta.getColumnIndex(Datasource.MARCA)));
         Cursor_Oferta.close();
+
+         */
 
     }
 }

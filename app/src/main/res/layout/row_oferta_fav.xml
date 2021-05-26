@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentRight="false"
+    android:layout_marginTop="5dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="210dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/Imagen_moto"
+            android:layout_width="match_parent"
+            android:layout_height="105dp" />
+
+        <ImageView
+            android:id="@+id/FavQuitar"
+            android:layout_marginTop="15dp"
+            android:layout_gravity="center"
+            android:layout_width="86dp"
+            android:layout_height="69dp"
+            android:src="@drawable/corazonroto" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="19dp"
+        android:layout_height="210dp" />
+
+    <LinearLayout
+        android:layout_width="254dp"
+        android:layout_height="210dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Oferta_Nombre_Marca"
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+        <TextView
+            android:id="@+id/Oferta_Nombre_Modelo"
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+        <TextView
+            android:id="@+id/Oferta_Precio"
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+        <TextView
+            android:id="@+id/Oferta_Data_Entrada"
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+        <TextView
+            android:id="@+id/Oferta_Activa"
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

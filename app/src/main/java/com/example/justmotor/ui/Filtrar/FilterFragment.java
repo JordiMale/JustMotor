@@ -37,6 +37,7 @@ public class FilterFragment extends Fragment {
     private adapterTodoIcon scTasks;
     SearchView searchView;
     ListView lv;
+    String Activa;
     String Imagencur;
     long Recibir_Id_Moto_1 = 0;
 
@@ -192,6 +193,16 @@ public class FilterFragment extends Fragment {
             ImageView imagen = view.findViewById(R.id.Imagen_moto_Filtro_Escoger2);
             Imagencur = linia.getString(linia.getColumnIndex(Datasource.FOTO));
             Glide.with(getContext()).load(Imagencur).into(imagen);
+
+
+
+            TextView Activaa = view.findViewById(R.id. Oferta_Activa_Filtro_Escoger2);
+            Activa = linia.getString(linia.getColumnIndex((Datasource.ACTIVA)));
+            if(Activa.equalsIgnoreCase("0")){
+                Activaa.setText("Activa");
+            }else{
+                Activaa.setText("Agotada");
+            }
 
             ImageView Coger_Id = view.findViewById(R.id.Cojer_Id2);
             Coger_Id.setOnClickListener(new View.OnClickListener() {
