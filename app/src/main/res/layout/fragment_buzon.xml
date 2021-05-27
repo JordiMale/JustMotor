@@ -16,7 +16,7 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Buzon fragment"
+        android:text="Proximas actualización (Notificaciones)"
        />
 
 </FrameLayout>

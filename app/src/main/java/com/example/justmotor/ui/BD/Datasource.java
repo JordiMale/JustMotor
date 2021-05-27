@@ -459,7 +459,7 @@ public class Datasource {
 
 
     //Per mirar la ficha tecnica sencera
-
+/*
     //Per poder mirar el temps
     public Cursor MirarTiempo(long id) {
         return dbR.query(TABLE_TIEMPO, new String[]{IDGENERAL, TIPO_TIEMPO},
@@ -557,6 +557,8 @@ public class Datasource {
                 IDGENERAL + "=?", new String[]{String.valueOf(id)},
                 null, null, null);
     }
+
+ */
 
     //Filtrar motos por el nombre del modelo
     public Cursor FiltrarNombreModelo(String nums) {

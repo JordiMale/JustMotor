@@ -224,8 +224,6 @@ public class FavFragment extends Fragment {
                             ref = Acceso.collection("Usuarios").document(Identificador);
                             Halo = (ArrayList<Long>) document.getData().get("Fav");
 
-
-                            if (bd.Mirar_Si_Hay_Oferta_Fav() == true) {
                                 for (int i = 0; i < Halo.size(); i++) {
                                     MirarOferta = bd.MirarOfertaFav(Halo.get(i));
                                     MirarOferta.moveToFirst();
@@ -254,10 +252,8 @@ public class FavFragment extends Fragment {
 
                                         loadTasks();
                                     }
-                                }, 3000);
-                            } else {
-                                Toast.makeText(getContext(), "No tienes favoritos", Toast.LENGTH_LONG).show();
-                            }
+                                }, 1000);
+
 
                         }
                     } else {
@@ -282,7 +278,7 @@ public class FavFragment extends Fragment {
 
                 loadTasks();
             }
-        }, 3000);
+        }, 1000);
     }
 
     private void BorarrFavFirebase(long idEliminar) {

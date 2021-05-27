@@ -24,6 +24,7 @@
             android:layout_gravity="center"
             android:layout_width="86dp"
             android:layout_height="69dp"
+            android:background="?selectableItemBackground"
             android:src="@drawable/corazonn" />
 
     </LinearLayout>
@@ -37,47 +38,135 @@
         android:layout_height="210dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Oferta_Nombre_Marca"
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="31dp" />
+            android:layout_height="11dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform"
+                android:text="MARCA: "
+                android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/Oferta_Nombre_Marca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="11dp" />
 
-        <TextView
-            android:id="@+id/Oferta_Nombre_Modelo"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="31dp" />
+            android:layout_height="26dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform"
+                android:text="MODELO: "
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/Oferta_Nombre_Modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform" />
+
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="11dp" />
 
-        <TextView
-            android:id="@+id/Oferta_Precio"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="31dp" />
+            android:layout_height="26dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform"
+                android:text="PRECIO: "
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/Oferta_Precio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform"/>
+
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="11dp" />
 
-        <TextView
-            android:id="@+id/Oferta_Data_Entrada"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="31dp" />
+            android:layout_height="26dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform"
+                android:text="DATA ENTRADA: "
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/Oferta_Data_Entrada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform" />
+
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="11dp" />
 
-        <TextView
-            android:id="@+id/Oferta_Activa"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="31dp" />
+            android:layout_height="26dp"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform"
+                android:text="ESTADO: "
+                android:textColor="#000000"/>
+
+            <TextView
+                android:id="@+id/Oferta_Activa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
