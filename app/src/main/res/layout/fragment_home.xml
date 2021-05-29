@@ -40,18 +40,18 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/RefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize">
 
             <ListView
                 android:id="@+id/list1"
                 android:layout_width="373dp"
                 android:layout_height="459dp"
-                app:layout_constraintVertical_bias="0.694" />
+                app:layout_constraintVertical_bias="0.694"
+                android:layout_marginBottom="?attr/actionBarSize"/>
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
 
     </LinearLayout>
 

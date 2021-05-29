@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.justmotor.ComparadorAdapter.ExpCompAdapter;
 import com.example.justmotor.ui.BD.Datasource;
 
 import java.util.ArrayList;
@@ -118,6 +119,7 @@ public class ComparadorFinalFragment extends Fragment {
         String Color1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.COLOR));
         String Tipo1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_MODELO));
         String Modelo1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.NOMBRE_MODELO));
+        TxtNombreModelo1.setText(Modelo1);
         String Descripcion1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.DESCRIPCION));
         String Precio1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.PRECIO));
         String GuardarFoto1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.FOTO));
@@ -172,6 +174,7 @@ public class ComparadorFinalFragment extends Fragment {
         String Color2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.COLOR));
         String Tipo2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_MODELO));
         String Modelo2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.NOMBRE_MODELO));
+        TxtNombreModelo2.setText(Modelo2);
         String Descripcion2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.DESCRIPCION));
         String Precio2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.PRECIO));
         String GuardarFoto2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.FOTO));

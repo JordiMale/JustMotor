@@ -661,6 +661,13 @@ public class Datasource {
         dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_FICHA_TECNICA + "'");
         dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_MODELO + "'");
         dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_OFERTA + "'");
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_OFERTA_FAV + "'");
+    }
+
+    public void ResetearIDGNEREALFavOfert(){
+
+
+        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_OFERTA_FAV + "'");
     }
 
 

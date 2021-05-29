@@ -9,19 +9,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.justmotor.ComparadorAdapter.ExpCompAdapter;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.BD.Datasource;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MirarFichaFragment extends Fragment {
 
     private Datasource bd;
     private long idTask;
-
+/*
     //General
     TextView Marca;
     ImageView Foto;
@@ -77,13 +83,27 @@ public class MirarFichaFragment extends Fragment {
         //
     //
 
+ */
+
+
+    ImageView Foto;
+    String ABSS;
+
+    private ExpandableListView expLv;
+    private ExpCompAdapter adapter;
+    private ArrayList<String> listCategorias;
+    private Map<String, ArrayList<String>> mapChild;
+
+    TextView NombreModelo;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.fragment_mirar_ficha, container, false);
-
+        View v = inflater.inflate(R.layout.fragment_mirar_ficha, container, false);
+        Foto = v.findViewById(R.id.ImagenMotoFicha);
+/*
         //General
          Marca = v.findViewById(R.id.TxtNombreMarca);
          Foto = v.findViewById(R.id.ImagenMoto);
@@ -137,6 +157,17 @@ public class MirarFichaFragment extends Fragment {
              RadioDel = v.findViewById(R.id.TxtRadioDel);
             //
         //
+
+
+ */
+
+        NombreModelo = v.findViewById(R.id.TxtNombreModeloFicha);
+        expLv = (ExpandableListView) v.findViewById(R.id.FichaMoto1);
+        listCategorias = new ArrayList<>();
+        mapChild = new HashMap<>();
+
+
+
         bd = new Datasource(getContext());
         idTask = getArguments().getLong("id");
         cargarDatos();
@@ -146,59 +177,136 @@ public class MirarFichaFragment extends Fragment {
     private void cargarDatos() {
 
 
-        Cursor Toda_Moto =  bd.Todo_Oferta_Prueba(idTask);
+        Cursor Toda_Moto = bd.Todo_Oferta_Prueba(idTask);
         Toda_Moto.moveToFirst();
-        Tiempo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_TIEMPO)));
-        Cilindros.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NUMERO_DE_CILINDROS)));
-        Refrigeracion.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_REFRIGERACION)));
-        Encendido.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_ENCENDIDO)));
-        Cambio.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_CAMBIO)));
-        Alimentacion.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_ALIMENTACION)));
-        AnchoTra.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TRA)));
-        PerfilTra.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PERFIL_TRA)));
-        RadioTra.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RADIO_TRA)));
-        AnchoDel.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_DEL)));
-        PerfilDel.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PERFIL_DEL)));
-        RadioDel.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RADIO_DEL)));
-        MarcaNeu.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_NEUMATICO)));
-        ModeloNeu.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MODELO_NEUMATICOS)));
-        Longitud.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.LONGITUD_TOTAL)) + "mm");
-        AnchoDim.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TOTAL)) + "mm");
-        Altura.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_TOTAL)) + "mm");
-        DistanciaEntreEjes.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES)) + "mm");
-        AlturaDesdeElSuelo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO)) + "mm");
-        DepositoDeGasolina.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DEPOSITO_DE_GASOLINA)));
-        Peso.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PESO)) + "Kg");
-        Nombre.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MOTOR)));
-        Potencia.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.POTENCIA)) + "CV");
-        Cilindrada.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CILINDRADA)));
-        RDC.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RELACION_DE_COMPRESION)));
-        CapacidadDeAceite.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE)) + "l");
-        KM.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.KM)) + "Km");
-        Año.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.AÑO)));
-        Consumo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CONSUMO)) + "L");
-        MarcaFrenos.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_FRENOS)));
+        String Tiempo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_TIEMPO)));
+        String Cilindros = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NUMERO_DE_CILINDROS)));
+        String Refrigeracion = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_REFRIGERACION)));
+        String Encendido = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_ENCENDIDO)));
+        String Cambio = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_CAMBIO)));
+        String Alimentacion = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_ALIMENTACION)));
+        String AnchoTra = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TRA)));
+        String PerfilTra = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PERFIL_TRA)));
+        String RadioTra = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RADIO_TRA)));
+        String AnchoDel = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_DEL)));
+        String PerfilDel = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PERFIL_DEL)));
+        String RadioDel = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RADIO_DEL)));
+        String MarcaNeu = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_NEUMATICO)));
+        String ModeloNeu = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MODELO_NEUMATICOS)));
+        String Longitud = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.LONGITUD_TOTAL)) + "mm");
+        String AnchoDim = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TOTAL)) + "mm");
+        String Altura = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_TOTAL)) + "mm");
+        String DistanciaEntreEjes = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES)) + "mm");
+        String AlturaDesdeElSuelo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO)) + "mm");
+        String DepositoDeGasolina = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DEPOSITO_DE_GASOLINA)));
+        String Peso = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PESO)) + "Kg");
+        String Nombre = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MOTOR)));
+        String Potencia = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.POTENCIA)) + "CV");
+        String Cilindrada = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CILINDRADA)));
+        String RDC = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RELACION_DE_COMPRESION)));
+        String CapacidadDeAceite = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE)) + "l");
+        String KM = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.KM)) + "Km");
+        String Año = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.AÑO)));
+        String Consumo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CONSUMO)) + "L");
+        String MarcaFrenos = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_FRENOS)));
 
         int ABSs = Integer.parseInt(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ABS)));
 
-        if(ABSs == 0 ){
-            ABS.setText("Si");
-        }else{
-            if(ABSs == 1){
-                ABS.setText("No");
+        if (ABSs == 0) {
+            ABSS = ("Si");
+        } else {
+            if (ABSs == 1) {
+                ABSS = ("No");
             }
         }
 
         //ABS.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.ABS)));
-        Color.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.COLOR)));
-        Tipo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_MODELO)));
-        Modelo.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MODELO)));
-        Descripcion.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DESCRIPCION)));
-        Precio.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PRECIO)) + " €");
-        GuardarFoto = Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.FOTO));
+        String Color = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.COLOR)));
+        String Tipo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_MODELO)));
+        String Modelo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MODELO)));
+        NombreModelo.setText(Modelo);
+        String Descripcion = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DESCRIPCION)));
+        String Precio = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PRECIO)) + " €");
+        String GuardarFoto = Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.FOTO));
         Glide.with(getContext()).load(GuardarFoto).into(Foto);
-        Marca.setText(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA)));
+        String Marca = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA)));
         Toda_Moto.close();
+
+
+
+
+        ArrayList<String> GenralMoto = new ArrayList<>();
+        ArrayList<String> Motor = new ArrayList<>();
+        ArrayList<String> Dimensiones = new ArrayList<>();
+        ArrayList<String> Neumatico = new ArrayList<>();
+        ArrayList<String> Tra = new ArrayList<>();
+        ArrayList<String> Del = new ArrayList<>();
+
+
+        listCategorias.add("  General " + Modelo);
+        listCategorias.add("  Motor");
+        listCategorias.add("  Dimensiones");
+        listCategorias.add("  Neumatico");
+        listCategorias.add("  Neumatico trasero");
+        listCategorias.add("  Neumatico delantero");
+
+
+        //Datos generales para la moto 1
+        GenralMoto.add("Precio: " + Precio + " €");
+        GenralMoto.add("Marca: " + Marca);
+        GenralMoto.add("Modelo: " + Modelo);
+        GenralMoto.add("Tipo: " + Tipo);
+        GenralMoto.add("Km: " + KM);
+        GenralMoto.add("Año: " + Año);
+        GenralMoto.add("Consumo: " + Consumo + "l");
+        GenralMoto.add("Frenos: " + MarcaFrenos);
+        GenralMoto.add("ABS: " + ABSS);
+        GenralMoto.add("Color: " + Color);
+        //Datos motor para la moto 1
+        Motor.add("Motor: " + Nombre);
+        Motor.add("Potencia: " + Potencia + " CV");
+        Motor.add("Cilindrada: " + Cilindrada);
+        Motor.add("Tiempo: " + Tiempo);
+        Motor.add("Cilindros: " + Cilindros);
+        Motor.add("Alimentacion: " + Alimentacion);
+        Motor.add("Cambio: " + Cambio);
+        Motor.add("Encendido: " + Encendido);
+        Motor.add("Refrigeracion: " + Refrigeracion);
+        Motor.add("RDC: " + RDC);
+        Motor.add("CDA: " + CapacidadDeAceite);
+
+        //Datos Dimensiones para la moto 1
+        Dimensiones.add("Loongitud: " + Longitud);
+        Dimensiones.add("Ancho: " + AnchoDim + " mm");
+        Dimensiones.add("Altura: " + Altura + " mm");
+        Dimensiones.add("DEEjes: " + DistanciaEntreEjes + " mm");
+        Dimensiones.add("ADS: " + AlturaDesdeElSuelo + " mm");
+        Dimensiones.add("Deposito: " + DepositoDeGasolina + " L");
+        Dimensiones.add("Peso: " + Peso + " Kg");
+        //Datos Neumaticos para la moto 1
+        Neumatico.add("Marca: " + MarcaNeu);
+        Neumatico.add("Modelo: " + ModeloNeu);
+        //Datos Neumaticos delanteros i traseros para la moto 1
+        Del.add("Ancho: " + AnchoDel);
+        Del.add("Perfil: " + PerfilDel);
+        Del.add("Radio: " + RadioDel);
+
+        Tra.add("Ancho: " + AnchoTra);
+        Tra.add("Prefil: " + PerfilTra);
+        Tra.add("Radio: " + RadioTra);
+
+        //Datos moto 1
+        mapChild.put(listCategorias.get(0), GenralMoto);
+        mapChild.put(listCategorias.get(1), Motor);
+        mapChild.put(listCategorias.get(2), Dimensiones);
+        mapChild.put(listCategorias.get(3), Neumatico);
+        mapChild.put(listCategorias.get(4), Del);
+        mapChild.put(listCategorias.get(5), Tra);
+        adapter = new ExpCompAdapter(getContext(), listCategorias, mapChild);
+        expLv.setAdapter(adapter);
+
+
+
         /*
         Cursor Cursor_Tiempo = bd.MirarTiempo(idTask);
         Cursor_Tiempo.moveToFirst();

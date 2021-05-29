@@ -1,4 +1,4 @@
-package com.example.justmotor;
+package com.example.justmotor.FichaTecnicaAdapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,18 +12,21 @@ import com.example.justmotor.R;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ExpCompAdapter extends BaseExpandableListAdapter {
-
+public class ExpFichaTecnicaAdapter4 extends BaseExpandableListAdapter {
     private ArrayList<String> listCategoria;
     private Map<String, ArrayList<String>> mapChill;
     private Context context;
 
-    public ExpCompAdapter(Context context, ArrayList<String> listCategoria, Map<String, ArrayList<String>> mapChill) {
+
+    public ExpFichaTecnicaAdapter4(Context context, ArrayList<String> listCategoria, Map<String, ArrayList<String>> mapChill) {
         this.context = context;
         this.listCategoria = listCategoria;
         this.mapChill = mapChill;
 
     }
+
+
+
 
     @Override
     public int getGroupCount() {

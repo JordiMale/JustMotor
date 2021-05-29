@@ -224,6 +224,10 @@ public class FavFragment extends Fragment {
                             ref = Acceso.collection("Usuarios").document(Identificador);
                             Halo = (ArrayList<Long>) document.getData().get("Fav");
 
+
+                            if(Halo.isEmpty()){
+                                Toast.makeText(getContext(), "NO tienes favoritos.", Toast.LENGTH_LONG).show();
+                            }else{
                                 for (int i = 0; i < Halo.size(); i++) {
                                     MirarOferta = bd.MirarOfertaFav(Halo.get(i));
                                     MirarOferta.moveToFirst();
@@ -245,6 +249,8 @@ public class FavFragment extends Fragment {
 
                                 }
                                 MirarOferta.close();
+                            }
+
 
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
@@ -271,6 +277,7 @@ public class FavFragment extends Fragment {
         long IdEliminar = id;
         BorarrFavFirebase(IdEliminar);
         bd.BorrarFav(IdEliminar);
+        bd.ResetearIDGNEREALFavOfert();
 
         new Handler().postDelayed(new Runnable() {
             @Override
