@@ -13,7 +13,6 @@
         android:layout_width="352dp"
         android:layout_height="55dp"
         android:autoSizeTextType="uniform"
-        android:fontFamily="@font/aclonica"
         android:text="Settings"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -48,7 +47,7 @@
 
     <Button
         android:id="@+id/Perfil"
-        android:layout_width="284dp"
+        android:layout_width="270dp"
         android:layout_height="50dp"
         android:autoSizeTextType="uniform"
         android:background="@drawable/bnt_dos"
@@ -76,7 +75,7 @@
 
     <Button
         android:id="@+id/terminos"
-        android:layout_width="284dp"
+        android:layout_width="270dp"
         android:layout_height="50dp"
         android:autoSizeTextType="uniform"
         android:background="@drawable/bnt_dos"
@@ -104,7 +103,7 @@
 
     <Button
         android:id="@+id/Politica"
-        android:layout_width="284dp"
+        android:layout_width="270dp"
         android:layout_height="50dp"
         android:autoSizeTextType="uniform"
         android:background="@drawable/bnt_dos"
@@ -132,7 +131,7 @@
 
     <Button
         android:id="@+id/Ayuda"
-        android:layout_width="284dp"
+        android:layout_width="270dp"
         android:layout_height="50dp"
         android:autoSizeTextType="uniform"
         android:background="@drawable/bnt_dos"

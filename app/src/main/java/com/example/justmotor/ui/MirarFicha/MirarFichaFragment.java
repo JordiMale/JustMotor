@@ -1,5 +1,6 @@
 package com.example.justmotor.ui.MirarFicha;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -12,11 +13,17 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.justmotor.ComparadorAdapter.ExpCompAdapter;
+import com.example.justmotor.FichaTecnicaAdapter.ExpFichaTecnicaAdapter1;
 import com.example.justmotor.R;
 import com.example.justmotor.ui.BD.Datasource;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,14 +94,18 @@ public class MirarFichaFragment extends Fragment {
 
 
     ImageView Foto;
+    ImageView GmailFoto;
     String ABSS;
+    String Modelo;
+    String Gmail;
 
     private ExpandableListView expLv;
-    private ExpCompAdapter adapter;
+    private ExpFichaTecnicaAdapter1 adapter;
     private ArrayList<String> listCategorias;
     private Map<String, ArrayList<String>> mapChild;
 
     TextView NombreModelo;
+    private FirebaseUser Usu = FirebaseAuth.getInstance().getCurrentUser();
 
 
     @Override
@@ -103,6 +114,9 @@ public class MirarFichaFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mirar_ficha, container, false);
         Foto = v.findViewById(R.id.ImagenMotoFicha);
+        GmailFoto = v.findViewById(R.id.GmailContactoFicha);
+
+
 /*
         //General
          Marca = v.findViewById(R.id.TxtNombreMarca);
@@ -171,15 +185,21 @@ public class MirarFichaFragment extends Fragment {
         bd = new Datasource(getContext());
         idTask = getArguments().getLong("id");
         cargarDatos();
+
+
+            Enviar_Gmail_Concesionario(Gmail);
+
+
         return v;
     }
 
     private void cargarDatos() {
 
-
         Cursor Toda_Moto = bd.Todo_Oferta_Prueba(idTask);
+        Toda_Moto.getCount();
         Toda_Moto.moveToFirst();
         String Tiempo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_TIEMPO)));
+        Gmail = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CORREOCONCE)));
         String Cilindros = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NUMERO_DE_CILINDROS)));
         String Refrigeracion = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_REFRIGERACION)));
         String Encendido = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_ENCENDIDO)));
@@ -193,21 +213,21 @@ public class MirarFichaFragment extends Fragment {
         String RadioDel = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RADIO_DEL)));
         String MarcaNeu = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_NEUMATICO)));
         String ModeloNeu = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MODELO_NEUMATICOS)));
-        String Longitud = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.LONGITUD_TOTAL)) + "mm");
-        String AnchoDim = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TOTAL)) + "mm");
-        String Altura = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_TOTAL)) + "mm");
-        String DistanciaEntreEjes = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES)) + "mm");
-        String AlturaDesdeElSuelo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO)) + "mm");
+        String Longitud = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.LONGITUD_TOTAL)));
+        String AnchoDim = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ANCHO_TOTAL)));
+        String Altura = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_TOTAL)));
+        String DistanciaEntreEjes = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DISTANCIA_ENTRE_EJES)));
+        String AlturaDesdeElSuelo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ALTURA_DES_DEL_SUELO)));
         String DepositoDeGasolina = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DEPOSITO_DE_GASOLINA)));
-        String Peso = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PESO)) + "Kg");
+        String Peso = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PESO)));
         String Nombre = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MOTOR)));
-        String Potencia = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.POTENCIA)) + "CV");
+        String Potencia = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.POTENCIA)));
         String Cilindrada = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CILINDRADA)));
         String RDC = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.RELACION_DE_COMPRESION)));
-        String CapacidadDeAceite = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE)) + "l");
-        String KM = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.KM)) + "Km");
+        String CapacidadDeAceite = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CAPACIDAD_DE_ACEITE)));
+        String KM = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.KM)));
         String Año = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.AÑO)));
-        String Consumo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CONSUMO)) + "L");
+        String Consumo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.CONSUMO)));
         String MarcaFrenos = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA_FRENOS)));
 
         int ABSs = Integer.parseInt(Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.ABS)));
@@ -223,10 +243,10 @@ public class MirarFichaFragment extends Fragment {
         //ABS.setText(Cursor_FichaTecnica.getString(Cursor_FichaTecnica.getColumnIndex(Datasource.ABS)));
         String Color = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.COLOR)));
         String Tipo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.TIPO_MODELO)));
-        String Modelo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MODELO)));
+        Modelo = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.NOMBRE_MODELO)));
         NombreModelo.setText(Modelo);
         String Descripcion = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.DESCRIPCION)));
-        String Precio = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PRECIO)) + " €");
+        String Precio = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.PRECIO)));
         String GuardarFoto = Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.FOTO));
         Glide.with(getContext()).load(GuardarFoto).into(Foto);
         String Marca = (Toda_Moto.getString(Toda_Moto.getColumnIndex(Datasource.MARCA)));
@@ -254,6 +274,7 @@ public class MirarFichaFragment extends Fragment {
         //Datos generales para la moto 1
         GenralMoto.add("Precio: " + Precio + " €");
         GenralMoto.add("Marca: " + Marca);
+        GenralMoto.add("Correo: " + Gmail);
         GenralMoto.add("Modelo: " + Modelo);
         GenralMoto.add("Tipo: " + Tipo);
         GenralMoto.add("Km: " + KM);
@@ -302,8 +323,10 @@ public class MirarFichaFragment extends Fragment {
         mapChild.put(listCategorias.get(3), Neumatico);
         mapChild.put(listCategorias.get(4), Del);
         mapChild.put(listCategorias.get(5), Tra);
-        adapter = new ExpCompAdapter(getContext(), listCategorias, mapChild);
+        adapter = new ExpFichaTecnicaAdapter1(getContext(), listCategorias, mapChild);
         expLv.setAdapter(adapter);
+
+
 
 
 
@@ -424,4 +447,42 @@ public class MirarFichaFragment extends Fragment {
          */
 
     }
+
+    private void Enviar_Gmail_Concesionario(String Gmaill){
+
+        GmailFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(Usu != null) {
+
+                    String Gmail = Gmaill;
+                    String Text = "Modelo: " + Modelo;
+
+                    // Defino mi Intent y hago uso del objeto ACTION_SEND
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+
+                    // Defino los Strings Email, Asunto y Mensaje con la función putExtra
+                    intent.putExtra(Intent.EXTRA_EMAIL,
+                            new String[]{Gmail});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, Text);
+
+
+                    // Establezco el tipo de Intent
+                    intent.setType("message/rfc822");
+
+                    // Lanzo el selector de cliente de Correo
+                    startActivity(
+                            Intent
+                                    .createChooser(intent,
+                                            "Elije un cliente de Correo:"));
+                }else{
+                    Toast.makeText(getContext(), "No estas logeado, no puedes contactar con el concesionario.", Toast.LENGTH_LONG).show();
+                }
+            }
+
+        });
+
+    }
+
 }

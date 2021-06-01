@@ -75,6 +75,7 @@ public class ComparadorFinalFragment extends Fragment {
         Cursor MotoTodo1 = bd.Todo_Oferta_Prueba(id1);
         MotoTodo1.moveToFirst();
         String Ti = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_TIEMPO));
+        String Correo1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.CORREOCONCE));
         String Cilindros1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.NUMERO_DE_CILINDROS));
         String Refri1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_REFRIGERACION));
         String Encendi1 = MotoTodo1.getString(MotoTodo1.getColumnIndex(Datasource.TIPO_ENCENDIDO));
@@ -130,6 +131,7 @@ public class ComparadorFinalFragment extends Fragment {
         Cursor MotoTod2 = bd.Todo_Oferta_Prueba(id2);
         MotoTod2.moveToFirst();
         String Ti2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_TIEMPO));
+        String Correo2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.CORREOCONCE));
         String Cilindros2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.NUMERO_DE_CILINDROS));
         String Refri2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_REFRIGERACION));
         String Encendi2 = MotoTod2.getString(MotoTod2.getColumnIndex(Datasource.TIPO_ENCENDIDO));
@@ -446,6 +448,7 @@ public class ComparadorFinalFragment extends Fragment {
         //Datos generales para la moto 1
         GenralMoto1.add("Precio: " + Precio1 + " €");
         GenralMoto1.add("Marca: " + Marca1);
+        GenralMoto1.add("Correo: " + Correo1);
         GenralMoto1.add("Modelo: " + Modelo1);
         GenralMoto1.add("Tipo: " + Tipo1);
         GenralMoto1.add("Km: " + KM1);
@@ -458,6 +461,7 @@ public class ComparadorFinalFragment extends Fragment {
         //Datos generales para la moto 2
         GeneralMoto2.add("Precio: " + Precio2 + "€");
         GeneralMoto2.add("Marca: " + Marca2);
+        GeneralMoto2.add("Correo: " + Correo2);
         GeneralMoto2.add("Modelo: " + Modelo2);
         GeneralMoto2.add("Tipo: " + Tipo2);
         GeneralMoto2.add("Km: " + KM2);

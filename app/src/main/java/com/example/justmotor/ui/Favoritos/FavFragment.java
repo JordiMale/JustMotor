@@ -77,6 +77,7 @@ public class FavFragment extends Fragment {
 
     String Activa;
     String Fotoo = "";
+    String CorreoConcesio = "";
     String Data_Entradaa = "";
     String Nombre_Modeloo = "";
     String Activaa = "";
@@ -93,6 +94,7 @@ public class FavFragment extends Fragment {
 
     private static String[] from = new String[]{
             Datasource.FOTOO,
+            Datasource.CORREOCONCEE,
             Datasource.DATA_ENTRADAA,
             Datasource.ACTIVAA,
             Datasource.MARCAA,
@@ -102,6 +104,7 @@ public class FavFragment extends Fragment {
     private static int[] to = new int[]{
             R.id.Imagen_moto,
             R.id.Oferta_Data_Entrada,
+            R.id.Oferta_Gmail,
             R.id.Oferta_Activa,
             R.id.Oferta_Nombre_Marca,
             R.id.Oferta_Precio,
@@ -119,6 +122,7 @@ public class FavFragment extends Fragment {
 
         lv = (ListView) v.findViewById(R.id.list1);
 
+        EliminarCamposSqlite();
         MirarPersona();
 
 
@@ -126,7 +130,8 @@ public class FavFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Toast.makeText(getContext(), "Has hecho un refresh", Toast.LENGTH_LONG).show();
-                //EliminarCamposSqlite();
+                EliminarCamposSqlite();
+
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -157,7 +162,7 @@ public class FavFragment extends Fragment {
                 Cursor CursorFilt = bd.FiltrarNombreModelo(Aux);
 
                 scTasks = new adapterTodoIcon(getContext(),
-                        R.layout.row_oferta,
+                        R.layout.row_oferta_fav,
                         CursorFilt,
                         from,
                         to,
@@ -170,6 +175,13 @@ public class FavFragment extends Fragment {
 
 
         return v;
+    }
+
+    private void EliminarCamposSqlite() {
+        bd.Delete_All_Oferta_Fav();
+        bd.ResetearIDGNEREALFavOfert();
+        loadTasks();
+
     }
 
     private void loadTasks() {
@@ -232,13 +244,14 @@ public class FavFragment extends Fragment {
                                     MirarOferta = bd.MirarOfertaFav(Halo.get(i));
                                     MirarOferta.moveToFirst();
                                     Fotoo = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.FOTO));
+                                    CorreoConcesio = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.CORREOCONCE));
                                     Data_Entradaa = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.DATA_ENTRADA));
                                     Nombre_Modeloo = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.NOMBRE_MODELO));
                                     Activaa = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.ACTIVA));
                                     Marcaa = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.MARCA));
                                     Precioo = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.PRECIO));
 
-                                    OfertabdFav = bd.FavOfertas(Fotoo, Data_Entradaa, Nombre_Modeloo, Activaa, Marcaa, Precioo);
+                                    OfertabdFav = bd.FavOfertas(Fotoo, CorreoConcesio, Data_Entradaa, Nombre_Modeloo, Activaa, Marcaa, Precioo);
 
                                     Fotoo = "";
                                     Data_Entradaa = "";

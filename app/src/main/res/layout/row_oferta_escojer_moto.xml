@@ -8,9 +8,10 @@
     android:layout_marginTop="5dp"
     android:orientation="horizontal">
 
+
     <LinearLayout
         android:layout_width="139dp"
-        android:layout_height="207dp"
+        android:layout_height="222dp"
         android:orientation="vertical">
 
         <ImageView
@@ -28,14 +29,13 @@
 
     </LinearLayout>
 
-
     <Space
         android:layout_width="19dp"
-        android:layout_height="207dp" />
+        android:layout_height="222dp" />
 
     <LinearLayout
         android:layout_width="254dp"
-        android:layout_height="207dp"
+        android:layout_height="222dp"
         android:orientation="vertical">
 
         <Space
@@ -162,6 +162,32 @@
 
             <TextView
                 android:id="@+id/Oferta_Activa_Filtro_Escoger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="26dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:layout_marginLeft="2dp"
+                android:autoSizeTextType="uniform"
+                android:text="GMAIL: "
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/Oferta_Gmail_Filtro_Escoger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"

@@ -45,6 +45,7 @@ public class FilterMotoFragment extends Fragment {
 
     private static String[] from = new String[]{
             Datasource.FOTO,
+            Datasource.CORREOCONCE,
             Datasource.DATA_ENTRADA,
             Datasource.ACTIVA,
             Datasource.MARCA,
@@ -53,6 +54,7 @@ public class FilterMotoFragment extends Fragment {
 
     private static int[] to = new int[]{
             R.id.Imagen_moto_Filtro_Escoger,
+            R.id.Oferta_Gmail_Filtro_Escoger,
             R.id.Oferta_Data_Entrada_Filtro_Escoger,
             R.id.Oferta_Activa_Filtro_Escoger,
             R.id.Oferta_Nombre_Marca_Filtro_Escoger,

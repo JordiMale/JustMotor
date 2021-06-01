@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Helper extends SQLiteOpenHelper {
     // database version
-    private static final int database_VERSION = 2;
+    private static final int database_VERSION = 3;
 
     private static final String database_NAME = "DataBaseJustMotor";
 
@@ -142,6 +142,7 @@ public class Helper extends SQLiteOpenHelper {
                 "CREATE TABLE Oferta ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "Modelo INTEGER NOT NULL," +
                         "FOTO TEXT NOT NULL," +
+                        "CorreoConce TEXT NOT NULL," +
                         "Data_Entrada DATE NOT NULL," +
                         "Data_Final DATE NOT NULL," +
                         "Activa BOOLEAN NOT NULL," +
@@ -153,6 +154,7 @@ public class Helper extends SQLiteOpenHelper {
         String CREATE_OFERTA_FAV =
                 "CREATE TABLE Oferta_Fav ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "Fotoo TEXT NOT NULL," +
+                        "CorreoConcee TEXT NOT NULL," +
                         "Data_Entradaa DATE NOT NULL," +
                         "Activaa BOOLEAN NOT NULL," +
                         "Marcaa TEXT NOT NULL," +

@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:autoSizeTextType="uniform"
-            android:fontFamily="@font/aclonica"
             android:text="Comparador"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -43,7 +42,6 @@
                 android:layout_width="198dp"
                 android:layout_height="48dp"
                 android:autoSizeTextType="uniform"
-                android:fontFamily="@font/aclonica"
                 android:textAlignment="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +60,6 @@
                 android:layout_height="48dp"
                 android:layout_gravity="right"
                 android:autoSizeTextType="uniform"
-                android:fontFamily="@font/aclonica"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -132,8 +129,6 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
-
 
 </LinearLayout>

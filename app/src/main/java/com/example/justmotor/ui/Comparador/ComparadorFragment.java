@@ -72,37 +72,40 @@ public class ComparadorFragment extends Fragment {
 
 
 
-        if(Vefir2 == true){
+
             btnMoto2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if(Vefir2 == true){
                     Bundle bundle = new Bundle();
                     bundle.putLong("id", Guardar_Primer_Id_Moto);
 
                     NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_nav_comparador_to_nav_Filter, bundle);
+                    }else{
+                        Toast.makeText(getContext(), "Escoje la primera moto antes", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
-        }else{
-            Toast.makeText(getContext(), "Escoje la primera moto antes", Toast.LENGTH_LONG).show();
-        }
 
 
-        if(IrComp == true){
+
+
             Ir_Comparador_Final.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
+                    if(IrComp == true){
                     Bundle bundle = new Bundle();
                     bundle.putLongArray("idz", Guardar_Segundo_Id_Moto);
 
 
                     NavHostFragment.findNavController(getParentFragment()).navigate(R.id.action_nav_comparador_to_comparadorFinalFragment, bundle);
+                    }else{
+                        Toast.makeText(getContext(), "Escoje las motos para poder ir.", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
-        }else{
-            Toast.makeText(getContext(), "Escoje las motos para poder ir.", Toast.LENGTH_LONG).show();
-        }
+
 
 
 

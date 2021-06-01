@@ -100,6 +100,7 @@ public class HomeFragment extends Fragment {
     private static String[] from = new String[]{
             Datasource.PRECIO,
             Datasource.FOTO,
+            Datasource.CORREOCONCE,
             Datasource.DATA_ENTRADA,
             Datasource.MARCA,
             Datasource.ACTIVA,
@@ -108,6 +109,7 @@ public class HomeFragment extends Fragment {
     private static int[] to = new int[]{
             R.id.Oferta_Precio,
             R.id.Imagen_moto,
+            R.id.Oferta_Gmaill,
             R.id.Oferta_Data_Entrada,
             R.id.Oferta_Nombre_Marca,
             R.id.Oferta_Activa,
@@ -404,6 +406,7 @@ public class HomeFragment extends Fragment {
                         //Json de Oferta
                         int id_Oferta = Integer.parseInt(jsonObject.getString("id"));
                         String Precio = String.valueOf(jsonObject.getString("precio"));
+                        String CorreoCon = String.valueOf(jsonObject.getString("correoconcesionario"));
                         String Foto = jsonObject.getString("fotos");
                         String Matricula = String.valueOf(jsonObject.getString("matricula"));
                         String Marca = String.valueOf(jsonObject.getString("marca"));
@@ -458,7 +461,7 @@ public class HomeFragment extends Fragment {
                         Modelobd = bd.Crear_Modelo(id_Modelo, Ficha_Tecnica, Nombre_Modelo, Tipo_Modelo, Descripcion);
 
                         //Ofertas
-                        Ofertabd = bd.Crear_Oferta(Precio, Foto, Matricula, Marca, Modelo, Data_Entrada, Data_Final, activa);
+                        Ofertabd = bd.Crear_Oferta(Precio, Foto, CorreoCon, Matricula, Marca, Modelo, Data_Entrada, Data_Final, activa);
 
                     }
 

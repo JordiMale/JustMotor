@@ -24,7 +24,6 @@
             android:layout_width="352dp"
             android:layout_height="55dp"
             android:autoSizeTextType="uniform"
-            android:fontFamily="@font/aclonica"
             android:text="Ayuda"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"

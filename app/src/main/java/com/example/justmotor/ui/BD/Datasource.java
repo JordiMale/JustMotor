@@ -69,7 +69,7 @@ public class Datasource {
     //Table MOTOR
     public static final String TABLE_MOTOR = "MOTOR";
     public static final String ID_MOTOR = "_id";
-    public static final String TIPO_DE_MOTOR = "Tipo_de_motor";
+    public static final String TIPO_DE_MOTOR = "Tipo_De_Motor";
     public static final String NOMBRE_MOTOR = "Nombre_Motor";
     public static final String REFRIGERACION = "Refrigeracion";
     public static final String ENCENDIDO = "Encendido";
@@ -127,6 +127,7 @@ public class Datasource {
     public static final String TABLE_OFERTA = "Oferta";
     public static final String MODELO = "Modelo";
     public static final String FOTO = "FOTO";
+    public static final String CORREOCONCE = "CorreoConce";
     public static final String DATA_ENTRADA = "Data_Entrada";
     public static final String DATA_FINAL = "Data_Final";
     public static final String ACTIVA = "Activa";
@@ -137,6 +138,7 @@ public class Datasource {
     //Table Favoritos
     public static final String TABLE_OFERTA_FAV = "Oferta_Fav";
     public static final String FOTOO = "Fotoo";
+    public static final String CORREOCONCEE = "CorreoConcee";
     public static final String DATA_ENTRADAA = "Data_Entradaa";
     public static final String ACTIVAA = "Activaa";
     public static final String MARCAA = "Marcaa";
@@ -173,7 +175,7 @@ public class Datasource {
 
     //cursor para la ficha tecnica donde pido todooo los datos de esa moto.
     public Cursor Todo_Oferta_Prueba(long id) {
-        final String MY_QUERY = "SELECT Ofer._id, Marca, FOTO, Precio,Mod.Nombre_Modelo, Mod.Tipo_Modelo, Mod.Descripcion, Fich.Año, Fich.KM," +
+        final String MY_QUERY = "SELECT Ofer._id, Marca, FOTO, CorreoConce, Precio,Mod.Nombre_Modelo, Mod.Tipo_Modelo, Mod.Descripcion, Fich.Año, Fich.KM," +
                 "Fich.Consumo, Fich.Marca_Frenos, Fich.ABS, Fich.Color, Dim.Longitud_Total, Dim.Ancho_Total, Dim.Altura_Total, Dim.Distancia_Entre_Ejes," +
                 "Dim.Altura_Des_Del_Suelo, Dim.Deposito_De_Gasolina, Dim.Peso, Neu.Marca_Neumaticos, Neu.Modelo_Neumaticos, Mot.Potencia, Mot.Cilindrada," +
                 "Mot.relacion_De_Compresion, Mot.Capacidad_De_Aceite, Dim_Tra.Ancho, Dim_Tra.Perfil, Dim_Tra.Radio, Dim_Del.Ancho, Dim_Del.Perfil, Dim_Del.Radio," +
@@ -189,7 +191,7 @@ public class Datasource {
                 "INNER JOIN Cambio AS Cam ON Mot.Cambio = Cam._id " +
                 "INNER JOIN Encendido AS Enc ON Mot.Encendido = Enc._id " +
                 "INNER JOIN Refrigeracion AS Ref ON Mot.Refrigeracion = Ref._id " +
-                "INNER JOIN Tipo_motor AS TiPoMo ON Mot.Tipo_de_motor = TiPoMo._id " +
+                "INNER JOIN Tipo_Motor AS TiPoMo ON Mot.Tipo_De_Motor = TiPoMo._id " +
                 "INNER JOIN Numero_Cilindros AS NumCil ON TiPoMo.Numero_Cilindroos = NumCil._id " +
                 "INNER JOIN Tiempo As Tie ON TipoMo.Tiempooo = Tie._id  WHERE Ofer._id = " + id;
 
@@ -253,7 +255,7 @@ public class Datasource {
     //Insert de encendio
     public long Crear_Encendido(long id, String Encendido) {
         ContentValues values = new ContentValues();
-        values.put(ID_REFRIGERACION, id);
+        values.put(ID_ENCENDIDO, id);
         values.put(TIPO_ENCENDIDO, Encendido);
         return dbW.insert(TABLE_ENCENDIDO, null, values);
     }
@@ -416,10 +418,11 @@ public class Datasource {
     }
 
     //Insert de Oferta
-    public long Crear_Oferta(String Precio, String Foto, String Matricula, String Marca, String Modelo, String Data_Entrada, String Data_Final, Boolean activa) {
+    public long Crear_Oferta(String Precio, String Foto, String CorreoCon, String Matricula, String Marca, String Modelo, String Data_Entrada, String Data_Final, Boolean activa) {
         ContentValues values = new ContentValues();
         values.put(MODELO, Modelo);
         values.put(FOTO, Foto);
+        values.put(CORREOCONCE, CorreoCon);
         values.put(DATA_ENTRADA, Data_Entrada);
         values.put(DATA_FINAL, Data_Final);
         values.put(ACTIVA, activa);
@@ -436,7 +439,7 @@ public class Datasource {
 
     //Per poder mostrar la oferta en el listview
     public Cursor Todo_Oferta() {
-        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
+        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, CorreoConce, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
                 "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id ORDER BY Mod.Nombre_Modelo";
 
         return dbR.rawQuery(MY_QUERY, null);
@@ -562,7 +565,7 @@ public class Datasource {
 
     //Filtrar motos por el nombre del modelo
     public Cursor FiltrarNombreModelo(String nums) {
-        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Matricula, Marca, Data_Entrada, Data_Final, Activa, Mod.Nombre_Modelo " +
+        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, CorreoConce, Matricula, Marca, Data_Entrada, Data_Final, Activa, Mod.Nombre_Modelo " +
                 "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id WHERE Mod.Nombre_Modelo LIKE '%" + nums + "%'";
 
         return dbR.rawQuery(MY_QUERY, null);
@@ -572,7 +575,7 @@ public class Datasource {
 
     //Per poder mostrar la oferta en el listview
     public Cursor MirarOfertaFav(Long id) {
-        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
+        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, CorreoConce, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
                 "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id WHERE Ofer._id = " + id + " ORDER BY Mod.Nombre_Modelo";
 
         return dbR.rawQuery(MY_QUERY, null);
@@ -597,9 +600,10 @@ public class Datasource {
 
      */
     //Insert de Para ver Fav
-    public long FavOfertas(String Fotoo, String Data_Entradaa, String Nombre_Modeloo, String Activaa, String Marcaa, String Precioo) {
+    public long FavOfertas(String Fotoo, String Correo_Conn, String Data_Entradaa, String Nombre_Modeloo, String Activaa, String Marcaa, String Precioo) {
         ContentValues values = new ContentValues();
         values.put(FOTOO, Fotoo);
+        values.put(CORREOCONCEE, Correo_Conn);
         values.put(DATA_ENTRADAA, Data_Entradaa);
         values.put(MODELOO, Nombre_Modeloo);
         values.put(ACTIVAA, Activaa);
@@ -608,10 +612,15 @@ public class Datasource {
         return dbW.insert(TABLE_OFERTA_FAV, null, values);
     }
 
+    public void Delete_All_Oferta_Fav() {
+        dbW.delete(TABLE_OFERTA_FAV, null, null);
+    }
+
     public Cursor ListOfertas(){
         return dbR.query(TABLE_OFERTA_FAV,
                 new String[]{
                         IDGENERAL,
+                        CORREOCONCEE,
                         FOTOO,
                         DATA_ENTRADAA,
                         MODELOO,
@@ -661,7 +670,6 @@ public class Datasource {
         dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_FICHA_TECNICA + "'");
         dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_MODELO + "'");
         dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_OFERTA + "'");
-        dbW.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '" + TABLE_OFERTA_FAV + "'");
     }
 
     public void ResetearIDGNEREALFavOfert(){
