@@ -137,6 +137,7 @@ public class Datasource {
 
     //Table Favoritos
     public static final String TABLE_OFERTA_FAV = "Oferta_Fav";
+    public static final String IDEFAVORITO = "IDOFERTA";
     public static final String FOTOO = "Fotoo";
     public static final String CORREOCONCEE = "CorreoConcee";
     public static final String DATA_ENTRADAA = "Data_Entradaa";
@@ -572,14 +573,24 @@ public class Datasource {
 
     }
 
-
-    //Per poder mostrar la oferta en el listview
-    public Cursor MirarOfertaFav(Long id) {
-        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, CorreoConce, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
-                "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id WHERE Ofer._id = " + id + " ORDER BY Mod.Nombre_Modelo";
+    public Cursor FiltrarNombreModeloFav(String nums) {
+        final String MY_QUERY = "SELECT _id, IDOFERTA, Precioo, Fotoo, CorreoConcee, Marcaa, Data_Entradaa, Activaa, Nombre_Modeloo " +
+                "FROM Oferta_Fav WHERE Nombre_Modeloo LIKE '%" + nums + "%'";
 
         return dbR.rawQuery(MY_QUERY, null);
+
     }
+
+
+
+    //Per poder mirar el Oferta
+    public Cursor MirarOfertaFAVVVV(long id) {
+        return dbR.query(TABLE_OFERTA_FAV, new String[]{IDEFAVORITO},
+                IDGENERAL + "=?", new String[]{String.valueOf(id)},
+                null, null, null);
+    }
+
+
 
 
 
@@ -600,8 +611,9 @@ public class Datasource {
 
      */
     //Insert de Para ver Fav
-    public long FavOfertas(String Fotoo, String Correo_Conn, String Data_Entradaa, String Nombre_Modeloo, String Activaa, String Marcaa, String Precioo) {
+    public long FavOfertas(long ID, String Fotoo, String Correo_Conn, String Data_Entradaa, String Nombre_Modeloo, String Activaa, String Marcaa, String Precioo) {
         ContentValues values = new ContentValues();
+        values.put(IDEFAVORITO, ID);
         values.put(FOTOO, Fotoo);
         values.put(CORREOCONCEE, Correo_Conn);
         values.put(DATA_ENTRADAA, Data_Entradaa);
@@ -616,10 +628,17 @@ public class Datasource {
         dbW.delete(TABLE_OFERTA_FAV, null, null);
     }
 
+    public Cursor MirarOfertaFav(long id){
+        final String MY_QUERY = "SELECT Ofer._id, Precio, FOTO, CorreoConce, Marca, Data_Entrada, Activa, Mod.Nombre_Modelo " +
+                "FROM Oferta AS Ofer INNER JOIN Modelo AS Mod ON Ofer.Modelo = Mod._id WHERE Ofer._id = " + id + " ORDER BY Mod.Nombre_Modelo";
+
+        return dbR.rawQuery(MY_QUERY, null);
+    }
     public Cursor ListOfertas(){
         return dbR.query(TABLE_OFERTA_FAV,
                 new String[]{
                         IDGENERAL,
+                        IDEFAVORITO,
                         CORREOCONCEE,
                         FOTOO,
                         DATA_ENTRADAA,
@@ -650,7 +669,7 @@ public class Datasource {
     //Quitar favoritos.
     public void BorrarFav(long id) {
         // Eliminem la task amb clau primària "id"
-        dbW.delete(TABLE_OFERTA_FAV, IDGENERAL + " = ?", new String[]{String.valueOf(id)});
+        dbW.delete(TABLE_OFERTA_FAV, IDEFAVORITO + " = ?", new String[]{String.valueOf(id)});
     }
 
     public void ResetearIDGNEREAL(){

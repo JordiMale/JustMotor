@@ -75,6 +75,7 @@ public class FavFragment extends Fragment {
     String TelGuardado;
     String PassGuardado;
 
+    long IDEGENERAL;
     String Activa;
     String Fotoo = "";
     String CorreoConcesio = "";
@@ -159,7 +160,7 @@ public class FavFragment extends Fragment {
 
                 String Aux;
                 Aux = s;
-                Cursor CursorFilt = bd.FiltrarNombreModelo(Aux);
+                Cursor CursorFilt = bd.FiltrarNombreModeloFav(Aux);
 
                 scTasks = new adapterTodoIcon(getContext(),
                         R.layout.row_oferta_fav,
@@ -169,6 +170,8 @@ public class FavFragment extends Fragment {
                         1, FavFragment.this);
 
                 lv.setAdapter(scTasks);
+
+
                 return false;
             }
         });
@@ -206,7 +209,13 @@ public class FavFragment extends Fragment {
                                             int position, long id) {
 
                         //modifiquem el id
-                        MirarOferta(id);
+
+                        Cursor MirarFavi = bd.MirarOfertaFAVVVV(id);
+                        MirarFavi.moveToFirst();
+                        String ide = MirarFavi.getString(MirarFavi.getColumnIndex(Datasource.IDEFAVORITO));
+                        long idddd = Long.parseLong(ide);
+                        MirarFavi.close();
+                        MirarOferta(idddd);
                     }
 
 
@@ -243,6 +252,7 @@ public class FavFragment extends Fragment {
                                 for (int i = 0; i < Halo.size(); i++) {
                                     MirarOferta = bd.MirarOfertaFav(Halo.get(i));
                                     MirarOferta.moveToFirst();
+                                    IDEGENERAL = Long.parseLong(MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.IDGENERAL)));
                                     Fotoo = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.FOTO));
                                     CorreoConcesio = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.CORREOCONCE));
                                     Data_Entradaa = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.DATA_ENTRADA));
@@ -251,8 +261,8 @@ public class FavFragment extends Fragment {
                                     Marcaa = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.MARCA));
                                     Precioo = MirarOferta.getString(MirarOferta.getColumnIndex(Datasource.PRECIO));
 
-                                    OfertabdFav = bd.FavOfertas(Fotoo, CorreoConcesio, Data_Entradaa, Nombre_Modeloo, Activaa, Marcaa, Precioo);
-
+                                    OfertabdFav = bd.FavOfertas(IDEGENERAL,Fotoo, CorreoConcesio, Data_Entradaa, Nombre_Modeloo, Activaa, Marcaa, Precioo);
+                                    IDEGENERAL = 0;
                                     Fotoo = "";
                                     Data_Entradaa = "";
                                     Nombre_Modeloo = "";
@@ -290,7 +300,7 @@ public class FavFragment extends Fragment {
         long IdEliminar = id;
         BorarrFavFirebase(IdEliminar);
         bd.BorrarFav(IdEliminar);
-        bd.ResetearIDGNEREALFavOfert();
+        //bd.ResetearIDGNEREALFavOfert();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -379,7 +389,7 @@ public class FavFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Cursor linia = (Cursor) getItem(position);
-                    oTodoListIcon.QuitarFav(linia.getLong(linia.getColumnIndexOrThrow(Datasource.IDGENERAL)));
+                    oTodoListIcon.QuitarFav(linia.getLong(linia.getColumnIndexOrThrow(Datasource.IDEFAVORITO)));
                 }
             });
             /*

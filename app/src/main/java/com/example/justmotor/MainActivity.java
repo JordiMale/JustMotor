@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.justmotor.ui.Comparador.ComparadorFragment;
 import com.example.justmotor.ui.Favoritos.FavFragment;
+import com.example.justmotor.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -142,11 +143,11 @@ public class MainActivity extends AppCompatActivity {
 
                         }else{
                             if(id == R.id.nav_home){
-                                fragment = new ComparadorFragment();
+                                fragment = new HomeFragment();
                                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                                 ft.replace(R.id.nav_home, fragment);
                                 ft.commit();
-                            }
+                            }/*
                             else{
                                 if( id == R.id.navigation_Fav){
                                     if(Usu != null){
@@ -158,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "Ya estas registrado o logeado.", Toast.LENGTH_LONG).show();
                                     }
                                 }
-                            }
+                            }*/
                         }
                     }
                 }

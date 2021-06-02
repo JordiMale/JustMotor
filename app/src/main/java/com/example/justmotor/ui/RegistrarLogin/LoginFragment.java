@@ -125,6 +125,7 @@ public class LoginFragment extends Fragment {
                 }
             }
 
+
             @Override
             public void afterTextChanged(Editable s) {
 

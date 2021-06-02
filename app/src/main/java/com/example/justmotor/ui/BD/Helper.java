@@ -153,6 +153,7 @@ public class Helper extends SQLiteOpenHelper {
 
         String CREATE_OFERTA_FAV =
                 "CREATE TABLE Oferta_Fav ( _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                        "IDOFERTA INTEGER NOT NULL," +
                         "Fotoo TEXT NOT NULL," +
                         "CorreoConcee TEXT NOT NULL," +
                         "Data_Entradaa DATE NOT NULL," +
